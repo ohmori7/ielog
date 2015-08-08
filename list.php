@@ -8,7 +8,7 @@
 <ol>
 <?php
 for ($i = 0; $i < 10; $i++) {
-	echo("<li><a href=\"detail.php&id=$i\"おばーちゃん画像$i 家の画像$i " .
+	echo("<li><a href=\"detail.php&id=$i\">おばーちゃん画像$i 家の画像$i " .
 	    "情報$i</a></li>\n");
 }
 ?>
