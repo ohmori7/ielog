@@ -38,7 +38,6 @@ header_print($title, $links)
 	    ));
 	nav_print($links);
 	echo '
-    </div>
     <div id="main">';
 }
 
