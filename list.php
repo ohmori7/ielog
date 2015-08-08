@@ -3,6 +3,7 @@
 <head>
 	<title>家ログ</title>
 	<link rel="stylesheet" href="./css/style.css"/>
+	<script src="./scripts/list.js"></script>
 </head>
 <body>
 	<h1><img alt="logo" src="./images/logo.png" />ログ</h1>
