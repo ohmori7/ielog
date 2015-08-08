@@ -1,10 +1,8 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-<title>家ログ</title>
-</head>
-<body>
-<h1><img alt="logo" src="logo.png" />家ログ 問い合わせ</h1>
+<?php
+require_once('lib.php');
+header_print('家ログ 問い合わせ', array());
+?>
+<h1><img alt="logo" src="logo.png" />
 <p>
 <form action="contact.php">
 お名前: <input type="text" value="" />
@@ -12,6 +10,6 @@
 メッセージ: <textarea value="" width="30" height="20" />
 <input type="button" value="送信" />
 </form>
-</p>
-</body>
-</html>
+<?php
+footer_print();
+?>

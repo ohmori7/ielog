@@ -1,16 +1,11 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-<title>家ログ</title>
-</head>
-<body>
-<h1><img alt="logo" src="logo.png" />家ログ 一覧</h1>
-<ol>
 <?php
+require_once('lib.php');
+header_print('家ログ 一覧', array());
+
 for ($i = 1; $i < 11; $i++) {
 	echo("<li><a href=\"detail.php&id=$i\">おばーちゃん画像$i 家の画像$i " .
 	    "情報$i</a></li>\n");
 }
+
+footer_print();
 ?>
-</body>
-</html>

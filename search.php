@@ -1,14 +1,12 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-<title>家ログ</title>
-</head>
-<body>
-<h1><img alt="logo" src="logo.png" />家ログ 検索</h1>
-<p>
+<?php
+require_once('lib.php');
+header_print('家ログ 検索', array());
+?>
+
 <form action="search.php">
 キーワード: <input type="text" />
 </form>
-</p>
-</body>
-</html>
+
+<?php
+footer_print();
+?>
