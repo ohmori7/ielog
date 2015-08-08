@@ -2,7 +2,12 @@
 require_once('lib.php');
 header_print('家ログ 詳細', array());
 
-$id = '1'; /* XXX */
+$id = param_get('id');
+if (empty($id)) {
+	echo('ERROR: wrong page transition!!');
+	footer_print();
+	die();
+}
 
 $owner = "images/owner${id}.png";
 $appear = "images/appear${id}.png";
