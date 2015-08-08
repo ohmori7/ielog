@@ -4,7 +4,7 @@
 <title>家ログ</title>
 </head>
 <body>
-<h1><img src="logo.png" />家ログ 問い合わせ</h1>
+<h1><img alt="logo" src="logo.png" />家ログ 問い合わせ</h1>
 <p>
 <form action="contact.php">
 お名前: <input type="text" value="" />
