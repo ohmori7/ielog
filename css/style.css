@@ -86,10 +86,11 @@
 
 .container {
 	clear:both;
+	padding:		30px;
 }
 
 .comment {
-	
+	border:			solid;
 }
 
 .commentator {
