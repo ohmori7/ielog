@@ -50,4 +50,16 @@ footer_print()
   </body>
 </html>';
 }
+
+function
+param_get($name)
+{
+
+	if (isset($_POST) && isset($_POST[$name]))
+		return $_POST[$name];
+	else if (isset($_GET) && isset($_GET[$name]))
+		return $_PGET[$name];
+	else
+		return '';
+}
 ?>
