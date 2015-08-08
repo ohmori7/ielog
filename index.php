@@ -6,9 +6,8 @@
 <body>
 <h1><img src="logo.png" />家ログ</h1>
 <ul>
-<li>ホーム</li>
-<li>口コミ</li>
-<li></li>
+<li><a href="search.php">検索</a></li>
+<li><a href="list.php">一覧</a></li>
 </ul>
 </body>
 </html>
