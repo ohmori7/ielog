@@ -26,7 +26,7 @@ header_print($title, $links)
   <head>
     <link rel="index" href="./index.php" />
     <link rev="made" href="mailto:null@mobile-ip.org" />
-    <link href="' . $uri . 'style.css" rel="stylesheet" type="text/css" />
+    <link href="' . $uri . 'css/style.css" rel="stylesheet" type="text/css" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>' . $title . '</title>
   </head>
