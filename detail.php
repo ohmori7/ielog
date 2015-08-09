@@ -16,7 +16,28 @@ echo("<img alt=\"$owner\" src=\"$owner\" height=\"200px\" />\n");
 echo("<img alt=\"$appear\" src=\"$appear\" height=\"200px\" />\n");
 
 echo("<a href=\"contact.php?id=$id\">○○さんに問い合わせ</a>");
+?>
 
+<script type="text/javascript" src="scripts/rendering-mode.js"></script>
+<!--[if IE]><script type="text/javascript" src="scripts/excanvas.js"></script><![endif]-->
+<script type="text/javascript" src="scripts/radar.js"></script>
+<script type="text/javascript">
+window.onload = function() {
+	var rc = new html5jp.graph.radar("chart");
+	if( ! rc ) { return; }
+	var items = [
+		["平均", 5, 2, 4, 5, 3, 2],
+		["評価", 5, 2, 4, 5, 3, 2],
+	];
+	var params = {
+		aCap: ["都市計画地域", "小学校校区", "地価", "防災情報", "公共施設", "交通情報"]
+	}
+	rc.draw(items, params);
+};
+</script>
+<div><canvas width="400" height="300" id="chart"></canvas></div>
+
+<?php
 $ncomments = 10; /* XXX */
 echo("<div class=\"balloon-wrapper\">\n");
 for ($i = 0; $i < $ncomments; $i++) {
