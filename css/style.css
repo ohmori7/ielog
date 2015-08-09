@@ -39,7 +39,7 @@
 /*-----吹き出し-----*/
 /* balloon common */
 div.balloon-wrapper {
-	width: 500px;
+	width: 520px;
 	margin: 15px auto;
 }
 div.balloon-wrapper::after {
@@ -52,8 +52,9 @@ p.balloon-left,
 p.balloon-right {
 	position: relative;
 	z-index: 1;
-	max-width: 80%;
-	min-width: 10%;
+/*	max-width: 80%;
+	min-width: 10%;*/
+	width: 400px;
 	margin: 15px auto;
 	padding: 13px;
 	background-color: #fff;
@@ -113,8 +114,31 @@ p.balloon-right::after {
 	right: -26px;
 	border-left: 15px solid #fff;
 }
-
-/* */
+/* balloon left icon */
+.balloon-left-img{
+	width: 70px;
+	margin: 15px 0 15px;
+	float: left;
+}
+/* balloon right icon */
+.balloon-right-img{
+	width: 70px;
+	margin: 15px 0 15px;
+	float: right;
+}
+.clear-p{
+	position: relative;
+	clear: both;
+	width: 100%;
+	height: 1px;
+	margin: 0px;
+}
+.useful{
+	font-size: 0.8em;
+	color: #0000FF;
+	margin: 5px 5px 5px 20px;
+}
+/* -------------------------------------------- */
 #header {
 	position:		fixed;
 	top:			0;
