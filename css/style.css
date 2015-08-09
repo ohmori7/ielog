@@ -230,7 +230,7 @@ label {
 }
 #nav {
 	color:			white;
-	background:		url('../images/navbg.jpg');
+	background-color:	rgb(233, 141, 57);
 	height:			1.5em;
 }
 #nav ul {
