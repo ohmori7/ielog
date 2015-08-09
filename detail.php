@@ -59,7 +59,10 @@ window.onload = function() {
 　重力によって更に縮んでいくと、うず巻きの中心部が濃くなり、熱くなっていきます。それは、やがて自ら光を放つようになり、赤ちゃん星が誕生します。冬の夜、肉眼でも見ることができるオリオン座の大星雲も、新しい星が生まれている場所です。星雲の中で、数え切れないほどたくさんの星の赤ちゃんが輝いています。 <br/>
 </span>
 			</div>
-
+			<div style="clear:both;">
+				<h3>みんなの評価</h3>
+				<img alt="score" src="images/star3.png" />　　<span style="font-size:15px; font-style:bold; color: #0000FF;">いいね　　おきにいり</span>
+			</div>
             </li>
         	<!-- 写真 -->
             <li id="tab2" name="tab2">
