@@ -1,12 +1,8 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-	<title>家ログ</title>
-	<link rel="stylesheet" href="./css/style.css"/>
+<?php
+require_once('lib.php');
+header_print('家ログ', array());
+?>
 	<script src="./scripts/list.js"></script>
-</head>
-<body>
-	<h1><img alt="logo" src="./images/logo.png" />ログ</h1>
 	<ol>
 	<?php
 	for ($i = 1; $i <= 5; $i++) {
@@ -23,5 +19,6 @@
 	}
 	?>
 	</ol>
-</body>
-</html>
+<?php
+footer_print();
+?>
