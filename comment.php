@@ -11,7 +11,7 @@ header_print('家ログ 評価', array());
 公共施設: <input name="facility" type="text" value="" /><br />
 交通情報: <input name="traffic" type="text" value="" /><br />
 メールアドレス: <input name="mailaddress" type="text" value="" /><br />
-メッセージ: <textarea name="message" value="" width="30" height="20"></textarea><br />
+メッセージ: <br /><textarea name="message" value="" width="30" height="20"></textarea><br />
 <input type="button" value="送信" />
 </form>
 </p>
