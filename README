@@ -1,1 +1,4 @@
 Map Tagger
+
+sudo yum install php-pear
+sudo pear install HTML_QuickForm2
