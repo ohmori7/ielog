@@ -5,7 +5,7 @@
  * $dbserver	= 'localhost';
  * $dbuser	= 'username';
  * $dbpasswd	= 'password';
- $ $dbname	= 'ielog';
+ * $dbname	= 'ielog';
  * ?>
  */
 require_once('config.php');
