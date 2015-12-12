@@ -26,10 +26,15 @@ db_init($c)
 	$tables = array(
 	    'user' => array(
 	        'id INT NOT NULL AUTO_INCREMENT',
+		'username CHAR(255) UNIQUE',
 	        'lastname CHAR(255)',
 	        'firstname CHAR(255)',
-	        'mail CHAR(255)',
+	        'mail CHAR(255) UNIQUE',
 	        'picture CHAR(255)',
+	        'prefecture CHAR(255)',
+	        'city CHAR(255)',
+	        'address CHAR(255)',
+	        'age CHAR(255)',
 	        'PRIMARY KEY(id)'
 	        ),
 	    'realestate' => array(
