@@ -24,7 +24,7 @@ db_init($c)
 	        'prefecture CHAR(255)',
 	        'city CHAR(255)',
 	        'address CHAR(255)',
-	        'age CHAR(255)',
+	        'birthday DATETIME(6)',
 	        'PRIMARY KEY(id)'
 	        ),
 	    'realestate' => array(
