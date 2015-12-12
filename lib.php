@@ -1,4 +1,18 @@
 <?php
+/*
+ * this requires a configuration file, config.php, like below.
+ * <?php
+ * define('IELOG_URI', 'http://ielog.hogehoge.org/');
+ * $dbserver	= 'localhost';
+ * $dbuser	= 'username';
+ * $dbpasswd	= 'password';
+ * $dbname	= 'ielog';
+ * ?>
+ */
+require_once('config.php');
+
+require_once('config.php');
+
 function
 nav_print($links)
 {
@@ -19,7 +33,8 @@ nav_print($links)
 function
 header_print($title, $links)
 {
-	static $uri = 'http://ielog.mobile-ip.org/';
+	static $uri = IELOG_URI;
+
 	echo
 '<!DOCTYPE html>
 <html lang="ja">

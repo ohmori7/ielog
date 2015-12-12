@@ -1,15 +1,4 @@
 <?php
-/*
- * this requires a configuration file, config.php, like below.
- * <?php
- * $dbserver	= 'localhost';
- * $dbuser	= 'username';
- * $dbpasswd	= 'password';
- * $dbname	= 'ielog';
- * ?>
- */
-require_once('config.php');
-
 /* XXX: these are very old API but a MySQL of VPS server is very old. */
 $dbconnection = FALSE;
 
