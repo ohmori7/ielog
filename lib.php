@@ -19,7 +19,7 @@ nav_print($links)
 function
 header_print($title, $links)
 {
-	static $uri = 'http://mobile-ip.org/maptagger/';
+	static $uri = 'http://mobile-ip.org/ielog/';
 	echo
 '<!DOCTYPE html>
 <html lang="ja">
