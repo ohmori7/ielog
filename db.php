@@ -107,7 +107,6 @@ db_addslashes($s)
 function
 db_record_insert($table, $obj)
 {
-	global $dbconnection;
 
 	db_connect();
 	$keys = array_keys((Array)$obj);
@@ -117,7 +116,7 @@ db_record_insert($table, $obj)
 	$rc = db_sql($sql);
 	if ($rc === TRUE)
 		return $rc;
-	return $dbconnection->error;
+	return mysql_error();
 }
 
 function
