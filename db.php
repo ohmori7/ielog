@@ -63,7 +63,7 @@ db_init($c)
 			die('Cannot create table: ' . $name);
 	}
 
-	return true;
+	return TRUE;
 }
 
 function
