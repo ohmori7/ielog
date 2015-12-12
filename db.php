@@ -11,6 +11,7 @@
 require_once('config.php');
 
 /* XXX: these are very old API but a MySQL of VPS server is very old. */
+$dbconnection = FALSE;
 
 function
 db_init($c)
@@ -77,27 +78,56 @@ db_choose()
 function
 db_connect()
 {
-	global $dbserver, $dbuser, $dbpasswd;
+	global $dbserver, $dbuser, $dbpasswd, $dbconnection;
 
-	$c = mysql_connect($dbserver, $dbuser, $dbpasswd);
-	if (! $c)
+	if ($dbconnection !== FALSE)
+		return;
+
+	$dbconnection = mysql_connect($dbserver, $dbuser, $dbpasswd);
+	if (! $dbconnection)
 		die('Databse connection error');
 
-	if (! db_choose() && ! db_init($c))
+	if (! db_choose() && ! db_init($dbconnection))
 		die('Cannot open database');
 }
 
 function
 db_sql($sql)
 {
-	
+
 	return mysql_query($sql);
 }
 
 function
-db_close($c)
+db_addslashes($s)
 {
 
-	mysql_close($c);
+	return mysql_real_escape_string($s);
+}
+
+function
+db_record_insert($table, $obj)
+{
+	global $dbconnection;
+
+	db_connect();
+	$keys = array_keys((Array)$obj);
+	$values = array_map('db_addslashes', array_values((Array)$obj));
+	$sql = "INSERT INTO $table (" . implode(',', $keys) . ") VALUES (\"" .
+	    implode('","', $values) . '")';
+	$rc = db_sql($sql);
+	if ($rc === TRUE)
+		return $rc;
+	return $dbconnection->error;
+}
+
+function
+db_close()
+{
+
+	if ($dbconnction === FALSE)
+		return;
+	mysql_close($dbconnection);
+	$dbconnection = FALSE;
 }
 ?>
