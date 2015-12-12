@@ -31,7 +31,8 @@ header_print($title, $links)
     <title>' . $title . '</title>
   </head>
   <body>
-    <h1><img class="inline" alt="logo" src="images/logo.png" width="50" height="50">' . $title . '</h1>';
+    <h1><img class="inline" alt="logo" src="' . $uri .
+        'images/logo.png" width="50" height="50">' . $title . '</h1>';
 	nav_print(array('Top' =>  $uri,
 	    '検索' => $uri . 'search.php',
 	    '一覧' => $uri . 'list.php',
