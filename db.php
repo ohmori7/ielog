@@ -59,7 +59,6 @@ db_init($c)
 
 	foreach ($tables as $name => $cols) {
 		$sql = "CREATE TABLE $name (" . implode(', ', $cols) . ')';
-		echo $sql;
 		if (! mysql_query($sql))
 			die('Cannot create table: ' . $name);
 	}
