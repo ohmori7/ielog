@@ -9,7 +9,7 @@ define('USER_REGISTER_REDIRECT_TIMEOUT', 5);
 if (user_is_loggedin()) {
 	header_print('家ログ', array(), '../index.php',
 	    USER_REGISTER_REDIRECT_TIMEOUT);
-	echo('既にログイン済みです．');
+	echo('既にログイン済みの状態では登録できません．');
 	footer_print();
 	exit(1);
 }
