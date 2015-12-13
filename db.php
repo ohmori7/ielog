@@ -24,14 +24,14 @@ db_init($c)
 	        'prefecture CHAR(255)',
 	        'city CHAR(255)',
 	        'address CHAR(255)',
-	        'birthday DATETIME(6)',
+	        'birthday DATETIME',
 	        'PRIMARY KEY(id)'
 	        ),
 	    'realestate' => array(
 	        'id INT NOT NULL AUTO_INCREMENT',
 		'owner INT NOT NULL',
-		'abstract VARCHAR(65535)',
-		'description VARCHAR(65535)',
+		'abstract TEXT',
+		'description MEDIUMTEXT',
 		'picture CHAR(255)',
 	        'PRIMARY KEY(id)',
 	        'FOREIGN KEY (owner) REFERENCES user(id)'
@@ -40,7 +40,7 @@ db_init($c)
 	        'id INT NOT NULL AUTO_INCREMENT',
 		'realestate INT',
 		'assessment INT',
-		'message VARCHAR(65535)',
+		'message MEDIUMTEXT',
 	        'PRIMARY KEY(id)',
 	        'FOREIGN KEY (realestate) REFERENCES realestate(id)'
 	        ),
@@ -49,7 +49,7 @@ db_init($c)
 	foreach ($tables as $name => $cols) {
 		$sql = "CREATE TABLE $name (" . implode(', ', $cols) . ')';
 		if (! mysql_query($sql))
-			die('Cannot create table: ' . $name);
+			die("Cannot create table: $name: " . mysql_error());
 	}
 
 	return TRUE;
