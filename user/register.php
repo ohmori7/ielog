@@ -64,18 +64,19 @@ $form->addRule('firstname', '姓を入力して下さい．', 'required', null, 
 if ($form->isSubmitted() && $form->validate()) {
 	$values = $form->exportValues();
 	unset($values['passwordconfirm']);
-	$error = user_add($values);
-	if ($error === true) {
+	$id = user_add($values);
+	if ($id !== false) {
 		header_print('家ログ', array(), 'login.php',
 		    IELOG_REDIRECT_TIMEOUT);
 		echo('登録されました．ログイン画面からして下さい．');
 		footer_print();
 		return;
 	}
+	$error = db_error(); /* XXX */
 }
 header_print('家ログ', array());
 if ($error)
-	echo("$error<br />");
+	echo("ERROR: $error<br />");
 $form->display();
 footer_print();
 ?>

@@ -21,10 +21,7 @@ user_add($user)
 {
 
 	$user['password'] = password_hash($user['password']);
-	$rc = db_record_insert('user', $user);
-	if ($rc === false)
-		$rc = 'ERROR: ' . db_error();
-	return $rc;
+	return db_record_insert('user', $user);
 }
 
 function
