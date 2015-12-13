@@ -104,13 +104,17 @@ db_addslashes($s)
 function
 db_record_insert($table, $obj)
 {
+	global $dbconnection;
 
 	db_connect();
 	$keys = array_keys((Array)$obj);
 	$values = array_map('db_addslashes', array_values((Array)$obj));
 	$sql = "INSERT INTO $table (" . implode(',', $keys) . ") VALUES (\"" .
 	    implode('","', $values) . '")';
-	return db_sql($sql);
+	$rc = db_sql($sql);
+	if ($rc === true)
+		$rc = @mysql_insert_id($dbconnection);
+	return $rc;
 }
 
 function
