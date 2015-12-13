@@ -13,6 +13,8 @@ require_once('config.php');
 require_once('db.php');
 require_once('user/lib.php');
 
+define('IELOG_REDIRECT_TIMEOUT',	5);
+
 user_setup();
 
 function
