@@ -58,8 +58,8 @@ header_print($title, $links, $redirecturi = NULL, $redirecttimeout = 0)
     '<title>' . $title . '</title>
   </head>
   <body>
-    <h1><img class="inline" alt="logo" src="' . $uri .
-        'images/logo.png" width="50" height="50">' . $title . '</h1>';
+    <h1><a href="' . $uri . '"><img class="inline" alt="logo" src="' . $uri .
+        'images/logo.png" width="50" height="50"></a>' . $title . '</h1>';
 	user_link_puts();
 	nav_print(array('Top' =>  $uri,
 	    '検索' => $uri . 'search.php',
