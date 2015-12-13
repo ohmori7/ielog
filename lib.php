@@ -67,6 +67,15 @@ footer_print()
 </html>';
 }
 
+// old PHP does not have password_hash()...
+function
+password_hash($password)
+{
+
+	// XXX: salt...
+	return crypt($password);
+}
+
 function
 param_get($name)
 {
