@@ -17,6 +17,7 @@ db_init($c)
 	    'user' => array(
 	        'id INT NOT NULL AUTO_INCREMENT',
 		'username CHAR(255) UNIQUE',
+		'password CHAR(255)',
 	        'lastname CHAR(255)',
 	        'firstname CHAR(255)',
 	        'mail CHAR(255) UNIQUE',
