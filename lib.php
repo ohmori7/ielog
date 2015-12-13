@@ -31,9 +31,16 @@ nav_print($links)
 }
 
 function
-header_print($title, $links)
+header_print($title, $links, $redirecturi = NULL)
 {
 	static $uri = IELOG_URI;
+
+	if ($redirecturi)
+		$redirectmeta =
+'    <meta http-equiv="refresh" content="5;URL=' . $redirecturi . '">
+';
+	else
+		$redirectmeta = '';
 
 	echo
 '<!DOCTYPE html>
@@ -42,8 +49,9 @@ header_print($title, $links)
     <link rel="index" href="./index.php" />
     <link rev="made" href="mailto:null@mobile-ip.org" />
     <link href="' . $uri . 'css/style.css" rel="stylesheet" type="text/css" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>' . $title . '</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />' .
+    $redirectmeta . 
+    '<title>' . $title . '</title>
   </head>
   <body>
     <h1><img class="inline" alt="logo" src="' . $uri .
