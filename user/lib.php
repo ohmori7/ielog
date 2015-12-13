@@ -145,6 +145,6 @@ user_data_dir()
 
 	if (! user_is_loggedin())
 		return NULL;
-	return IELOG_DATADIR . '/' . $USER->id . '/';
+	return IELOG_DATADIR . '/user/' . $USER->id . '/';
 }
 ?>
