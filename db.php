@@ -88,6 +88,13 @@ db_sql($sql)
 }
 
 function
+db_error()
+{
+
+	return mysql_error();
+}
+
+function
 db_addslashes($s)
 {
 
@@ -103,10 +110,20 @@ db_record_insert($table, $obj)
 	$values = array_map('db_addslashes', array_values((Array)$obj));
 	$sql = "INSERT INTO $table (" . implode(',', $keys) . ") VALUES (\"" .
 	    implode('","', $values) . '")';
+	return db_sql($sql);
+}
+
+function
+db_record_get($table, $key, $value)
+{
+
+	db_connect();
+	$value = db_addslashes($value);
+	$sql = "SELECT * FROM $table WHERE $key = '$value'";
 	$rc = db_sql($sql);
-	if ($rc === TRUE)
+	if ($rc === false)
 		return $rc;
-	return mysql_error();
+	return mysql_fetch_assoc($rc);
 }
 
 function
