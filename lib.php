@@ -85,6 +85,16 @@ password_hash($password)
 }
 
 function
+password_verify($password, $hash)
+{
+
+	if (! preg_match('/^(.*\$)([^\$]+)$/', $hash, $matches))
+		return false;
+	$salt = $matches[1];
+	return crypt($password, $salt) === $hash;
+}
+
+function
 param_get($name)
 {
 
