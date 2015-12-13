@@ -58,7 +58,10 @@ user_login()
 
 	if (user_is_loggedin())
 		return;
-	http_redirect('login.php');
+	header_print('家ログ', array(), IELOG_URI . '/user/login.php',
+	    IELOG_REDIRECT_TIMEOUT);
+	echo('ログインが必要です．');
+	footer_print();
 	exit(1);
 }
 
