@@ -13,6 +13,8 @@ require_once('config.php');
 require_once('db.php');
 require_once('user/lib.php');
 
+user_setup();
+
 function
 nav_print($links)
 {
@@ -56,6 +58,7 @@ header_print($title, $links, $redirecturi = NULL, $redirecttimeout = 0)
   <body>
     <h1><img class="inline" alt="logo" src="' . $uri .
         'images/logo.png" width="50" height="50">' . $title . '</h1>';
+	user_link_puts();
 	nav_print(array('Top' =>  $uri,
 	    '検索' => $uri . 'search.php',
 	    '一覧' => $uri . 'list.php',
