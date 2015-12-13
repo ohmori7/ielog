@@ -9,9 +9,9 @@ user_login();
 $form = new HTML_QuickForm('userRegistrationForm');
 $form->addElement('header', null, '物件登録');
 $form->addElement('textarea', 'abstract', '概要',
-    array('size' => 100, 'maxlength' => 255));
+    array('cols' => 80, 'rows' => 5));
 $form->addElement('textarea', 'description', '詳細な説明',
-    array('size' => 100, 'maxlength' => 255));
+    array('cols' => 80, 'rows' => 10));
 $payments = array(
     REALESTATE_PAYMENT_TYPE_RENTAL =>		'賃貸',
     REALESTATE_PAYMENT_TYPE_SALE =>		'売買',
@@ -26,7 +26,7 @@ $form->addElement('text', 'prefecture', '都道府県',
 $form->addElement('text', 'city', '市町村',
     array('size' => 50, 'maxlength' => 255));
 $form->addElement('text', 'address', '住所',
-    array('size' => 100, 'maxlength' => 255));
+    array('size' => 50, 'maxlength' => 255));
 $form->addElement('submit', null, '登録');
 
 $form->addRule('abstract', '概要を入力して下さい．',
