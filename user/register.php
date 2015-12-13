@@ -4,6 +4,16 @@ require_once('lib.php');
 
 require_once 'HTML/QuickForm.php';
 
+define('USER_REGISTER_REDIRECT_TIMEOUT', 5);
+
+if (user_is_loggedin()) {
+	header_print('家ログ', array(), '../index.php',
+	    USER_REGISTER_REDIRECT_TIMEOUT);
+	echo('既にログイン済みです．');
+	footer_print();
+	exit(1);
+}
+
 $form = new HTML_QuickForm('userRegistrationForm');
 $form->addElement('header', null, 'ユーザ登録');
 $form->addElement('text', 'username', 'ユーザ名',
@@ -58,7 +68,6 @@ if ($form->isSubmitted() && $form->validate()) {
 	unset($values['passwordconfirm']);
 	$error = user_add($values);
 	if ($error === true) {
-		define('USER_REGISTER_REDIRECT_TIMEOUT', 5);
 		header_print('家ログ', array(), 'login.php',
 		    USER_REGISTER_REDIRECT_TIMEOUT);
 		echo('登録されました．ログイン画面からして下さい．');
