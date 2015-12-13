@@ -31,13 +31,13 @@ nav_print($links)
 }
 
 function
-header_print($title, $links, $redirecturi = NULL)
+header_print($title, $links, $redirecturi = NULL, $redirecttimeout = 0)
 {
 	static $uri = IELOG_URI;
 
 	if ($redirecturi)
 		$redirectmeta =
-'    <meta http-equiv="refresh" content="5;URL=' . $redirecturi . '">
+'    <meta http-equiv="refresh" content="' . $redirecttimeout . ';URL=' . $redirecturi . '">
 ';
 	else
 		$redirectmeta = '';
