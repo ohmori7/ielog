@@ -125,11 +125,13 @@ user_link_puts()
 {
 	$loginurl = IELOG_URI . 'user/login.php';
 	$logouturl = IELOG_URI . 'user/logout.php';
+	echo('<div align="right">');
 	if (user_is_loggedin())
 		echo(user_name() .
 		    '（<a href="' . $logouturl . '">ログアウト</a>）');
 	else
 		echo('ログインしていません
 			（<a href="' . $loginurl . '">ログイン</a>）');
+	echo('</div>');
 }
 ?>
