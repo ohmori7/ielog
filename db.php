@@ -31,9 +31,14 @@ db_init($c)
 	    'realestate' => array(
 	        'id INT NOT NULL AUTO_INCREMENT',
 		'owner INT NOT NULL',
-		'abstract TEXT',
-		'description MEDIUMTEXT',
+		'abstract TEXT NOT NULL',
+		'description MEDIUMTEXT NOT NULL',
+		'payment TINYINT UNSIGNED NOT NULL',
+		'builtdate DATETIME NOT NULL',
 		'picture CHAR(255)',
+	        'prefecture CHAR(255)',
+	        'city CHAR(255)',
+	        'address CHAR(255)',
 	        'PRIMARY KEY(id)',
 	        'FOREIGN KEY (owner) REFERENCES user(id)'
 	        ),
