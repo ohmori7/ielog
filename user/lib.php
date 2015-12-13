@@ -134,4 +134,14 @@ user_link_puts()
 			（<a href="' . $loginurl . '">ログイン</a>）');
 	echo('</div>');
 }
+
+function
+user_data_dir()
+{
+	global $USER;
+
+	if (! user_is_loggedin())
+		return NULL;
+	return IELOG_DATADIR . '/' . $USER->id . '/';
+}
 ?>
