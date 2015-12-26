@@ -1,12 +1,11 @@
 <?php
 require_once('../lib.php');
+require_once('../form.php');
 require_once('lib.php');
-
-require_once 'HTML/QuickForm.php';
 
 user_login();
 
-$form = new HTML_QuickForm('userRegistrationForm');
+$form = new Form('userRegistrationForm');
 $form->addElement('header', null, '物件登録');
 $form->addElement('textarea', 'abstract', '概要',
     array('cols' => 80, 'rows' => 5));

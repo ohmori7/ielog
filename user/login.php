@@ -1,10 +1,9 @@
 <?php
 require_once('../lib.php');
+require_once('../form.php');
 require_once('lib.php');
 
-require_once 'HTML/QuickForm.php';
-
-$form = new HTML_QuickForm('userLoginForm');
+$form = new Form('userLoginForm');
 $form->addElement('header', null, 'ログイン');
 $form->addElement('text', 'username', 'ユーザ名',
     array('size' => 50, 'maxlength' => 255));

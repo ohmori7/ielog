@@ -1,8 +1,7 @@
 <?php
 require_once('../lib.php');
+require_once('../form.php');
 require_once('lib.php');
-
-require_once 'HTML/QuickForm.php';
 
 if (user_is_loggedin()) {
 	header_print('家ログ', array(), '../index.php',
@@ -12,7 +11,7 @@ if (user_is_loggedin()) {
 	exit(1);
 }
 
-$form = new HTML_QuickForm('userRegistrationForm');
+$form = new Form('userRegistrationForm');
 $form->addElement('header', null, 'ユーザ登録');
 $form->addElement('text', 'username', 'ユーザ名',
     array('size' => 50, 'maxlength' => 255));

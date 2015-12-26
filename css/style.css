@@ -350,6 +350,13 @@ p.remark {
 	position:		relative;
 }
 /* */
+table tbody tr td.form-header {
+	white-space:		nowrap;
+	border-style:		none none solid solid;
+	border-width:		0 0 2px 10px;
+	border-color:		rgb(233, 141, 57);
+}
+/* */
 img {
 	margin-left:		2em;
 	margin-right:		2em;
