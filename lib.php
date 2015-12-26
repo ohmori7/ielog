@@ -58,9 +58,14 @@ header_print($title, $links, $redirecturi = NULL, $redirecttimeout = 0)
     '<title>' . $title . '</title>
   </head>
   <body>
+<div id="header">
+  <div id="logo">
     <h1><a href="' . $uri . '"><img class="inline" alt="logo" src="' . $uri .
-        'images/logo.png" width="50" height="50"></a>' . $title . '</h1>';
+        'images/logo.png" width="50" height="50"></a>' . $title . '</h1>
+  </div>';
 	user_link_puts();
+	echo '
+</div>';
 	nav_print(array('Top' =>  $uri,
 	    '検索' => $uri . 'search.php',
 	    '一覧' => $uri . 'list.php',

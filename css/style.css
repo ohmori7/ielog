@@ -220,13 +220,24 @@ label {
 }
 /* -------------------------------------------- */
 #header {
-	position:		fixed;
 	top:			0;
-	z-index:		1;
 	width:			100%;
 	margin:			0;
 	padding:		0;
 	background-color:	white;
+}
+#header:after {
+	display:		block;
+	clear:			both;
+	height:			0px;
+	visibility:		hidden;
+	content:		".";
+}
+#logo {
+	float:			left;
+}
+#user {
+	float:			right;
 }
 #nav {
 	color:			white;
@@ -253,7 +264,6 @@ label {
 }
 #main {
 	position:		relative;
-	top:			4em;
 	padding:		1em;
 }
 
