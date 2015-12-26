@@ -107,6 +107,13 @@ password_verify($password, $hash)
 }
 
 function
+error_print($msg)
+{
+
+	echo('<span class="error">' . $msg . '</span>');
+}
+
+function
 param_get($name)
 {
 

@@ -27,9 +27,12 @@ if ($form->isSubmitted() && $form->validate()) {
 		footer_print();
 		return;
 	}
+	$error = 'ユーザ名かパスワードが違います．';
 }
 
 header_print('家ログ ログイン', array());
 $form->display();
+if (isset($error))
+	error_print($error);
 footer_print();
 ?>
