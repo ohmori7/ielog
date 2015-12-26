@@ -16,11 +16,10 @@ db_init($c)
 	$tables = array(
 	    'user' => array(
 	        'id INT NOT NULL AUTO_INCREMENT',
-		'username CHAR(255) UNIQUE',
+	        'mail CHAR(255) UNIQUE NOT NULL',
 		'password CHAR(255) NOT NULL',
 	        'lastname CHAR(255) NOT NULL',
 	        'firstname CHAR(255) NOT NULL',
-	        'mail CHAR(255) UNIQUE NOT NULL',
 	        'picture CHAR(255)',
 	        'prefecture CHAR(255)',
 	        'city CHAR(255)',

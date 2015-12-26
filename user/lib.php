@@ -35,10 +35,10 @@ user_del()
 }
 
 function
-user_get($username)
+user_get($mail)
 {
 
-	return db_record_get('user', 'username', $username);
+	return db_record_get('user', 'mail', $mail);
 }
 
 function
@@ -97,18 +97,18 @@ user_logout($user)
 }
 
 function
-user_authenticate($username, $password)
+user_authenticate($mail, $password)
 {
 	global $USER, $_SESSION;
 
-	$user = user_get($username);
+	$user = user_get($mail);
 	if ($user === false)
 		return false;
 	if (! password_verify($password, $user['password']))
 		return false;
 	$USER = new stdClass();
 	$USER->id = $user['id'];
-	$USER->username = $user['username'];
+	$USER->mail = $user['mail'];
 	$USER->lastname = $user['lastname'];
 	$USER->firstname = $user['firstname'];
 	$_SESSION['user'] = $USER;
