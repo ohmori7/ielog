@@ -5,7 +5,7 @@ require_once('lib.php');
 
 user_login();
 
-$form = new Form('userRegistrationForm');
+$form = new Form('realestateEditForm');
 $form->addElement('header', null, '物件登録');
 $form->addElement('textarea', 'abstract', '概要',
     array('cols' => 80, 'rows' => 5));
