@@ -19,4 +19,11 @@ realestate_add($values)
 	$values['owner'] = $USER->id;
 	return db_record_insert('realestate', $values);
 }
+
+function
+realestate_image_top($id)
+{
+
+	return IELOG_URI . 'images/appear1.png'; /* XXX */
+}
 ?>

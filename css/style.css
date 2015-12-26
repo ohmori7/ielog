@@ -14,25 +14,46 @@
 	padding-top: 70px;
 	height: 100%;
 }
-.picture_area{
-	float:left;
-	width: 450px;
-	margin-right: 30px;
-	text-align: center;
-	vertical-align: text-top;
+table.list {
+	color:			white;
+	margin-left:		auto;
+	margin-right:		auto;
+	border-collapse:	collapse;
+	border:			solid 1px rgb(233, 141, 57);
 }
-.desc_area{
-	float:left;
-	width: 300px;
-	margin-right: 0px;
+table.list th {
+	background-color:	rgb(233, 141, 57);
 }
-.pict_owner{
-	width: 200px;
-	margin: 5px;
+table.list th,
+table.list td {
+	padding:		0;
+	margin:			0;
+	border:			solid 1px rgb(203, 121, 47);
+	text-align:		center;
 }
-.pict_app{
-	width: 200px;
-	margin: 5px;
+table.list td.list-rate {
+	text-align:		center;
+	border:			none;
+	height: 		33px;
+}
+table.list td.list-rate img {
+	padding:		0;
+	margin:			0;
+}
+table.list td.list-abstract {
+	border-top:		none;
+	vertical-align:		top;
+	text-align:		left;
+	text-indent:		1em;
+}
+img.list-pic {
+	width:			200px;
+}
+table.list tr.list-row0 td {
+	background-color:	rgb(255, 200, 127);
+}
+table.list tr.list-row1 td {
+	background-color:	rgb(243, 161, 87);
 }
 
 /*-----吹き出し-----*/

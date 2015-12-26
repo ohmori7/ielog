@@ -92,6 +92,13 @@ db_sql($sql)
 }
 
 function
+db_fetch($rs)
+{
+
+	return mysql_fetch_assoc($rs);
+}
+
+function
 db_error()
 {
 
@@ -128,10 +135,24 @@ db_record_get($table, $key, $value)
 	db_connect();
 	$value = db_addslashes($value);
 	$sql = "SELECT * FROM $table WHERE $key = '$value'";
-	$rc = db_sql($sql);
-	if ($rc === false)
-		return $rc;
-	return mysql_fetch_assoc($rc);
+	return db_fetch(db_sql($sql));
+}
+
+function
+db_records_get($table)
+{
+
+	db_connect();
+	$sql = "SELECT * FROM $table";
+	$rs = db_sql($sql);
+	if ($rs === false)
+		return $rs;
+
+	$records = array();
+	while ($r = db_fetch($rs))
+		$records[$r['id']] = $r;
+
+	return $records;
 }
 
 function

@@ -68,7 +68,7 @@ header_print($title, $links, $redirecturi = NULL, $redirecttimeout = 0)
 </div>';
 	nav_print(array('Top' =>  $uri,
 	    '検索' => $uri . 'search.php',
-	    '一覧' => $uri . 'list.php',
+	    '一覧' => $uri . 'realestate/list.php',
 	    '物件登録' =>  $uri . 'realestate/edit.php',
 	    'ユーザ登録' =>  $uri . 'user/register.php',
 	    ));
