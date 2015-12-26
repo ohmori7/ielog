@@ -74,7 +74,8 @@ user_setup()
 	define('IELOG_SESSION_TIMEOUT', 	2 * 60 * 60);
 
 	session_name(IELOG_SESSION_NAME);
-	session_start(array('cookie_lifetime' => IELOG_SESSION_TIMEOUT));
+	ini_set('session.cookie_lifetime', IELOG_SESSION_TIMEOUT);
+	session_start();
 	if (isset($_SESSION['user']))
 		$USER = $_SESSION['user'];
 }
