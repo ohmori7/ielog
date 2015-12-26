@@ -35,7 +35,6 @@ $form->addElement('text', 'birthday', '誕生日',
     array('size' => 50, 'maxlength' => 255));
 $form->addElement('submit', null, '登録');
 
-$form->applyFilter('username', 'trim');
 $form->addRule('username', 'ユーザ名を入力して下さい．',
     'required', null, 'client');
 $form->addRule('username', 'ユーザ名はアルファベットと数字しか使えません．',
@@ -48,6 +47,7 @@ $form->addRule('passwordconfirm', 'パスワード（確認）を入力して下
     'required', null, 'client');
 $form->addRule(array('password', 'passwordconfirm'),
     'パスワードが一致していません．', 'compare', 'eq', 'client');
+$form->applyFilter('mail', 'trim');
 $form->addRule('mail', 'メールアドレスを入力して下さい．',
     'required', null, 'client');
 $form->addRule('mail', 'メールアドレスが正しくありません．',
