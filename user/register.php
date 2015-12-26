@@ -52,8 +52,6 @@ $form->addRule('mail', 'メールアドレスを入力して下さい．',
     'required', null, 'client');
 $form->addRule('mail', 'メールアドレスが正しくありません．',
     'email', null, 'client');
-$form->addRule('mail', 'メールアドレスが正しくありません．',
-    'email', null, 'client');
 $form->registerRule('checkmaildomain', 'callback', 'user_mail_address_check');
 $form->addRule('mail', 'メールアドレスが存在しません．',
     'checkmaildomain', true);
