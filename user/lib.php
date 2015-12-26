@@ -74,7 +74,7 @@ user_setup()
 	define('IELOG_SESSION_TIMEOUT', 	2 * 60 * 60);
 
 	session_name(IELOG_SESSION_NAME);
-	ini_set('session.cookie_lifetime', IELOG_SESSION_TIMEOUT);
+	ini_set('session.cookie_lifetime',	IELOG_SESSION_TIMEOUT);
 	ini_set('session.gc_maxlifetime',	IELOG_SESSION_TIMEOUT);
 	ini_set('session.gc_probability',	1);
 	ini_set('session.gc_divisor',		1);
