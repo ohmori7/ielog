@@ -12,11 +12,6 @@ user_mail_address_check($maddr)
 }
 
 function
-user_exists($username)
-{
-}
-
-function
 user_add($user)
 {
 
