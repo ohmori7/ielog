@@ -11,6 +11,8 @@ class Form extends HTML_QuickForm {
 	<tr>
 		<td class=\"form-header\" align=\"left\" valign=\"top\" colspan=\"2\"><b>{header}</b></td>
 	</tr>");
+
+		$this->setRequiredNote('<span style="font-size:80%; color:#ff0000;">*</span><span style="font-size:80%;">必須項目</span>');
 	}
 }
 ?>
