@@ -9,6 +9,7 @@ $form->addElement('text', 'username', 'ユーザ名',
     array('size' => 50, 'maxlength' => 255));
 $form->addElement('password', 'password', 'パスワード',
     array('size' => 50, 'maxlength' => 255));
+$msg =& $form->addElement('static', null, '');
 $form->addElement('submit', null, 'ログイン');
 
 $form->applyFilter('username', 'trim');
@@ -27,20 +28,16 @@ if ($form->isSubmitted() && $form->validate()) {
 		footer_print();
 		return;
 	}
-	$error = 'ユーザ名かパスワードが違います．';
+	$msg->setText(error_message('ユーザ名かパスワードが違います．'));
 }
 
 header_print('家ログ ログイン', array());
 $form->display();
-if (isset($error))
-	error_print($error);
-else {
-	$uri = IELOG_URI;
-	echo <<<USERREGISTRATION
-      もし，アカウントを作成していない場合は[
-      <a href="$uri/user/register.php">ユーザ登録</a>
-      ]して下さい．
+$uri = IELOG_URI;
+echo <<<USERREGISTRATION
+もし，まだアカウントを作成していない場合は[
+<a href="$uri/user/register.php">ユーザ登録</a>
+]から作成して下さい．
 USERREGISTRATION;
-}
 footer_print();
 ?>

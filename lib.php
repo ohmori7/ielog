@@ -96,10 +96,17 @@ footer_print()
 }
 
 function
+error_message($msg)
+{
+
+	return '<span class="error">' . $msg . '</span>';
+}
+
+function
 error_print($msg)
 {
 
-	echo('<span class="error">' . $msg . '</span>');
+	echo(error_message($msg));
 }
 
 function
