@@ -28,10 +28,12 @@ if ($r === false) {
 $owner = "../images/owner${id}.png";
 $appear = realestate_image_top($r);
 
-echo("<h3>概観</h3>\n");
-echo("<img alt=\"$appear\" src=\"$appear\" width=\"250px\" />\n");
-echo("<h3>オーナー</h3>\n");
-echo("<img alt=\"$owner\" src=\"$owner\" width=\"250px\" />\n");
+echo <<<PIC
+<h3>概観</h3>
+<img alt="$appear" src="$appear" width="250px" />
+<h3>オーナー</h3>\n");
+"<img alt="$owner" src="$owner" width="250px" />
+PIC;
 ?>
 			</div>
 			<div class="detail_msg">
