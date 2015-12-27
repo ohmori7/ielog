@@ -167,6 +167,8 @@ p.balloon-right::after {
     font-size: 11px;
     width:900px;
     position:relative;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #tabmenu div#tab{
