@@ -18,20 +18,20 @@ define('IELOG_REDIRECT_TIMEOUT',	5);
 user_setup();
 
 function
-nav_print($links)
+nav_link($links)
 {
 
 	if (empty($links))
-		return;
-	echo '
-      <div id="nav">
+		return '';
+	$html = '<div id="nav">
         <ul>';
 	foreach ($links as $name => $uri)
-		echo "
+		$html .= "
           <li><a href=\"$uri\"><span>$name</span></a></li>";
-	echo '
+	$html .= '
         </ul>
       </div>';
+      return $html;
 }
 
 function
@@ -40,41 +40,46 @@ header_print($title, $links, $redirecturi = NULL, $redirecttimeout = 0)
 	static $uri = IELOG_URI;
 
 	if ($redirecturi)
-		$redirectmeta =
-'    <meta http-equiv="refresh" content="' . $redirecttimeout . ';URL=' . $redirecturi . '">
-';
-	else
-		$redirectmeta = '';
+		$rmeta = <<<REDIRECTMETA
 
-	echo
-'<!DOCTYPE html>
-<html lang="ja">
-  <head>
-    <link rel="index" href="./index.php" />
-    <link rev="made" href="mailto:null@mobile-ip.org" />
-    <link href="' . $uri . 'css/style.css" rel="stylesheet" type="text/css" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />' .
-    $redirectmeta . 
-    '<title>' . $title . '</title>
-  </head>
-  <body>
-<div id="header">
-  <div id="logo">
-    <h1><a href="' . $uri . '"><img class="inline" alt="logo" src="' . $uri .
-        'images/logo.png" width="50" height="50"></a>' . $title . '</h1>
-  </div>';
-	user_link_puts();
-	echo '
-</div>';
-	nav_print(array('Top' =>  $uri,
+    <meta http-equiv="refresh" content="$redirecttimeout;URL=$redirecturi">
+REDIRECTMETA;
+	else
+		$rmeta = '';
+	$userlink = user_link();
+	$navlink = nav_link(array('Top' =>  $uri,
 	    '検索' => $uri . 'search.php',
 	    '一覧' => $uri . 'realestate/list.php',
 	    '物件登録' =>  $uri . 'realestate/edit.php',
 	    'ユーザ登録' =>  $uri . 'user/register.php',
 	    ));
-	nav_print($links);
-	echo '
-    <div id="main">';
+	$subnavlink = nav_link($links);
+	if (! empty($subnavlink))
+		$navlink .= "\n$subnavlink";
+
+	echo <<<HEADER
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <link rel="index" href="./index.php" />
+    <link rev="made" href="mailto:null@mobile-ip.org" />
+    <link href="$uri/css/style.css" rel="stylesheet" type="text/css" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />$rmeta
+    <title>$title</title>
+  </head>
+  <body>
+    <div id="header">
+      <div id="logo">
+        <h1><a href="$uri"><img class="inline" alt="logo" src="$uri/images/logo.png" width="50" height="50"></a>$title</h1>
+      </div>
+      <div id="user">
+        $userlink
+      </div>
+    </div>
+    $navlink
+    <div id="main">
+
+HEADER;
 }
 
 function

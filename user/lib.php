@@ -147,18 +147,18 @@ user_name()
 }
 
 function
-user_link_puts()
+user_link()
 {
 	$loginurl = IELOG_URI . 'user/login.php';
 	$logouturl = IELOG_URI . 'user/logout.php';
-	echo('<div id="user">');
-	if (user_is_loggedin())
-		echo(user_name() .
-		    '（<a href="' . $logouturl . '">ログアウト</a>）');
-	else
-		echo('ログインしていません
-			（<a href="' . $loginurl . '">ログイン</a>）');
-	echo('</div>');
+	if (user_is_loggedin()) {
+		$html .= user_name();
+		$html .= '（<a href="' . $logouturl . '">ログアウト</a>）';
+	} else {
+		$html .= 'ログインしていません';
+		$html .= '（<a href="' . $loginurl . '">ログイン</a>）';
+	}
+	return $html;
 }
 
 function
