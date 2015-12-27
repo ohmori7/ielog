@@ -87,25 +87,6 @@ footer_print()
 </html>';
 }
 
-// old PHP does not have password_hash()...
-function
-password_hash($password)
-{
-
-	// XXX: salt...
-	return crypt($password);
-}
-
-function
-password_verify($password, $hash)
-{
-
-	if (! preg_match('/^(.*\$)([^\$]+)$/', $hash, $matches))
-		return false;
-	$salt = $matches[1];
-	return crypt($password, $salt) === $hash;
-}
-
 function
 error_print($msg)
 {

@@ -12,10 +12,36 @@ user_mail_address_check($maddr)
 }
 
 function
+user_password_hash($password)
+{
+
+	if (function_exists('password_hash'))
+		return password_hash($password, PASSWORD_BCRYPT);
+
+	// old PHP does not have password_hash()...
+	// XXX: salt...
+	return crypt($password);
+}
+
+function
+user_password_verify($password, $hash)
+{
+
+	if (function_exists('password_verify'))
+		return password_verify($password, $hash);
+
+	// old PHP does not have password_verify() as well...
+	if (! preg_match('/^(.*\$)([^\$]+)$/', $hash, $matches))
+		return false;
+	$salt = $matches[1];
+	return crypt($password, $salt) === $hash;
+}
+
+function
 user_add($user)
 {
 
-	$user['password'] = password_hash($user['password']);
+	$user['password'] = user_password_hash($user['password']);
 	return db_record_insert('user', $user);
 }
 
@@ -99,7 +125,7 @@ user_authenticate($mail, $password)
 	$user = user_get($mail);
 	if ($user === false)
 		return false;
-	if (! password_verify($password, $user['password']))
+	if (! user_password_verify($password, $user['password']))
 		return false;
 	$USER = new stdClass();
 	$USER->id = $user['id'];
