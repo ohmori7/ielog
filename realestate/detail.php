@@ -28,17 +28,15 @@ if ($r === false) {
 $owner = "../images/owner${id}.png";
 $appear = realestate_image_top($r);
 
-echo <<<PIC
+echo <<<EOF
 <h3>概観</h3>
 <img alt="$appear" src="$appear" width="250px" />
 <h3>オーナー</h3>
 <img alt="$owner" src="$owner" width="250px" />
-PIC;
-?>
 			</div>
 			<div class="detail_msg">
 			<h3>評価</h3>
-<?php 
+EOF;
 realestate_radar_graph_puts($r);
 ?>
 			<h3>概要</h3>
