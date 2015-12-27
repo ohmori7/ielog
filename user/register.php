@@ -29,8 +29,11 @@ $form->addElement('text', 'city', '市町村',
     array('size' => 50, 'maxlength' => 255));
 $form->addElement('text', 'address', '住所',
     array('size' => 50, 'maxlength' => 255));
-$form->addElement('text', 'birthday', '誕生日',
-    array('size' => 50, 'maxlength' => 255));
+$form->addElement('date', 'birthday', '誕生日',
+    array('size' => 50, 'maxlength' => 255,
+    'minYear' => 1900, 'maxYear' => date('Y') - IELOG_ALLOWED_AGE,
+    'format' => 'Ymd', 'addEmptyOption' => true,
+    'emptyOptionText' => array('Y' => 'YYYY', 'm' => 'mm', 'd' => 'dd')));
 $form->addElement('submit', null, '登録');
 
 $form->applyFilter('mail', 'trim');
