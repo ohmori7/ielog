@@ -24,7 +24,7 @@ header_print('家ログ', array());
 	$rows = 0;
 	foreach ($rs as $id => $r) {
 		$rowmod = $rows++ % 2;
-		$estatepic = realestate_image_top($id);
+		$estatepic = realestate_image_top($r);
 		echo <<<RECORD
           <tr class="list-row$rowmod">
             <td rowspan="2">$id</td>
