@@ -149,8 +149,8 @@ user_name()
 function
 user_link()
 {
-	$loginurl = IELOG_URI . 'user/login.php';
-	$logouturl = IELOG_URI . 'user/logout.php';
+	$loginurl = IELOG_URI . '/user/login.php';
+	$logouturl = IELOG_URI . '/user/logout.php';
 	if (user_is_loggedin()) {
 		$html .= user_name();
 		$html .= '（<a href="' . $logouturl . '">ログアウト</a>）';

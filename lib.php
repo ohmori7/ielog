@@ -1,8 +1,10 @@
 <?php
 /*
- * this requires a configuration file, config.php, like below.
+ * this requires a configuration file, config.php, like below.  note that
+ * URI should not end with slash ('/') for now.
+ *
  * <?php
- * define('IELOG_URI', 'http://ielog.hogehoge.org/');
+ * define('IELOG_URI', 'http://ielog.hogehoge.org');
  * $dbserver	= 'localhost';
  * $dbuser	= 'username';
  * $dbpasswd	= 'password';
@@ -48,10 +50,10 @@ REDIRECTMETA;
 		$rmeta = '';
 	$userlink = user_link();
 	$navlink = nav_link(array('Top' =>  $uri,
-	    '検索' => $uri . 'search.php',
-	    '一覧' => $uri . 'realestate/list.php',
-	    '物件登録' =>  $uri . 'realestate/edit.php',
-	    'ユーザ登録' =>  $uri . 'user/register.php',
+	    '検索' => $uri . '/search.php',
+	    '一覧' => $uri . '/realestate/list.php',
+	    '物件登録' =>  $uri . '/realestate/edit.php',
+	    'ユーザ登録' =>  $uri . '/user/register.php',
 	    ));
 	$subnavlink = nav_link($links);
 	if (! empty($subnavlink))

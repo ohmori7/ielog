@@ -45,7 +45,7 @@ realestate_image_top($r)
 		if (file_exists(realestate_data_dir($id) . $pic))
 			return realestate_data_url($id, $pic);
 	}
-	return IELOG_URI . 'images/appear1.png'; /* XXX: should replace */
+	return IELOG_URI . '/images/appear1.png'; /* XXX: should replace */
 }
 
 function
