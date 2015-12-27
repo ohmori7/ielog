@@ -3,16 +3,14 @@ require_once('../lib.php');
 require_once('../form.php');
 require_once('lib.php');
 
-if (user_is_loggedin()) {
-	header_print('家ログ', array(), '../index.php',
-	    IELOG_REDIRECT_TIMEOUT);
-	echo('既にログイン済みの状態では登録できません．');
-	footer_print();
-	exit(1);
-}
+if (! user_is_loggedin())
+	$new = true;
+else
+	$new = false;
 
 $form = new Form('userRegistrationForm');
 $form->addElement('header', null, 'ユーザ登録');
+$form->addElement('hidden', 'id', null);
 $form->addElement('text', 'mail', 'メールアドレス',
     array('size' => 50, 'maxlength' => 255));
 $form->addElement('password', 'password', 'パスワード',
@@ -44,12 +42,16 @@ $form->addRule('mail', 'メールアドレスが正しくありません．',
 $form->registerRule('checkmaildomain', 'callback', 'user_mail_address_check');
 $form->addRule('mail', 'メールアドレスが存在しません．',
     'checkmaildomain', true);
-$form->addRule('password', 'パスワードを入力して下さい．',
-    'required', null, 'client');
-$form->addRule('password', 'パスワードは12文字以上でなければなりません．',
-    'rangelength', array(12, 255), 'client');
-$form->addRule('passwordconfirm', 'パスワード（確認）を入力して下さい．',
-    'required', null, 'client');
+if ($new) {
+	$form->addRule('password', 'パスワードを入力して下さい．',
+	    'required', null, 'client');
+	$form->addRule('password',
+	    'パスワードは12文字以上でなければなりません．',
+	    'rangelength', array(12, 255), 'client');
+	$form->addRule('passwordconfirm',
+	    'パスワード（確認）を入力して下さい．',
+	    'required', null, 'client');
+}
 $form->addRule(array('password', 'passwordconfirm'),
     'パスワードが一致していません．', 'compare', 'eq', 'client');
 $form->addRule('lastname', '姓を入力して下さい．', 'required', null, 'client');
@@ -58,16 +60,36 @@ $form->addRule('firstname', '姓を入力して下さい．', 'required', null, 
 if ($form->isSubmitted() && $form->validate()) {
 	$values = $form->exportValues();
 	unset($values['passwordconfirm']);
-	$id = user_add($values);
-	if ($id !== false) {
+	if ($new) {
+		unset($values['id']);
+		$id = user_add($values);
+	} else {
+		if (empty($values['password']) ||
+		    empty($values['passwordconfirm']) /* XXX should be error */)
+			unset($values['password']);
+		$id = user_update($values);
+	}
+	if ($id === false)
+		$error = db_error(); /* XXX */
+	else if ($new) {
 		header_print('家ログ', array(), 'login.php',
 		    IELOG_REDIRECT_TIMEOUT);
-		echo('登録されました．ログイン画面からして下さい．');
+		echo('登録されました．ログイン画面からログインして下さい．');
 		footer_print();
 		return;
 	}
-	$error = db_error(); /* XXX */
+} else if (! $new) {
+	$values = array();
+	foreach ((array)$USER as $key => $value) {
+		if ($key === 'password')
+			continue;
+		if (empty($value))
+			continue;
+		$values[$key] = $value;
+	}
+	$form->setDefaults($values);
 }
+
 header_print('家ログ', array());
 if ($error)
 	echo("ERROR: $error<br />");

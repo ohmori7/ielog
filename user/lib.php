@@ -38,6 +38,16 @@ user_password_verify($password, $hash)
 }
 
 function
+user_variable_update($user)
+{
+	global $USER;
+
+	foreach ($user as $key => $value)
+		if ($key !== 'password')
+			$USER->$key = $value;
+}
+
+function
 user_add($user)
 {
 
@@ -46,8 +56,13 @@ user_add($user)
 }
 
 function
-user_update()
+user_update($user)
 {
+
+	$user['password'] = user_password_hash($user['password']);
+	$rc = db_record_update('user', $user);
+	user_variable_update($user);
+	return $rc;
 }
 
 function
@@ -128,9 +143,8 @@ user_authenticate($mail, $password)
 	if (! user_password_verify($password, $user['password']))
 		return false;
 	$USER = new stdClass();
-	foreach ($user as $key => $value)
-		$USER->$key = $value;
-	$_SESSION['user'] = $USER;
+	$_SESSION['user'] =& $USER;
+	user_variable_update($user);
 	return true;
 }
 
@@ -147,12 +161,16 @@ user_name()
 function
 user_link()
 {
-	$loginurl = IELOG_URI . '/user/login.php';
-	$logouturl = IELOG_URI . '/user/logout.php';
+
 	if (user_is_loggedin()) {
-		$html = user_name();
-		$html .= '（<a href="' . $logouturl . '">ログアウト</a>）';
+		$editurl = IELOG_URI . '/user/register.php';
+		$logouturl = IELOG_URI . '/user/logout.php';
+		$username = user_name();
+		$html = <<<LOGOUT
+<a href="$editurl">$username</a>（<a href="$logouturl">ログアウト</a>）
+LOGOUT;
 	} else {
+		$loginurl = IELOG_URI . '/user/login.php';
 		$html = 'ログインしていません';
 		$html .= '（<a href="' . $loginurl . '">ログイン</a>）';
 	}
