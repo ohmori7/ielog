@@ -37,25 +37,10 @@ PIC;
 ?>
 			</div>
 			<div class="detail_msg">
-<script type="text/javascript" src="../scripts/rendering-mode.js"></script>
-<!--[if IE]><script type="text/javascript" src="../scripts/excanvas.js"></script><![endif]-->
-<script type="text/javascript" src="../scripts/radar.js"></script>
-<script type="text/javascript">
-window.onload = function() {
-	var rc = new html5jp.graph.radar("chart");
-	if( ! rc ) { return; }
-	var items = [
-		["平均", 3, 3, 3, 3, 3, 3],
-		["評価", 5, 2, 4, 5, 3, 2],
-	];
-	var params = {
-		aCap: ["都市計画地域", "小学校校区", "地価", "防災情報", "公共施設", "交通情報"]
-	}
-	rc.draw(items, params);
-};
-</script>
 			<h3>評価</h3>
-<div><canvas width="400" height="300" id="chart"></canvas></div>
+<?php 
+realestate_radar_graph_puts($r);
+?>
 			<h3>概要</h3>
 <span class="detail_text">
 <?php echo($r['abstract']); ?>

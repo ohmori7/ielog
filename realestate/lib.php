@@ -47,4 +47,32 @@ realestate_image_top($r)
 	}
 	return IELOG_URI . 'images/appear1.png'; /* XXX: should replace */
 }
+
+function
+realestate_radar_graph_puts($r)
+{
+	$url = IELOG_URI . '/scripts';
+
+	// XXX: should reflect actual values...
+	echo <<<GRAPH
+<script type="text/javascript" src="$url/rendering-mode.js"></script>
+<!--[if IE]><script type="text/javascript" src="$url/excanvas.js"></script><![endif]-->
+<script type="text/javascript" src="$url/radar.js"></script>
+<script type="text/javascript">
+window.onload = function() {
+	var rc = new html5jp.graph.radar("chart");
+	if( ! rc ) { return; }
+	var items = [
+		["平均", 3, 3, 3, 3, 3, 3],
+		["評価", 5, 2, 4, 5, 3, 2],
+	];
+	var params = {
+		aCap: ["都市計画地域", "小学校校区", "地価", "防災情報", "公共施設", "交通情報"]
+	}
+	rc.draw(items, params);
+};
+</script>
+<div><canvas width="400" height="300" id="chart"></canvas></div>
+GRAPH;
+}
 ?>
