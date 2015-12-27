@@ -1,18 +1,18 @@
 @charset "utf-8";
 
 .info_area{
-	margin: 0 0 35px 0;
-	padding-bottom: 40px;
-	overflow: hidden;
-	width: 960px;
-	border-bottom: 1px solid #D6D6D6;
+	margin:			0 0 35px 0;
+	padding-bottom:		40px;
+	overflow:		hidden;
+	width:			960px;
+	border-bottom:		1px solid #D6D6D6;
 }
 .button_area{
-	float:left;
-	width: 60px;
-	text-align: center;
-	padding-top: 70px;
-	height: 100%;
+	float:			left;
+	width:			60px;
+	text-align:		center;
+	padding-top:		70px;
+	height:			100%;
 }
 table.list {
 	color:			white;
@@ -34,7 +34,7 @@ table.list td {
 table.list td.list-rate {
 	text-align:		center;
 	border:			none;
-	height: 		33px;
+	height:			33px;
 }
 table.list td.list-rate img {
 	padding:		0;
@@ -59,187 +59,187 @@ table.list tr.list-row1 td {
 /*-----吹き出し-----*/
 /* balloon common */
 div.balloon-wrapper {
-	width: 520px;
-	margin: 15px auto;
+	width:			520px;
+	margin:			15px auto;
 }
 div.balloon-wrapper::after {
-	clear: both;
-	content: "";
-	display: block;
-	line-height: 0;
+	clear:			both;
+	content:		"";
+	display:		block;
+	line-height:		0;
 }
 p.balloon-left,
 p.balloon-right {
-	position: relative;
-	z-index: 1;
-/*	max-width: 80%;
-	min-width: 10%;*/
-	width: 400px;
-	margin: 15px auto;
-	padding: 13px;
-	background-color: #fff;
-	border-width: 3px;
-	border-style: solid;
-	border-radius: 10px;
+	position:		relative;
+	z-index:		1;
+/*	max-width:		80%;
+	min-width:		10%;*/
+	width:			400px;
+	margin:			15px auto;
+	padding:		13px;
+	background-color:	#fff;
+	border-width:		3px;
+	border-style:		solid;
+	border-radius:		10px;
 }
 p.balloon-left::before,
 p.balloon-right::before {
-	content: "";
-	display: block;
-	position: absolute;
-	z-index: 10;
-	top: 10px;
-	width:  0;
-	height: 0;
-	border: 15px solid transparent;
+	content:		"";
+	display:		block;
+	position:		absolute;
+	z-index:		10;
+	top:			10px;
+	width:			0;
+	height:			0;
+	border:			15px solid transparent;
 }
 p.balloon-left::after,
 p.balloon-right::after {
-	content: "";
-	display: block;
-	position: absolute;
-	z-index: 100;
-	top: 10px;
-	width:  0;
-	height: 0;
-	border: 15px solid transparent;
+	content:		"";
+	display:		block;
+	position:		absolute;
+	z-index:		100;
+	top:			10px;
+	width:			0;
+	height:			0;
+	border:			15px solid transparent;
 }
 
 /* balloon left */
 p.balloon-left {
-/*	float: left;*/
-	float: right;
-	border-color: #8d8;
+/*	float:			left;*/
+	float:			right;
+	border-color:		#8d8;
 }
 p.balloon-left::before {
-	left: -31px;
-	border-right: 15px solid #8d8;
+	left:			-31px;
+	border-right:		15px solid #8d8;
 }
 p.balloon-left::after {
-	left: -26px;
-	border-right: 15px solid #fff;
+	left:			-26px;
+	border-right:		15px solid #fff;
 }
 
 /* balloon right */
 p.balloon-right {
-/*	float: right;*/
-	float: left;
-	border-color: #aad;
+/*	float:			right;*/
+	float:			left;
+	border-color:		#aad;
 }
 p.balloon-right::before {
-	right: -31px;
-	border-left: 15px solid #aad;
+	right:			-31px;
+	border-left:		15px solid #aad;
 }
 p.balloon-right::after {
-	right: -26px;
-	border-left: 15px solid #fff;
+	right:			-26px;
+	border-left:		15px solid #fff;
 }
 /* balloon left icon */
 .balloon-left-img{
-	width: 70px;
-	margin: 15px 0 15px;
-	float: left;
+	width:			70px;
+	margin:			15px 0 15px;
+	float:			left;
 }
 /* balloon right icon */
 .balloon-right-img{
-	width: 70px;
-	margin: 15px 0 15px;
-	float: right;
+	width:			70px;
+	margin:			15px 0 15px;
+	float:			right;
 }
 .clear-p{
-	position: relative;
-	clear: both;
-	width: 100%;
-	height: 1px;
-	margin: 0px;
+	position:		relative;
+	clear:			both;
+	width:			100%;
+	height:			1px;
+	margin:			0px;
 }
 .useful{
-	font-size: 0.8em;
-	color: #0000FF;
-	margin: 5px 5px 5px 20px;
+	font-size:		0.8em;
+	color:			#0000FF;
+	margin:			5px 5px 5px 20px;
 }
 
 /* ------------tab menu------------ */
 #tabmenu{
-    padding:0px;
-    margin:0px;
-    color:#333;
-    font-size: 11px;
-    width:900px;
-    position:relative;
-    margin-left: auto;
-    margin-right: auto;
+	padding:		0px;
+	margin:			0px;
+	color:			#333;
+	font-size:		11px;
+	width:			900px;
+	position:		relative;
+	margin-left:		auto;
+	margin-right:		auto;
 }
 
 #tabmenu div#tab{
-    position: absolute;
-    top:0px;
-    left:0px;
+	position:		absolute;
+	top:			0px;
+	left:			0px;
 }
 #tabmenu div#tab a{
-    float: left;
-    height: 40px;
-    line-height: 40px;
-    text-align: center;
-    width: 296px;
-    display: block;
-    text-decoration:none;
-    color:#333;
+	float:			left;
+	height:			40px;
+	line-height:		40px;
+	text-align:		center;
+	width:			296px;
+	display:		block;
+	text-decoration:	none;
+	color:#333;
 /*    background:#eee;*/
-	border-color: #888;
-	border-width: 2px;
-	border-style: solid;
+	border-color:		#888;
+	border-width:		2px;
+	border-style:		solid;
 }
 #tabmenu div#tab a:hover{
-    background:#eee;
-    color:#fff;
+	background:		#eee;
+	color:			#fff;
 }
 div#tab_contents{
-    width:900px;
-    overflow:
-    hidden;clear:both;
+	width:			900px;
+	overflow:		hidden;
+	clear:			both;
 }
 div#tab_contents ul{
-    width:3000px;
-    padding:0px;
-    margin:0px;
+	width:			3000px;
+	padding:		0px;
+	margin:			0px;
 }
 div#tab_contents ul li{
-    float: left;
-    width:856px;
-    list-style-type:none;
-    padding:60px  20px  20px 20px;
+	float:			left;
+	width:			856px;
+	list-style-type:	none;
+	padding:		60px  20px  20px 20px;
 /*    background:#e2e2e2;*/
-	border-color: #aaa;
-	border-width: 2px;
-	border-style: solid;
+	border-color:		#aaa;
+	border-width:		2px;
+	border-style:		solid;
 }
 /* -------------------------------------------- */
 /* 詳細情報 */
 .detail_photo {
-	width: 300px;
-	float: left;
-	margin: 5px;
+	width:			300px;
+	float:			left;
+	margin:			5px;
 }
 .detail_msg {
-	width: 530px;
-	float: left;
-	margin: 5px;
+	width:			530px;
+	float:			left;
+	margin:			5px;
 }
 .detail_text {
-	font-size: 14px;
+	font-size:		14px;
 }
 
 /* -------------------------------------------- */
 ul.search_cond li {
-    list-style: none;
-    width:100px;
-    float: left;
+	list-style:		none;
+	width:			100px;
+	float:			left;
 }
 label {
-    margin-right: 10px;
-    width:100px;
-    float: left;
+	margin-right:		10px;
+	width:			100px;
+	float:			left;
 }
 /* -------------------------------------------- */
 #header {
