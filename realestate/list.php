@@ -28,7 +28,7 @@ header_print('家ログ', array());
 		echo <<<RECORD
           <tr class="list-row$rowmod">
             <td rowspan="2">$id</td>
-            <td rowspan="2"><a href="../detail.php?id=$id">詳細</a></td>
+            <td rowspan="2"><a href="detail.php?id=$id">詳細</a></td>
             <td rowspan="2"><img class="list-pic" src="{$ownerimg}" /></td>
             <td rowspan="2"><img class="list-pic" src="{$estatepic}" /></td>
             <td class="list-rate"><img src="{$rateimg}" /></td>
