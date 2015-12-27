@@ -36,6 +36,7 @@ header_print('家ログ', array());
           <tr class="list-row$rowmod">
             <td class="list-abstract">{$r['abstract']}</td>
           </tr>
+
 RECORD;
 	}
 ?>
