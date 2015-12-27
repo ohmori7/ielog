@@ -88,6 +88,7 @@ function
 db_sql($sql)
 {
 
+	db_connect();
 	return mysql_query($sql);
 }
 
@@ -117,7 +118,6 @@ db_record_insert($table, $obj)
 {
 	global $dbconnection;
 
-	db_connect();
 	$keys = array_keys((Array)$obj);
 	$values = array_map('db_addslashes', array_values((Array)$obj));
 	$sql = "INSERT INTO $table (" . implode(',', $keys) . ") VALUES (\"" .
@@ -132,7 +132,6 @@ function
 db_record_get($table, $key, $value)
 {
 
-	db_connect();
 	$value = db_addslashes($value);
 	$sql = "SELECT * FROM $table WHERE $key = '$value'";
 	return db_fetch(db_sql($sql));
@@ -142,7 +141,6 @@ function
 db_records_get($table)
 {
 
-	db_connect();
 	$sql = "SELECT * FROM $table";
 	$rs = db_sql($sql);
 	if ($rs === false)
