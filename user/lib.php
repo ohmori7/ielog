@@ -128,10 +128,8 @@ user_authenticate($mail, $password)
 	if (! user_password_verify($password, $user['password']))
 		return false;
 	$USER = new stdClass();
-	$USER->id = $user['id'];
-	$USER->mail = $user['mail'];
-	$USER->lastname = $user['lastname'];
-	$USER->firstname = $user['firstname'];
+	foreach ($user as $key => $value)
+		$USER->$key = $value;
 	$_SESSION['user'] = $USER;
 	return true;
 }
