@@ -74,7 +74,7 @@ REDIRECTMETA;
   <body>
     <div id="header">
       <div id="logo">
-        <h1><a href="$uri"><img class="inline" alt="logo" src="$uri/images/logo.png" width="50" height="50"></a>$title</h1>
+        <a href="$uri"><h1><img class="inline" alt="logo" src="$uri/images/logo.png" width="50" height="50">$title</h1></a>
       </div>
       <div id="user">
         $userlink
