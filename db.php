@@ -129,6 +129,23 @@ db_record_insert($table, $obj)
 }
 
 function
+db_record_update($table, $obj)
+{
+	global $dbconnection;
+
+	$a = (Array)$obj;
+	$id = $a['id'];
+	unset($a['id']);
+	$keyvalues = array();
+	foreach ($a as $key => $value)
+		$keyvalues[] = $key . ' = "' . db_addslashes($value) . '"';
+	$sql = "UPDATE $table
+	    SET " .  implode(', ', $keyvalues) . '
+	    WHERE id = ' . $id;
+	return db_sql($sql);
+}
+
+function
 db_record_get($table, $key, $value)
 {
 
