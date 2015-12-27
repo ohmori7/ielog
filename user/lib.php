@@ -108,7 +108,7 @@ user_setup()
 function
 user_logout($user)
 {
-	
+
 	if (! isset($_COOKIE[session_name()]))
 		return;
 	setcookie(session_name(), '', time() - 3600);
