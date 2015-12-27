@@ -34,5 +34,13 @@ header_print('家ログ ログイン', array());
 $form->display();
 if (isset($error))
 	error_print($error);
+else {
+	$uri = IELOG_URI;
+	echo <<<USERREGISTRATION
+      もし，アカウントを作成していない場合は[
+      <a href="$uri/user/register.php">ユーザ登録</a>
+      ]して下さい．
+USERREGISTRATION;
+}
 footer_print();
 ?>

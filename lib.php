@@ -55,7 +55,6 @@ REDIRECTMETA;
 	    '検索' => $uri . '/search.php',
 	    '一覧' => $uri . '/realestate/list.php',
 	    '物件登録' =>  $uri . '/realestate/edit.php',
-	    'ユーザ登録' =>  $uri . '/user/register.php',
 	    ));
 	$subnavlink = nav_link($links);
 	if (! empty($subnavlink))
