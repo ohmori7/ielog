@@ -152,10 +152,10 @@ user_link()
 	$loginurl = IELOG_URI . '/user/login.php';
 	$logouturl = IELOG_URI . '/user/logout.php';
 	if (user_is_loggedin()) {
-		$html .= user_name();
+		$html = user_name();
 		$html .= '（<a href="' . $logouturl . '">ログアウト</a>）';
 	} else {
-		$html .= 'ログインしていません';
+		$html = 'ログインしていません';
 		$html .= '（<a href="' . $loginurl . '">ログイン</a>）';
 	}
 	return $html;
