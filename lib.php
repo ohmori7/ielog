@@ -124,4 +124,37 @@ param_get($name)
 	else
 		return '';
 }
+
+function
+filename_clean($s)
+{
+
+	$s = preg_replace('/[[:cntrl:]"$&\'*\/:;<>?`\\\\|]/u', '', $s);
+	if ($s === '.' || $s === '..')
+		$s = '';
+	return $s;
+}
+
+function
+pathname_clean($s)
+{
+
+	if (empty($s))
+		return '';
+	$s = @iconv('UTF-8', 'UTF-8//IGNORE', $s);
+	$s = str_replace('\\', '/', $s);
+	$s = str_replace('//', '/', $s);
+	$ss = explode('/', $s);
+	$sa = array();
+	foreach ($ss as $idx => $v) {
+		if ($v === '.')
+			continue;
+		if ($v === '..') {
+			if (array_pop($sa) === NULL)
+				return '';
+		} else if ($v = filename_clean($v))
+			array_push($sa, $v);
+	}
+	return implode('/', $sa);
+}
 ?>
