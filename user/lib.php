@@ -59,7 +59,8 @@ function
 user_update($user)
 {
 
-	$user['password'] = user_password_hash($user['password']);
+	if (! empty($user['password']))
+		user_password_hash($user['password']);
 	$rc = db_record_update('user', $user);
 	user_variable_update($user);
 	return $rc;
