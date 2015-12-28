@@ -10,7 +10,6 @@ realestate_data_dirbase($id)
 	return 'realestate/' . $id . '/';
 }
 
-
 function
 realestate_data_dir($id)
 {
