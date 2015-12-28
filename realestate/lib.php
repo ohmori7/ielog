@@ -15,14 +15,14 @@ function
 realestate_data_dir($id)
 {
 
-	return IELOG_DATADIR . '/' . realestate_data_dirbase($id);
+	return file_path(realestate_data_dirbase($id));
 }
 
 function
 realestate_data_url($id, $filename)
 {
 
-	return '../file.php?path=' . realestate_data_dirbase($id) . $filename;
+	return file_url(realestate_data_dirbase($id) . $filename);
 }
 
 function
