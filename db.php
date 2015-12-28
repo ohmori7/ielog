@@ -171,6 +171,16 @@ db_records_get($table)
 }
 
 function
+db_records_count($table)
+{
+
+	$count = db_fetch(db_sql("SELECT COUNT(*) AS count FROM $table"));
+	if (! is_array($count))
+		return $count;
+	return (int)$count['count'];
+}
+
+function
 db_close()
 {
 
