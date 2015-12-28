@@ -49,6 +49,13 @@ realestate_image_top($r)
 }
 
 function
+realestate_image_owner_url($r)
+{
+
+	return user_picture_url($r['owner']);
+}
+
+function
 realestate_radar_graph_puts($r)
 {
 	$url = IELOG_URI . '/scripts';

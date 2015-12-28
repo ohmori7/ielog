@@ -25,7 +25,7 @@ if ($r === false) {
 			<h2>詳細情報</h2>
 			<div class="detail_photo">
 <?php
-$owner = "../images/owner${id}.png";
+$owner = realestate_image_owner_url($r);
 $appear = realestate_image_top($r);
 
 echo <<<EOF
