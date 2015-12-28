@@ -63,19 +63,16 @@ $form->addRule('birthday', '誕生日を入力して下さい．',
 if ($form->isSubmitted() && $form->validate()) {
 	$values = $form->exportValues();
 	unset($values['passwordconfirm']);
+	unset($values['MAX_FILE_SIZE']);
 	if ($pic->isUploadedFile()) {
 		$filename = $pic->_value['name']; /* XXX */
 		if (preg_match('/^.*(\.[^[\.]+)$/', $filename, $matches))
 			$ext = $matches[1];
 		else
 			$ext = '';
-		$filename = "pic$ext";
+		$filename = "pic$ext"; /* XXX */
 		$values['picture'] = $filename;
-		$dir = user_data_dir($id);
-		mkdir($dir, 0700, true);
-		$pic->moveUploadedFile($dir, $filename);
 	}
-	unset($values['MAX_FILE_SIZE']);
 	if ($new) {
 		unset($values['id']);
 		$id = user_add($values);
@@ -87,12 +84,20 @@ if ($form->isSubmitted() && $form->validate()) {
 	}
 	if ($id === false)
 		$error = db_error(); /* XXX */
-	else if ($new) {
-		header_print('家ログ', array(), 'login.php',
-		    IELOG_REDIRECT_TIMEOUT);
-		echo('登録されました．ログイン画面からログインして下さい．');
-		footer_print();
-		return;
+	else {
+		if ($pic->isUploadedFile()) {
+			$dir = user_data_dir($id);
+			mkdir($dir, 0700, true);
+			$pic->moveUploadedFile($dir, $filename);
+		}
+		if ($new) {
+			header_print('家ログ', array(), 'login.php',
+			    IELOG_REDIRECT_TIMEOUT);
+			echo('登録されました．');
+			echo('ログイン画面からログインして下さい．');
+			footer_print();
+			return;
+		}
         }
 } else if (! $new) {
 	$values = array();
