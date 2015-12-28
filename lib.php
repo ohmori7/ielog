@@ -153,4 +153,18 @@ pathname_clean($s)
 	}
 	return implode('/', $sa);
 }
+
+function
+file_path($path)
+{
+
+	return IELOG_DATADIR . '/' . $path;
+}
+
+function
+file_url($path)
+{
+
+	return IELOG_URI . '/file.php?path=' . $path;
+}
 ?>

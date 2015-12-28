@@ -179,12 +179,33 @@ LOGOUT;
 }
 
 function
-user_data_dir()
+user_data_dirbase($id)
 {
-	global $USER;
 
-	if (! user_is_loggedin())
-		return NULL;
-	return IELOG_DATADIR . '/user/' . $USER->id . '/';
+	return 'user/' . $id . '/';
+}
+
+function
+user_data_dir($id)
+{
+
+	return file_path(user_data_dirbase($id));
+}
+
+function
+user_data_url($id, $filename)
+{
+
+	return file_url(user_data_dirbase($id) . $filename);
+}
+
+function
+user_picture_url($id)
+{
+
+	$user = user_get($id);
+	if (file_exists(user_data_dir($id) . $filename))
+		return user_data_url($id, $user['picture']);
+	return IELOG_URI . '/images/noimage.png';
 }
 ?>

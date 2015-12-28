@@ -18,7 +18,7 @@ header_print('家ログ', array());
         <tbody>
 <?php
 	$rs = db_records_get('realestate');
-	$ownerimg = '../images/owner1.png'; /* XXX */
+	$ownerimg = user_picture_url($rs->owner);
 	$rate = 0; /* XXX */
 	$rateimg = "../images/star$rate.png"; /* XXX */
 	$rows = 0;

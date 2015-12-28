@@ -26,6 +26,7 @@ $form->addElement('date', 'birthday', '誕生日',
     'minYear' => 1900, 'maxYear' => date('Y') - IELOG_ALLOWED_AGE,
     'format' => 'Ymd', 'addEmptyOption' => true,
     'emptyOptionText' => array('Y' => 'YYYY', 'm' => 'mm', 'd' => 'dd')));
+$pic =& $form->addElement('file', 'picture', '顔写真');
 $form->addElement('text', 'prefecture', '都道府県',
     array('size' => 50, 'maxlength' => 255));
 $form->addElement('text', 'city', '市町村',
@@ -62,6 +63,18 @@ $form->addRule('birthday', '誕生日を入力して下さい．',
 if ($form->isSubmitted() && $form->validate()) {
 	$values = $form->exportValues();
 	unset($values['passwordconfirm']);
+	if ($pic->isUploadedFile()) {
+		$filename = $pic->_value['name']; /* XXX */
+		if (preg_match('/^.*(\.[^[\.]+)$/', $filename, $matches))
+			$ext = $matches[1];
+		else
+			$ext = '';
+		$filename = "pic$ext";
+		$values['picture'] = $filename;
+		$dir = user_data_dir($id);
+		mkdir($dir, 0700, true);
+		$pic->moveUploadedFile($dir, $filename);
+	}
 	if ($new) {
 		unset($values['id']);
 		$id = user_add($values);
@@ -79,7 +92,7 @@ if ($form->isSubmitted() && $form->validate()) {
 		echo('登録されました．ログイン画面からログインして下さい．');
 		footer_print();
 		return;
-	}
+        }
 } else if (! $new) {
 	$values = array();
 	foreach ((array)$USER as $key => $value) {
