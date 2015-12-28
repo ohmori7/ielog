@@ -110,7 +110,7 @@ error_print($msg)
 }
 
 function
-param_get($name)
+param_get($name, $default = '')
 {
 
 	if (isset($_POST) && isset($_POST[$name]))
@@ -118,7 +118,14 @@ param_get($name)
 	else if (isset($_GET) && isset($_GET[$name]))
 		return $_GET[$name];
 	else
-		return '';
+		return $default;
+}
+
+function
+param_get_int($name, $default = '')
+{
+
+	return (int)param_get($name, $default);
 }
 
 function
