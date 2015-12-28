@@ -7,4 +7,4 @@ sudo yum install php-pear
 sudo pear install HTML_QuickForm
 
 == Thanks to:
-Icon rainbow: http://icon-rainbow.com/usage/ (for ``no-image'' png file)
+Icon rainbow: http://icon-rainbow.com/usage/ (``no-image'' png file and etc.)

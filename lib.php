@@ -174,4 +174,33 @@ file_url($path)
 
 	return IELOG_URI . '/file.php?path=' . $path;
 }
+
+function
+flip_link($table)
+{
+	$perpage = 10;
+	$page = param_get_int('page', 1);
+
+	$count = db_records_count($table);
+	if ($page < 1 || $page > $count)
+		$page = 1;
+	else if (($page - 1) * $perpage > $count)
+		--$page;
+	$first = 1 + ($page - 1) * $perpage;
+	$last  = $first + $perpage;
+	if ($last > $count)
+		$last = $count;
+
+	$img = function($name) {
+		$imguri = IELOG_URI . "/images/$name-arrow.png";
+		return <<<HOGEHOGE
+<img class="inline" src="$imguri" alt="$name" width="32px" height="32px" />
+HOGEHOGE;
+	};
+	$leftarrow = $img('left');		/* XXX: link */
+	$rightarrow = $img('right');		/* XXX: link */
+	$link = "{$count}件中{$first}〜{$last}件表示";
+	$link .= "{$leftarrow}..{$rightarrow}";	/* XXX: mediate links... */
+	return $link;
+}
 ?>
