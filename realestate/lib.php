@@ -36,7 +36,7 @@ realestate_add($values)
 }
 
 function
-realestate_image_top($r)
+realestate_image_top_url($r)
 {
 
 	if (array_key_exists('id', $r) && array_key_exists('picture', $r)) {
