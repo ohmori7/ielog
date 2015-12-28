@@ -75,6 +75,7 @@ if ($form->isSubmitted() && $form->validate()) {
 		mkdir($dir, 0700, true);
 		$pic->moveUploadedFile($dir, $filename);
 	}
+	unset($values['MAX_FILE_SIZE']);
 	if ($new) {
 		unset($values['id']);
 		$id = user_add($values);
