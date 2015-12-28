@@ -25,8 +25,8 @@ if ($r === false) {
 			<h2>詳細情報</h2>
 			<div class="detail_photo">
 <?php
-$owner = realestate_image_owner_url($r);
 $appear = realestate_image_top($r);
+$owner = realestate_image_owner_url($r);
 
 echo <<<EOF
 <h3>概観</h3>
