@@ -164,7 +164,7 @@ user_link()
 {
 
 	if (user_is_loggedin()) {
-		$editurl = IELOG_URI . '/user/register.php';
+		$editurl = IELOG_URI . '/user/edit.php';
 		$logouturl = IELOG_URI . '/user/logout.php';
 		$username = user_name();
 		$html = <<<LOGOUT

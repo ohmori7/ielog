@@ -36,7 +36,7 @@ $form->display();
 $uri = IELOG_URI;
 echo <<<USERREGISTRATION
 もし，まだアカウントを作成していない場合は[
-<a href="$uri/user/register.php">ユーザ登録</a>
+<a href="$uri/user/edit.php">ユーザ登録</a>
 ]から作成して下さい．
 USERREGISTRATION;
 footer_print();
