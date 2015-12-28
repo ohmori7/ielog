@@ -21,17 +21,17 @@ $form->addElement('text', 'lastname', '姓',
     array('size' => 50, 'maxlength' => 255));
 $form->addElement('text', 'firstname', '名',
     array('size' => 50, 'maxlength' => 255));
+$form->addElement('date', 'birthday', '誕生日',
+    array('size' => 50, 'maxlength' => 255,
+    'minYear' => 1900, 'maxYear' => date('Y') - IELOG_ALLOWED_AGE,
+    'format' => 'Ymd', 'addEmptyOption' => true,
+    'emptyOptionText' => array('Y' => 'YYYY', 'm' => 'mm', 'd' => 'dd')));
 $form->addElement('text', 'prefecture', '都道府県',
     array('size' => 50, 'maxlength' => 255));
 $form->addElement('text', 'city', '市町村',
     array('size' => 50, 'maxlength' => 255));
 $form->addElement('text', 'address', '住所',
     array('size' => 50, 'maxlength' => 255));
-$form->addElement('date', 'birthday', '誕生日',
-    array('size' => 50, 'maxlength' => 255,
-    'minYear' => 1900, 'maxYear' => date('Y') - IELOG_ALLOWED_AGE,
-    'format' => 'Ymd', 'addEmptyOption' => true,
-    'emptyOptionText' => array('Y' => 'YYYY', 'm' => 'mm', 'd' => 'dd')));
 $form->addElement('submit', null, '登録');
 
 $form->applyFilter('mail', 'trim');
@@ -56,6 +56,8 @@ $form->addRule(array('password', 'passwordconfirm'),
     'パスワードが一致していません．', 'compare', 'eq', 'client');
 $form->addRule('lastname', '姓を入力して下さい．', 'required', null, 'client');
 $form->addRule('firstname', '姓を入力して下さい．', 'required', null, 'client');
+$form->addRule('birthday', '誕生日を入力して下さい．',
+    'required', null, 'client');
 
 if ($form->isSubmitted() && $form->validate()) {
 	$values = $form->exportValues();

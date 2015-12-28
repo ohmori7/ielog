@@ -20,11 +20,11 @@ db_init($c)
 		'password CHAR(255) NOT NULL',
 	        'lastname CHAR(255) NOT NULL',
 	        'firstname CHAR(255) NOT NULL',
+	        'birthday DATE NOT NULL',
 	        'picture CHAR(255)',
 	        'prefecture CHAR(255)',
 	        'city CHAR(255)',
 	        'address CHAR(255)',
-	        'birthday DATE',
 	        'PRIMARY KEY(id)'
 	        ),
 	    'realestate' => array(
