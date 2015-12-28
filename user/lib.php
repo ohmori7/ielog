@@ -72,7 +72,14 @@ user_del()
 }
 
 function
-user_get($mail)
+user_get($id)
+{
+
+	return db_record_get('user', 'id', $id);
+}
+
+function
+user_get_by_mail($mail)
 {
 
 	return db_record_get('user', 'mail', $mail);
@@ -138,7 +145,7 @@ user_authenticate($mail, $password)
 {
 	global $USER, $_SESSION;
 
-	$user = user_get($mail);
+	$user = user_get_by_mail($mail);
 	if ($user === false)
 		return false;
 	if (! user_password_verify($password, $user['password']))

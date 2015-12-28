@@ -18,13 +18,13 @@ header_print('家ログ', array());
         <tbody>
 <?php
 	$rs = db_records_get('realestate');
-	$ownerimg = user_picture_url($rs->owner);
 	$rate = 0; /* XXX */
 	$rateimg = "../images/star$rate.png"; /* XXX */
 	$rows = 0;
 	foreach ($rs as $id => $r) {
 		$rowmod = $rows++ % 2;
 		$estatepic = realestate_image_top_url($r);
+		$ownerimg = realestate_image_owner_url($r);
 		echo <<<RECORD
           <tr class="list-row$rowmod">
             <td rowspan="2">$id</td>
