@@ -55,7 +55,7 @@ if ($new) {
 $form->addRule(array('password', 'passwordconfirm'),
     'パスワードが一致していません．', 'compare', 'eq', 'client');
 $form->addRule('lastname', '姓を入力して下さい．', 'required', null, 'client');
-$form->addRule('firstname', '姓を入力して下さい．', 'required', null, 'client');
+$form->addRule('firstname', '名を入力して下さい．', 'required', null, 'client');
 $form->addRule('birthday', '誕生日を入力して下さい．',
     'required', null, 'client');
 
