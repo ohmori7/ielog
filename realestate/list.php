@@ -4,8 +4,10 @@ require_once('../db.php');
 require_once('lib.php');
 header_print('家ログ', array());
 
+$fliplink = flip_link('realestate');
 echo <<<HEADER
       <h2>物件一覧</h2>
+      $fliplink
       <table class="list">
         <thead>
           <tr>
@@ -44,6 +46,7 @@ RECORD;
 echo <<<FOOTER
         </tbody>
       </table>
+      $fliplink
 FOOTER;
 footer_print();
 ?>
