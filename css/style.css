@@ -36,10 +36,6 @@ table.list td.list-rate {
 	border:			none;
 	height:			33px;
 }
-table.list td.list-rate img {
-	padding:		0;
-	margin:			0;
-}
 table.list td.list-abstract {
 	border-top:		none;
 	vertical-align:		top;
@@ -378,12 +374,7 @@ table tbody tr td.form-header {
 	border-color:		rgb(233, 141, 57);
 }
 /* */
-img {
-	margin-left:		2em;
-	margin-right:		2em;
-}
 img.inline {
-	margin:			0em;
 	vertical-align:		middle;
 }
 /* */
