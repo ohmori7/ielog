@@ -45,18 +45,18 @@ echo <<<MIDDLE
             </div>
             <div style="clear:both;">
               <h3>みんなの評価</h3>
-              <div id="realestate1-score" class="score">
+              <div id="realestate$id-score" class="score">
                 <img alt="score" src="../images/star3.png" />
               </div>
-              <div id="realestate1-like" class="like">
-                <img id="realestate1-likeimg" src="../images/like.png" width="24px" height="24px" />
+              <div id="realestate$id-like" class="like">
+                <img id="realestate$id-likeimg" src="../images/like.png" width="24px" height="24px" />
                 <span>いいね！</span>
-                <span id="realestate1-like-count">0</span>
+                <span id="realestate$id-like-count">0</span>
               </div>
-              <div id="realestate1-favorite" class="favorite">
-                <img id="realestate1-favoriteimg" src="../images/favorite.png" width="24px" height="24px" />
+              <div id="realestate$id-favorite" class="favorite">
+                <img id="realestate$id-favoriteimg" src="../images/favorite.png" width="24px" height="24px" />
                 <span>お気に入り</span>
-                <span id="realestate1-favorite-count">0</span>
+                <span id="realestate$id-favorite-count">0</span>
               </div>
             </div>
           </li>
