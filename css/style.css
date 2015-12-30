@@ -209,8 +209,17 @@ div#tab_contents ul li{
 	margin:			5px;
 }
 /* -------------------------------------------- */
-div.like img,
-div.like span {
+.score,
+.like,
+.favorite {
+	margin:			0 1em 0;
+	float:			left;
+}
+.score img,
+.like img,
+.like span,
+.favorite img,
+.favorite span {
 	vertical-align:		middle;
 }
 /* -------------------------------------------- */
