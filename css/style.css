@@ -157,10 +157,6 @@ p.balloon-right::after {
 
 /* ------------tab menu------------ */
 #tabmenu{
-	padding:		0px;
-	margin:			0px;
-	color:			#333;
-	font-size:		11px;
 	width:			900px;
 	position:		relative;
 	margin-left:		auto;
@@ -181,7 +177,7 @@ p.balloon-right::after {
 	display:		block;
 	text-decoration:	none;
 	color:			#333;
-/*    background:#eee;*/
+	font-size:		11px;
 	border-color:		#888;
 	border-width:		2px;
 	border-style:		solid;
@@ -221,9 +217,6 @@ div#tab_contents ul li{
 	width:			530px;
 	float:			left;
 	margin:			5px;
-}
-.detail_text {
-	font-size:		14px;
 }
 
 /* -------------------------------------------- */

@@ -43,13 +43,9 @@ EOF;
 realestate_radar_graph_puts($r);
 ?>
 			<h3>概要</h3>
-<span class="detail_text">
 <?php echo($r['abstract']); ?>
-</span>
 			<h3>説明</h3>
-<span class="detail_text">
 <?php echo($r['description']); ?>
-</span>
 			</div>
 			<div style="clear:both;">
 				<h3>みんなの評価</h3>
