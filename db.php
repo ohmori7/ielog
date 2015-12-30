@@ -41,6 +41,14 @@ db_init($c)
 	        'PRIMARY KEY(id)',
 	        'FOREIGN KEY (owner) REFERENCES user(id)'
 	        ),
+	    'realestate_like' => array(
+	        'id INT NOT NULL AUTO_INCREMENT',
+		'user INT NOT NULL',
+		'realestate INT NOT NULL',
+	        'PRIMARY KEY(id)',
+	        'FOREIGN KEY (user) REFERENCES user(id)',
+	        'FOREIGN KEY (realestate) REFERENCES realestate(id)'
+	        ),
 	    'comment' => array(
 	        'id INT NOT NULL AUTO_INCREMENT',
 		'realestate INT',
