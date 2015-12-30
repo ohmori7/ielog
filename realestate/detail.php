@@ -13,8 +13,9 @@ if ($r === false) {
 	footer_print();
 	die();
 }
-?>
-
+$appear = realestate_image_top_url($r);
+$owner = realestate_image_owner_url($r);
+echo <<<TOP
 <div id="tabmenu">
     <div id="tab">
         <a href="#tab1">詳細情報</a>
@@ -27,25 +28,20 @@ if ($r === false) {
             <li id="tab1" name="tab1">
 			<h2>詳細情報</h2>
 			<div class="detail_photo">
-<?php
-$appear = realestate_image_top_url($r);
-$owner = realestate_image_owner_url($r);
-
-echo <<<EOF
-<h3>概観</h3>
-<img alt="$appear" src="$appear" width="250px" />
-<h3>オーナー</h3>
-<img alt="$owner" src="$owner" width="250px" />
+				<h3>概観</h3>
+				<img alt="$appear" src="$appear" width="250px" />
+				<h3>オーナー</h3>
+				<img alt="$owner" src="$owner" width="250px" />
 			</div>
 			<div class="detail_msg">
-			<h3>評価</h3>
-EOF;
+				<h3>評価</h3>
+TOP;
 realestate_radar_graph_puts($r);
-?>
-			<h3>概要</h3>
-<?php echo($r['abstract']); ?>
-			<h3>説明</h3>
-<?php echo($r['description']); ?>
+echo <<<MIDDLE
+				<h3>概要</h3>
+				{$r['abstract']}
+				<h3>説明</h3>
+				{$r['description']}
 			</div>
 			<div style="clear:both;">
 				<h3>みんなの評価</h3>
@@ -67,11 +63,9 @@ realestate_radar_graph_puts($r);
         	<!-- 写真 -->
             <li id="tab2" name="tab2">
 			<h2>写真</h2>
-<?php
-echo("<img alt=\"$owner\" src=\"$owner\" style=\"width:250px;margin: 5px;\" />\n");
-echo("<img alt=\"$appear\" src=\"$appear\" width=\"250pxmargin: 5px;\" />\n");
-echo("<img alt=\"$appear\" src=\"$appear\" width=\"250pxmargin: 5px;\" />\n");
-?>
+			<img alt="$owner" src="$owner"  width="250px" style="margin: 5px;" />
+			<img alt="$appear" src="$appear" width="250px" style="margin: 5px;" />
+			<img alt="$appear" src="$appear" width="250px" style="margin: 5px;" />
 			<h2>室内・周辺</h2>
 <blockquote data-width="500" data-height="375" class="ricoh-theta-spherical-image" >#code4tottori 追い込みシータ撮影2 #theta360 - <a href="https://theta360.com/s/q41fN1dypHKIyAdQUdJz4AeHs" target="_blank">Spherical Image - RICOH THETA</a></blockquote>
 <script async src="https://theta360.com/widgets.js" charset="utf-8"></script>
@@ -81,9 +75,9 @@ echo("<img alt=\"$appear\" src=\"$appear\" width=\"250pxmargin: 5px;\" />\n");
         	<!-- 口コミ -->
             <li id="tab3" name="tab3">
 			<h2>口コミ</h2>
-<?php
+			<div class="balloon-wrapper">
+MIDDLE;
 $ncomments = 6; /* XXX */
-echo("<div class=\"balloon-wrapper\">\n");
 for ($i = 0; $i < $ncomments; $i++) {
 	$msg = "また、資源をエネルギーに変換するためには、要らないものを空気中に排出しなくてはなりません。二酸化炭素などの排出物は、大気汚染を引き起こし、やがては地球全体の気温を徐々にあげてしまいます。これが地球温暖化と呼ばれるもので、異常気象や農作物への影響、海水面の上昇、紫外線の問題など、さまざまな問題の原因となっています。人間だけでなく、すべての生き物の住みやすい環境を守るためにも、エネルギーの節約は必要なのです。 <br />";
 	 $msg .= "<img alt=\"score\" src=\"../images/star${id}.png\" />"; // XXX
@@ -96,16 +90,13 @@ for ($i = 0; $i < $ncomments; $i++) {
 	}
 	echo("<p class=\"clear-p\">&nbsp;</p>\n");
 }
-echo("</div>\n");
-?>
+echo <<<BOTTOM
+			</div>
             </li>
         </ul>
     </div>
 </div>
-<?php
-	echo("<a href=\"../contact.php?id=$id\">○○さんに問い合わせ</a>");
-?>
-
-<?php
+<a href="../contact.php?id=$id">○○さんに問い合わせ</a>
+BOTTOM;
 footer_print();
 ?>
