@@ -29,13 +29,18 @@ nav_link($links)
 		return '';
 	$html = '<div id="nav">
         <ul>';
-	foreach ($links as $name => $uri)
+	foreach ($links as $name => $uri) {
+		if ($uri !== null)
+			$a = "href=\"$uri\"";
+		else
+			$a = 'href="#" class="require-login"';
 		$html .= "
-          <li><a href=\"$uri\"><span>$name</span></a></li>";
+          <li><a $a><span>$name</span></a></li>";
+	}
 	$html .= '
         </ul>
       </div>';
-      return $html;
+	return $html;
 }
 
 function
@@ -51,10 +56,15 @@ REDIRECTMETA;
 	else
 		$rmeta = '';
 	$userlink = user_link();
-	$navlink = nav_link(array('Top' =>  $uri,
+	if (user_is_loggedin())
+		$reguri . '/realestate/edit.php';
+	else
+		$reguri = null;
+	$navlink = nav_link(array(
+	    'Top' =>  $uri,
 	    '検索' => $uri . '/search.php',
 	    '一覧' => $uri . '/realestate/list.php',
-	    '空家登録' =>  $uri . '/realestate/edit.php',
+	    '空家登録' => $reguri
 	    ));
 	$subnavlink = nav_link($links);
 	if (! empty($subnavlink))
@@ -88,11 +98,36 @@ HEADER;
 function
 footer_print()
 {
+	$uri = IELOG_URI . '/scripts';
 
-	echo
-'    </div>
+	echo <<<FOOTER
+    </div>
+    <div id="require-login-alert" class="hidden" title="アラート">
+      ログインが必要です．
+    </div>
+    <script src="$uri/jquery/jquery.min.js"></script>
+    <link rel="stylesheet" href="$uri/jquery-ui/jquery-ui.css">
+    <script src="$uri/jquery-ui/jquery-ui.min.js"></script>
+    <script type="text/javascript">
+	$(function() {
+		var dialog;
+		dialog = $('#require-login-alert').dialog({
+			autoOpen:	false,
+			modal:		true,
+			buttons: {
+				'close': function () {
+					$(this).dialog('close');
+				}
+			}
+		});
+		$('.require-login').on('click', function () {
+			dialog.dialog('open');
+		});
+	});
+    </script>
   </body>
-</html>';
+</html>
+FOOTER;
 }
 
 function
