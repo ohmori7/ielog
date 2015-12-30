@@ -49,7 +49,13 @@ realestate_radar_graph_puts($r);
 			</div>
 			<div style="clear:both;">
 				<h3>みんなの評価</h3>
-				<img alt="score" src="../images/star3.png" />　　<span style="font-size:15px; font-style:bold; color: #0000FF;">いいね　　おきにいり</span>
+				<img alt="score" src="../images/star3.png" />
+				<div id="realestate1-like" class="like">
+					<img id="realestate1-likeimg" src="../images/like.png" width="24px" height="24px" />
+					<span>いいね！</span>
+					<span id="realestate1-like-count">0</span>
+				</div>
+				<span style="font-size:15px; font-style:bold; color: #0000FF;">おきにいり</span>
 			</div>
             </li>
         	<!-- 写真 -->

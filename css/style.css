@@ -208,7 +208,11 @@ div#tab_contents ul li{
 	float:			left;
 	margin:			5px;
 }
-
+/* -------------------------------------------- */
+div.like img,
+div.like span {
+	vertical-align:		middle;
+}
 /* -------------------------------------------- */
 ul.search_cond li {
 	list-style:		none;

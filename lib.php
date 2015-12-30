@@ -108,6 +108,7 @@ footer_print()
     <script src="$uri/jquery/jquery.min.js"></script>
     <link rel="stylesheet" href="$uri/jquery-ui/jquery-ui.css">
     <script src="$uri/jquery-ui/jquery-ui.min.js"></script>
+    <script src="$uri/ielog.js"></script>
     <script type="text/javascript">
 	$(function() {
 		var dialog;
