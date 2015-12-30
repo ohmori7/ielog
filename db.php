@@ -1,6 +1,6 @@
 <?php
 /* XXX: these are very old API but a MySQL of VPS server is very old. */
-$dbconnection = FALSE;
+$dbconnection = false;
 
 function
 db_init($c)
@@ -57,7 +57,7 @@ db_init($c)
 			die("Cannot create table: $name: " . mysql_error());
 	}
 
-	return TRUE;
+	return true;
 }
 
 function
@@ -73,7 +73,7 @@ db_connect()
 {
 	global $dbserver, $dbuser, $dbpasswd, $dbconnection;
 
-	if ($dbconnection !== FALSE)
+	if ($dbconnection !== false)
 		return;
 
 	$dbconnection = mysql_connect($dbserver, $dbuser, $dbpasswd);
@@ -184,9 +184,9 @@ function
 db_close()
 {
 
-	if ($dbconnction === FALSE)
+	if ($dbconnction === false)
 		return;
 	mysql_close($dbconnection);
-	$dbconnection = FALSE;
+	$dbconnection = false;
 }
 ?>
