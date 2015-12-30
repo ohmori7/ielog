@@ -154,11 +154,18 @@ db_record_update($table, $obj)
 }
 
 function
-db_record_get($table, $key, $value)
+db_record_get($table, $filter = array())
 {
 
-	$value = db_addslashes($value);
-	$sql = "SELECT * FROM $table WHERE $key = '$value'";
+	$sql = "SELECT * FROM $table";
+	if (! empty($filter)) {
+		$where = array();
+		foreach ($filter as $key => $value) {
+			$value = db_addslashes($value);
+			array_push($where, "$key = '$value'");
+		}
+		$sql .= " WHERE " . implode(' AND ', $where);
+	}
 	return db_fetch(db_sql($sql));
 }
 

@@ -75,14 +75,14 @@ function
 user_get($id)
 {
 
-	return db_record_get('user', 'id', $id);
+	return db_record_get('user', array('id' => $id));
 }
 
 function
 user_get_by_mail($mail)
 {
 
-	return db_record_get('user', 'mail', $mail);
+	return db_record_get('user', array('mail' => $mail));
 }
 
 function
