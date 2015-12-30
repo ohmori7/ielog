@@ -57,7 +57,7 @@ REDIRECTMETA;
 		$rmeta = '';
 	$userlink = user_link();
 	if (user_is_loggedin())
-		$reguri . '/realestate/edit.php';
+		$reguri = '/realestate/edit.php';
 	else
 		$reguri = null;
 	$navlink = nav_link(array(
