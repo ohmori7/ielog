@@ -57,7 +57,7 @@ realestate_image_owner_url($r)
 function
 realestate_radar_graph_puts($r)
 {
-	$url = IELOG_URI . '/scripts';
+	$url = IELOG_URI . '/scripts/graph-radar';
 
 	// XXX: should reflect actual values...
 	echo <<<GRAPH
