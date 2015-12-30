@@ -17,8 +17,11 @@ $payments = array(
     REALESTATE_PAYMENT_TYPE_RENTAL_AND_SALE =>	'賃貸・売買'
     );
 $form->addElement('select', 'payment', '賃貸種別', $payments);
-$form->addElement('text', 'builtdate', '建築日',
-    array('size' => 50, 'maxlength' => 50));
+$form->addElement('date', 'builtdate', '建築日', array(
+    'size' => 50, 'maxlength' => 50,
+    'minYear' => 1950, 'maxYear' => date('Y'),
+    'format' => 'Ymd', 'addEmptyOption' => true,
+    'emptyOptionText' => array('Y' => 'YYYY', 'm' => 'mm', 'd' => 'dd')));
 $file =& $form->addElement('file', 'file', '外観の画像ファイル');
 $form->addElement('text', 'prefecture', '都道府県',
     array('size' => 50, 'maxlength' => 255));
