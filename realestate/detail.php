@@ -55,7 +55,11 @@ realestate_radar_graph_puts($r);
 					<span>いいね！</span>
 					<span id="realestate1-like-count">0</span>
 				</div>
-				<span style="font-size:15px; font-style:bold; color: #0000FF;">おきにいり</span>
+				<div id="realestate1-favorite" class="favorite">
+					<img id="realestate1-favoriteimg" src="../images/favorite.png" width="24px" height="24px" />
+					<span>お気に入り</span>
+					<span id="realestate1-favorite-count">0</span>
+				</div>
 			</div>
             </li>
         	<!-- 写真 -->
