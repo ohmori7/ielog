@@ -29,10 +29,14 @@ foreach ($rs as $id => $r) {
 	$rowmod = $rows++ % 2;
 	$estatepic = realestate_image_top_url($r);
 	$ownerimg = realestate_image_owner_url($r);
+	if (user_is_loggedin())
+		$link = 'href="detaile.php?id="' . $id . '"';
+	else
+		$link = 'href="#" class="require-login"';
 	echo <<<RECORD
           <tr class="list-row$rowmod">
             <td rowspan="2">$id</td>
-            <td rowspan="2"><a href="detail.php?id=$id">詳細</a></td>
+            <td rowspan="2"><a $link">詳細</a></td>
             <td rowspan="2"><img class="list-pic" src="{$ownerimg}" /></td>
             <td rowspan="2"><img class="list-pic" src="{$estatepic}" /></td>
             <td class="list-rate"><img src="{$rateimg}" /></td>

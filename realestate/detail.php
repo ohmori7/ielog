@@ -1,6 +1,9 @@
 <?php
 require_once('../lib.php');
 require_once('lib.php');
+
+user_login();
+
 header_print('家ログ 詳細', array());
 
 $id = param_get('id');
