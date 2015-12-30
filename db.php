@@ -7,7 +7,7 @@ db_init($c)
 {
 	global $dbname;
 
-	if (! mysql_query("CREATE DATABASE $dbname"))
+	if (! db_sql("CREATE DATABASE $dbname"))
 		die('Cannot create database');
 
 	if (! db_choose())
@@ -61,7 +61,7 @@ db_init($c)
 
 	foreach ($tables as $name => $cols) {
 		$sql = "CREATE TABLE $name (" . implode(', ', $cols) . ')';
-		if (! mysql_query($sql))
+		if (! db_sql($sql))
 			die("Cannot create table: $name: " . mysql_error());
 	}
 
@@ -73,7 +73,7 @@ db_choose()
 {
 	global $dbname;
 
-	return mysql_query("USE $dbname");
+	return db_sql("USE $dbname");
 }
 
 function
