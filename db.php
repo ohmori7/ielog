@@ -122,6 +122,18 @@ db_addslashes($s)
 }
 
 function
+db_record_key_values($obj)
+{
+
+	if (empty($obj))
+		return '';
+	$keyvalues = array();
+	foreach ((Array)$obj as $key => $value)
+		$keyvalues[] = $key . ' = "' . db_addslashes($value) . '"';
+	return $keyvalues;
+}
+
+function
 db_record_insert($table, $obj)
 {
 	global $dbconnection;
@@ -144,9 +156,7 @@ db_record_update($table, $obj)
 	$a = (Array)$obj;
 	$id = $a['id'];
 	unset($a['id']);
-	$keyvalues = array();
-	foreach ($a as $key => $value)
-		$keyvalues[] = $key . ' = "' . db_addslashes($value) . '"';
+	$keyvalues = db_record_key_values($a);
 	$sql = "UPDATE $table
 	    SET " .  implode(', ', $keyvalues) . '
 	    WHERE id = ' . $id;
@@ -154,18 +164,28 @@ db_record_update($table, $obj)
 }
 
 function
-db_record_get($table, $filter = array())
+db_record_where($cond)
 {
 
-	$sql = "SELECT * FROM $table";
-	if (! empty($filter)) {
-		$where = array();
-		foreach ($filter as $key => $value) {
-			$value = db_addslashes($value);
-			array_push($where, "$key = '$value'");
-		}
-		$sql .= " WHERE " . implode(' AND ', $where);
-	}
+	$keyvalues = db_record_key_values($cond);
+	if (! empty($keyvalues))
+		return '';
+	return ' WHERE ' . implode(' AND ', $keyvalues);
+}
+
+function
+db_record_delete($table, $cond)
+{
+
+	$sql = "DELETE FROM $table" . db_record_where($cond);
+	return db_sql($sql);
+}
+
+function
+db_record_get($table, $cond = array())
+{
+
+	$sql = "SELECT * FROM $table " . db_record_where($cond);
 	return db_fetch(db_sql($sql));
 }
 
