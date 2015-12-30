@@ -53,11 +53,6 @@ echo <<<MIDDLE
                 <span>いいね！</span>
                 <span id="realestate$id-like-count">0</span>
               </div>
-              <div id="realestate$id-favorite" class="favorite">
-                <img id="realestate$id-favoriteimg" src="../images/favorite.png" width="24px" height="24px" />
-                <span>お気に入り</span>
-                <span id="realestate$id-favorite-count">0</span>
-              </div>
             </div>
           </li>
           <!-- 写真 -->

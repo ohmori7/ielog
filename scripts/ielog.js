@@ -16,7 +16,4 @@ $(function() {
 	$('.like').click(function() {
 		on_or_off($(this), 'like.png', 'liking.png');
 	});
-	$('.favorite').click(function() {
-		on_or_off($(this), 'favorite.png', 'favoriting.png');
-	});
 } );

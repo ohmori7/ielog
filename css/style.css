@@ -210,16 +210,13 @@ div#tab_contents ul li{
 }
 /* -------------------------------------------- */
 .score,
-.like,
-.favorite {
+.like {
 	margin:			0 1em 0;
 	float:			left;
 }
 .score img,
 .like img,
-.like span,
-.favorite img,
-.favorite span {
+.like span {
 	vertical-align:		middle;
 }
 /* -------------------------------------------- */
