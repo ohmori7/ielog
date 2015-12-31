@@ -51,7 +51,7 @@ header_print($title, $links, $redirecturi = NULL, $redirecttimeout = 0)
 	if ($redirecturi)
 		$rmeta = <<<REDIRECTMETA
 
-    <meta http-equiv="refresh" content="$redirecttimeout;URL=$redirecturi">
+    <meta http-equiv="refresh" content="$redirecttimeout; URL=$redirecturi">
 REDIRECTMETA;
 	else
 		$rmeta = '';
