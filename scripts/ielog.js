@@ -1,23 +1,59 @@
 $(function() {
-	function
-	post_callback_error(request, status, error)
-	{
+	var alertdialog;
 
-		alert("error: " + status);
+	alertdialog = $('#alert-dialog').dialog({
+		autoOpen:	false,
+		modal:		true,
+		buttons: {
+				'close': function () {
+					$(this).dialog('close');
+				}
+			}
+	});
+
+	function
+	post_callback_error(request, status, err)
+	{
+		var containerClass = 'ui-state-error';
+		var iconClass = 'ui-icon-alert';
+		var msg;
+
+		$('#alert-dialog-container').removeClass('ui-state-highlight');
+		$('#alert-dialog-icon').removeClass('ui-icon-info');
+		$('#alert-dialog-container').removeClass('ui-state-error');
+		$('#alert-dialog-icon').removeClass('ui-icon-alert');
+		if (err === 'loginexpire') {
+			msg = 'ログインが期限切れになりました．';
+			msg += '再度ログインして下さい．';
+			containerClass = 'ui-state-highlight';
+			iconClass = 'ui-icon-info';
+		} else if ((! err || err.length === 0) && status === 'error')
+			msg = '通信できませんでした．後で再試行して下さい．';
+		else
+			msg = 'サーバ管理者に連絡して下さい（' + err + '）';
+		$('#alert-dialog-container').addClass(containerClass);
+		$('#alert-dialog-icon').addClass(iconClass);
+		$('#alert-dialog-message').text(msg);
+		alertdialog.dialog('open');
 	}
 
 	function
-	post(url, id, cmd, callback, param)
+	post(url, id, cmd, cb, param)
 	{
 		$.ajax({
 			url:		url,
 			type:		'POST',
 			data:		{ id: id, cmd: cmd },
+			dataType:	'json',
 			timeout:	10000,
-			success:	function(response, status, xmlrequest)
+			success:	function(json, status, request)
 					{
-						/* XXX: should handle error. */
-						callback(response, param);
+						if (json.error === 'success') {
+							cb(json.value, param);
+							return;
+						}
+						post_callback_error(request,
+						    'error', json.error);
 					},
 			error:		post_callback_error
 		});

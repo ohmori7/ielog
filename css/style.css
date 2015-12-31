@@ -302,7 +302,6 @@ label {
 	float:			right;
 	width:			100px;
 }
-
 /* */
 h1 {
 	color:			rgb(233, 141, 57);
@@ -342,11 +341,6 @@ body {
 	margin:			0;
 	padding:		0;
 	background-color:	#FFFFFF;
-}
-/* */
-p {
-	text-indent:	1em;
-	margin:		1em;
 }
 /* */
 p.remark {
@@ -407,4 +401,12 @@ dfn {
 .error {
 	font-weight:		bold;
 	color:			red;
+}
+/* */
+#alert-dialog-container {
+	padding:		0 .7em;
+}
+
+#alert-dialog-container .ui-icon {
+	float:			left;
 }

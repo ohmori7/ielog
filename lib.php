@@ -106,6 +106,14 @@ footer_print()
     <div id="require-login-alert" class="hidden" title="アラート">
       ログインが必要です．
     </div>
+    <div id="alert-dialog" class="ui-widget hidden" title="アラート">
+      <div id="alert-dialog-container" class="ui-corner-all">
+        <p>
+          <span id="alert-dialog-icon" class="ui-icon"></span>
+          <span id="alert-dialog-message"></span>
+        </p>
+      </div>
+    </div>
     <script src="$uri/jquery/jquery.min.js"></script>
     <script src="$uri/jquery-ui/jquery-ui.min.js"></script>
     <script src="$uri/ielog.js"></script>
