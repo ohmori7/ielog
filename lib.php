@@ -75,7 +75,7 @@ REDIRECTMETA;
 <html lang="ja">
   <head>
     <link rel="index" href="./index.php" />
-    <link rev="made" href="mailto:null@mobile-ip.org" />
+    <link rel="author" href="mailto:null@mobile-ip.org" />
     <link rel="stylesheet" type="text/css" href="$uri/css/style.css" />
     <link rel="stylesheet" type="text/css" href="$uri/scripts/jquery-ui/jquery-ui.css">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />$rmeta
