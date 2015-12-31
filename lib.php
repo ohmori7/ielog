@@ -89,8 +89,8 @@ REDIRECTMETA;
       <div id="user">
         $userlink
       </div>
+      $navlink
     </div>
-    $navlink
     <div id="main">
 
 HEADER;

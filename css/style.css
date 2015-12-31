@@ -245,11 +245,12 @@ label {
 	visibility:		hidden;
 	content:		".";
 }
-#logo {
-	float:			left;
-}
 #user {
 	float:			right;
+	color:			white;
+}
+#user a {
+	color:			white;
 }
 #nav {
 	color:			white;
