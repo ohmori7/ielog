@@ -56,7 +56,7 @@ echo <<<MIDDLE
                 <img alt="score" src="../images/star3.png" />
               </div>
               <div id="realestate$id-like" class="like" data-id="$id" data-state="$like">
-                <img id="realestate$id-likeimg" src="$likeimg" width="24" height="24" />
+                <img id="realestate$id-like-img" src="$likeimg" width="24" height="24" />
                 <span>いいね！</span>
                 <span id="realestate$id-like-count">{$r['likes']}</span>
               </div>

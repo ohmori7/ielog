@@ -8,7 +8,12 @@ if (empty($id))
 	return;
 $cmd = param_get('cmd');
 if ($cmd === 'on')
-	realestate_like($id);
+	$rc = realestate_like($id);
 else if ($cmd === 'off')
-	realestate_unlike($id);
+	$rc = realestate_unlike($id);
+if ($rc !== false && ($r = realestate_get($id)) !== false)
+	echo($r['likes']);
+else
+	echo('0');
+	
 ?>
