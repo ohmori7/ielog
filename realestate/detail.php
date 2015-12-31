@@ -6,7 +6,7 @@ user_login();
 
 header_print('家ログ 詳細', array());
 
-$id = param_get('id');
+$id = param_get_int('id');
 $r = db_record_get('realestate', array('id' => $id));
 if ($r === false) {
 	echo('ERROR: wrong page transition!!');
