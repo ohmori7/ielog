@@ -168,7 +168,7 @@ db_record_where($cond)
 {
 
 	$keyvalues = db_record_key_values($cond);
-	if (! empty($keyvalues))
+	if (empty($keyvalues))
 		return '';
 	return ' WHERE ' . implode(' AND ', $keyvalues);
 }
