@@ -36,9 +36,9 @@ echo <<<TOP
             <h2>詳細情報</h2>
             <div class="detail_photo">
               <h3>概観</h3>
-              <img alt="$appear" src="$appear" width="250px" />
+              <img alt="$appear" src="$appear" width="250" />
               <h3>オーナー</h3>
-              <img alt="$owner" src="$owner" width="250px" />
+              <img alt="$owner" src="$owner" width="250" />
             </div>
             <div class="detail_msg">
               <h3>評価</h3>
@@ -56,7 +56,7 @@ echo <<<MIDDLE
                 <img alt="score" src="../images/star3.png" />
               </div>
               <div id="realestate$id-like" class="like" data-id="$id" data-state="$like">
-                <img id="realestate$id-likeimg" src="$likeimg" width="24px" height="24px" />
+                <img id="realestate$id-likeimg" src="$likeimg" width="24" height="24" />
                 <span>いいね！</span>
                 <span id="realestate$id-like-count">{$r['likes']}</span>
               </div>
@@ -65,9 +65,9 @@ echo <<<MIDDLE
           <!-- 写真 -->
           <li id="tab2" name="tab2">
             <h2>写真</h2>
-            <img alt="$owner" src="$owner"  width="250px" style="margin: 5px;" />
-            <img alt="$appear" src="$appear" width="250px" style="margin: 5px;" />
-            <img alt="$appear" src="$appear" width="250px" style="margin: 5px;" />
+            <img alt="$owner" src="$owner"  width="250" style="margin: 5;" />
+            <img alt="$appear" src="$appear" width="250" style="margin: 5;" />
+            <img alt="$appear" src="$appear" width="250" style="margin: 5;" />
             <h2>室内・周辺</h2>
             <blockquote data-width="500" data-height="375" class="ricoh-theta-spherical-image" >#code4tottori 追い込みシータ撮影2 #theta360 - <a href="https://theta360.com/s/q41fN1dypHKIyAdQUdJz4AeHs" target="_blank">Spherical Image - RICOH THETA</a></blockquote>
             <script async src="https://theta360.com/widgets.js" charset="utf-8"></script><br/>
