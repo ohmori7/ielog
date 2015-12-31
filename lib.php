@@ -212,6 +212,13 @@ file_url($path)
 }
 
 function
+image_url($path)
+{
+
+	return IELOG_URI . '/images/' . $path;
+}
+
+function
 flip_link($table)
 {
 	$perpage = 10;
@@ -228,10 +235,10 @@ flip_link($table)
 		$last = $count;
 
 	$img = function($name) {
-		$imguri = IELOG_URI . "/images/$name-arrow.png";
-		return <<<HOGEHOGE
+		$imguri = image_url("$name-arrow.png");
+		return <<<IMG
 <img class="inline" src="$imguri" alt="$name" width="32px" height="32px" />
-HOGEHOGE;
+IMG;
 	};
 	$leftarrow = $img('left');		/* XXX: link */
 	$rightarrow = $img('right');		/* XXX: link */

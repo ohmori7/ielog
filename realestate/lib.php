@@ -74,7 +74,7 @@ realestate_image_top_url($r)
 		if (file_exists(realestate_data_dir($id) . $pic))
 			return realestate_data_url($id, $pic);
 	}
-	return IELOG_URI . '/images/noimage.png';
+	return image_url('noimage.png');
 }
 
 function

@@ -213,6 +213,6 @@ user_picture_url($id)
 	$user = user_get($id);
 	if (file_exists(user_data_dir($id) . $filename))
 		return user_data_url($id, $user['picture']);
-	return IELOG_URI . '/images/noimage.png';
+	return image_url('noimage.png');
 }
 ?>
