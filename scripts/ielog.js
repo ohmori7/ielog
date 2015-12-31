@@ -14,7 +14,7 @@ $(function() {
 			type:		'POST',
 			data:		{ id: id, cmd: cmd },
 			timeout:	10000,
-			success:	function(response, status, error)
+			success:	function(response, status, xmlrequest)
 					{
 						/* XXX: should handle error. */
 						callback(response, param);
