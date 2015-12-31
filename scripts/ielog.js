@@ -11,8 +11,12 @@ $(function() {
 			}
 	});
 
+	$('.require-login').on('click', function () {
+		post_error(null, 'error', 'requirelogin');
+	});
+
 	function
-	post_callback_error(request, status, err)
+	post_error(request, status, err)
 	{
 		var containerClass = 'ui-state-error';
 		var iconClass = 'ui-icon-alert';
@@ -22,9 +26,13 @@ $(function() {
 		$('#alert-dialog-icon').removeClass('ui-icon-info');
 		$('#alert-dialog-container').removeClass('ui-state-error');
 		$('#alert-dialog-icon').removeClass('ui-icon-alert');
-		if (err === 'loginexpire') {
-			msg = 'ログインが期限切れになりました．';
-			msg += '再度ログインして下さい．';
+		if (err === 'loginexpire' || err === 'requirelogin') {
+			if (err == 'requirelogin')
+				msg = 'ログインが必要です．';
+			else {
+				msg = 'ログインが期限切れになりました．';
+				msg += '再度ログインして下さい．';
+			}
 			containerClass = 'ui-state-highlight';
 			iconClass = 'ui-icon-info';
 		} else if ((! err || err.length === 0) && status === 'error')
@@ -52,10 +60,10 @@ $(function() {
 							cb(json.value, param);
 							return;
 						}
-						post_callback_error(request,
+						post_error(request,
 						    'error', json.error);
 					},
-			error:		post_callback_error
+			error:		post_error
 		});
 	}
 

@@ -103,9 +103,6 @@ footer_print()
 
 	echo <<<FOOTER
     </div>
-    <div id="require-login-alert" class="hidden" title="アラート">
-      ログインが必要です．
-    </div>
     <div id="alert-dialog" class="ui-widget hidden" title="アラート">
       <div id="alert-dialog-container" class="ui-corner-all">
         <p>
@@ -117,23 +114,6 @@ footer_print()
     <script src="$uri/jquery/jquery.min.js"></script>
     <script src="$uri/jquery-ui/jquery-ui.min.js"></script>
     <script src="$uri/ielog.js"></script>
-    <script type="text/javascript">
-	$(function() {
-		var dialog;
-		dialog = $('#require-login-alert').dialog({
-			autoOpen:	false,
-			modal:		true,
-			buttons: {
-				'close': function () {
-					$(this).dialog('close');
-				}
-			}
-		});
-		$('.require-login').on('click', function () {
-			dialog.dialog('open');
-		});
-	});
-    </script>
   </body>
 </html>
 FOOTER;
