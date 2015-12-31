@@ -35,6 +35,27 @@ realestate_add($values)
 }
 
 function
+realestate_get($id = null)
+{
+	global $USER;
+
+	if ($id !== null)
+		$where = "WHERE r.id = $id";
+	$sql = "
+	    SELECT r.*, COUNT(rlself.id) AS liked, COUNT(rl.id) AS likes
+	    FROM realestate AS r
+	        LEFT JOIN realestate_like AS rlself
+		    ON r.id = rlself.realestate AND rlself.user = {$USER->id}
+	        LEFT JOIN realestate_like AS rl ON r.id = rl.realestate
+	    $where
+	    GROUP BY r.id";
+	$rs = db_records_get_sql($sql);
+	if ($rs !== false && $id !== null)
+		$rs = array_pop($rs);
+	return $rs;
+}
+
+function
 realestate_like_values($realestate)
 {
 	global $USER;

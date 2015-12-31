@@ -192,10 +192,8 @@ db_record_get($table, $cond = array())
 }
 
 function
-db_records_get($table)
+db_records_get_sql($sql)
 {
-
-	$sql = "SELECT * FROM $table";
 	$rs = db_sql($sql);
 	if ($rs === false)
 		return $rs;
@@ -205,6 +203,13 @@ db_records_get($table)
 		$records[$r['id']] = $r;
 
 	return $records;
+}
+
+function
+db_records_get($table)
+{
+	$sql = "SELECT * FROM $table";
+	return db_records_get_sql($sql);
 }
 
 function

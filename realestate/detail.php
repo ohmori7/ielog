@@ -7,7 +7,7 @@ user_login();
 header_print('家ログ 詳細', array());
 
 $id = param_get_int('id');
-$r = db_record_get('realestate', array('id' => $id));
+$r = realestate_get($id);
 if ($r === false) {
 	echo('ERROR: wrong page transition!!');
 	footer_print();
@@ -15,6 +15,13 @@ if ($r === false) {
 }
 $appear = realestate_image_top_url($r);
 $owner = realestate_image_owner_url($r);
+if ($r['liked']) {
+	$like = 'on';
+	$likeimg = image_url('liking.png');
+} else {
+	$like = 'off';
+	$likeimg = image_url('like.png');
+}
 echo <<<TOP
     <div id="tabmenu">
       <div id="tab">
@@ -48,10 +55,10 @@ echo <<<MIDDLE
               <div id="realestate$id-score" class="score">
                 <img alt="score" src="../images/star3.png" />
               </div>
-              <div id="realestate$id-like" class="like" data-id="$id">
-                <img id="realestate$id-likeimg" src="../images/like.png" width="24px" height="24px" />
+              <div id="realestate$id-like" class="like" data-id="$id" data-state="$like">
+                <img id="realestate$id-likeimg" src="$likeimg" width="24px" height="24px" />
                 <span>いいね！</span>
-                <span id="realestate$id-like-count">0</span>
+                <span id="realestate$id-like-count">{$r['likes']}</span>
               </div>
             </div>
           </li>
