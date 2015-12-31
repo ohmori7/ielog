@@ -48,7 +48,7 @@ echo <<<MIDDLE
               <div id="realestate$id-score" class="score">
                 <img alt="score" src="../images/star3.png" />
               </div>
-              <div id="realestate$id-like" class="like">
+              <div id="realestate$id-like" class="like" data-id="$id">
                 <img id="realestate$id-likeimg" src="../images/like.png" width="24px" height="24px" />
                 <span>いいね！</span>
                 <span id="realestate$id-like-count">0</span>

@@ -35,6 +35,36 @@ realestate_add($values)
 }
 
 function
+realestate_like_values($realestate)
+{
+	global $USER;
+
+	return array(
+	    'user' => $USER->id,
+	    'realestate' => $realestate
+	    );
+}
+
+function
+realestate_like($realestate)
+{
+	$values = realestate_like_values($realestate);
+
+	$r = db_record_get('realestate_like', $values);
+	if ($r !== false)
+		return false;
+	return db_record_insert('realestate_like', $values);
+}
+
+function
+realestate_unlike($realestate)
+{
+	$values = realestate_like_values($realestate);
+
+	return db_record_delete('realestate_like', $values);
+}
+
+function
 realestate_image_top_url($r)
 {
 
