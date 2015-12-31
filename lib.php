@@ -77,6 +77,7 @@ REDIRECTMETA;
     <link rel="index" href="./index.php" />
     <link rev="made" href="mailto:null@mobile-ip.org" />
     <link href="$uri/css/style.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="$uri/scripts/jquery-ui/jquery-ui.css">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />$rmeta
     <title>$title</title>
   </head>
@@ -106,7 +107,6 @@ footer_print()
       ログインが必要です．
     </div>
     <script src="$uri/jquery/jquery.min.js"></script>
-    <link rel="stylesheet" href="$uri/jquery-ui/jquery-ui.css">
     <script src="$uri/jquery-ui/jquery-ui.min.js"></script>
     <script src="$uri/ielog.js"></script>
     <script type="text/javascript">
