@@ -37,9 +37,9 @@ foreach ($rs as $id => $r) {
           <tr class="list-row$rowmod">
             <td rowspan="2">$id</td>
             <td rowspan="2"><a $link>詳細</a></td>
-            <td rowspan="2"><img class="list-pic" src="{$ownerimg}" /></td>
-            <td rowspan="2"><img class="list-pic" src="{$estatepic}" /></td>
-            <td class="list-rate"><img src="{$rateimg}" /></td>
+            <td rowspan="2"><img class="list-pic" alt="owner" src="{$ownerimg}" /></td>
+            <td rowspan="2"><img class="list-pic" alt="estate" src="{$estatepic}" /></td>
+            <td class="list-rate"><img alt="zero" src="{$rateimg}" /></td>
           </tr>
           <tr class="list-row$rowmod">
             <td class="list-abstract">{$r['abstract']}</td>
