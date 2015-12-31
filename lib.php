@@ -237,7 +237,7 @@ flip_link($table)
 	$img = function($name) {
 		$imguri = image_url("$name-arrow.png");
 		return <<<IMG
-<img class="inline" src="$imguri" alt="$name" width="32px" height="32px" />
+<img class="inline" src="$imguri" alt="$name" width="32" height="32" />
 IMG;
 	};
 	$leftarrow = $img('left');		/* XXX: link */
