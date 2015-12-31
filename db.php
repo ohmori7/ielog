@@ -177,6 +177,8 @@ function
 db_record_delete($table, $cond)
 {
 
+	if (empty($cond))
+		return false;
 	$sql = "DELETE FROM $table" . db_record_where($cond);
 	return db_sql($sql);
 }
