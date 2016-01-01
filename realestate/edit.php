@@ -11,12 +11,7 @@ $form->addElement('textarea', 'abstract', '概要',
     array('cols' => 80, 'rows' => 5));
 $form->addElement('textarea', 'description', '詳細な説明',
     array('cols' => 80, 'rows' => 10));
-$contracts = array(
-    REALESTATE_CONTRACT_TYPE_RENTAL =>		'賃貸',
-    REALESTATE_CONTRACT_TYPE_SALE =>		'売買',
-    REALESTATE_CONTRACT_TYPE_RENTAL_AND_SALE =>	'賃貸・売買'
-    );
-$form->addElement('select', 'contract', '契約形態', $contracts);
+$form->addElement('select', 'contract', '契約形態', realestate_contracts());
 $form->addElement('date', 'builtdate', '建築日', array(
     'size' => 50, 'maxlength' => 50,
     'minYear' => 1950, 'maxYear' => date('Y'),

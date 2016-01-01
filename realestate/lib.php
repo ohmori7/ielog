@@ -25,14 +25,21 @@ realestate_data_url($id, $filename)
 }
 
 function
-realestate_contract_name($type)
+realestate_contracts()
 {
 
-	$names = array(
+	return array(
 	    REALESTATE_CONTRACT_TYPE_RENTAL =>		'賃貸',
 	    REALESTATE_CONTRACT_TYPE_SALE =>		'売買',
 	    REALESTATE_CONTRACT_TYPE_RENTAL_AND_SALE =>	'賃貸・売買'
 	    );
+}
+
+function
+realestate_contract_name($type)
+{
+	$names = realestate_contracts();
+
 	return $names[$type];
 }
 
