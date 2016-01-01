@@ -4,7 +4,7 @@ header_print('家ログ', array());
 ?>
 <div style="text-align: center">
 家ログとは？ ：人と人をつなぐ空き家紹介サービス<br />
-<img src="images/logo.png" alt="logo" />
+<img src="images/logo-large.png" alt="logo" />
 </div>
 <?php
 footer_print();
