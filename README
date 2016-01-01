@@ -1,10 +1,65 @@
-IE Log
+IeLog: a blog for empty houses
+================================================================================
+Introduction
+--------------------------------------------------------------------------------
+  A house, ``ie'' in Japanese, may be left without any maintainance for years,
+and the house would become an ``empty house,'' ``akiya'' in japanese.  Empty
+houses in Japan is now one of a big issue in society.
+  IeLog is a system trying to solve this problem and reduce the number of
+empty houses by encouraging owners of empty houses and those who would like
+to rent a house to reach rental agreements.
 
-== Installation
-sudo yum install mysql-server
-sudo yum install php-mysql
-sudo yum install php-pear
-sudo pear install HTML_QuickForm
+Installation
+--------------------------------------------------------------------------------
+### Install required softwares
+#### CentOS
+    % sudo yum install mysql-server
+    % sudo yum install php-mysql
+    % sudo yum install php-pecl-apc
+    % sudo yum install php-pear
+    % sudo pear install HTML_QuickForm
 
-== Thanks to:
+#### Amazon Linux AMI
+    % sudo yum remove 'php*'
+    % sudo yum remove 'http*'
+    % sudo yum install httpd
+    % sudo yum install mod24_ssl	# necessary if you need SSL/TLS
+    % sudo yum install mysql-server
+    % sudo yum install php56-mysqlnd
+    % sudo yum install php56-opcache	# neccesary for better performance
+    % sudo yum install php56-pecl-apcu	# neccesary for better performance
+    % sudo yum install php-pear
+    % sudo pear install HTML_QuickForm
+
+### Configure softwares
+    % sudo /sbin/systemctl httpd start
+    % sudo /sbin/systemctl mysqld start
+    % mysql -u root -p mysql
+    Enter password:
+    mysql> CREATE USER ielog@localhost IDENTIFIED BY 'password'
+    mysql> quit
+
+### Install and configure IeLog
+    % git clone https://github.com/ohmori7/ielog.git
+    % sudo rmdir /var/www/html
+    % sudo mv ielog /var/www/html
+    % sudo mkdir /var/www/ielogdata
+    % sudo chown apache:apache /var/www/ielogdata
+    % cat >> /var/www/html/config.php
+    <?php
+    define('IELOG_URI',		'http://ielog.example.com');
+    define('IELOG_DATADIR',	'/var/www/ielogdata');
+    $dbserver = 'localhost';
+    $dbuser = 'ielog';
+    $dbpasswd = 'password';
+    $dbname = 'ielog';
+    ?>
+    ^D
+
+### Try IeLog
+  You now can try IeLog.  Note that required tables on a database are
+automatically generated.
+
+Thanks to:
+--------------------------------------------------------------------------------
 Icon rainbow: http://icon-rainbow.com/usage/ (``no-image'' png file and etc.)
