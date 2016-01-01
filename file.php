@@ -38,11 +38,11 @@ header('Cache-Control: no-cache', true);
 header('Last-Modified: ' . $mtime, true);
 header('ETag: '. '"' . $etag . '"', true);
 header('Content-Type: ' . $mime);
+header('Content-Length: ' . $size);
 if ($forcetodownload) {
 	$filename = basename($path);
 	/* XXX: in case of IE, should urlencode()...*/
 	header("Content-disposition: attachment; filename=$filename");
-	header("Content-Length: $size");
 }
 readfile($path);
 ?>
