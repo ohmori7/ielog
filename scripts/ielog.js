@@ -51,6 +51,7 @@ $(function() {
 		$.ajax({
 			url:		url,
 			type:		'POST',
+			cache:		false,
 			data:		{ id: id, cmd: cmd },
 			dataType:	'json',
 			timeout:	10000,
