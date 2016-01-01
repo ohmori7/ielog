@@ -30,7 +30,7 @@ foreach ($rs as $id => $r) {
 	$estatepic = realestate_image_top_url($r);
 	$ownerimg = realestate_image_owner_url($r);
 	if (user_is_loggedin())
-		$link = 'href="detail.php?id=' . $id . '"';
+		$link = 'href="view.php?id=' . $id . '"';
 	else
 		$link = 'href="#" class="require-login"';
 	echo <<<RECORD
