@@ -10,7 +10,6 @@ else
 
 $form = new Form('userRegistrationForm');
 $form->addElement('header', null, 'ユーザ登録');
-$form->addElement('hidden', 'id', null);
 $form->addElement('text', 'mail', 'メールアドレス',
     array('size' => 50, 'maxlength' => 255));
 $form->addElement('password', 'password', 'パスワード',
@@ -62,6 +61,7 @@ $form->addRule('birthday', '誕生日を入力して下さい．',
 
 if ($form->isSubmitted() && $form->validate()) {
 	$values = $form->exportValues();
+	unset($values['id']);	/* just in case */
 	unset($values['passwordconfirm']);
 	unset($values['MAX_FILE_SIZE']);
 	if ($pic->isUploadedFile()) {
@@ -73,12 +73,11 @@ if ($form->isSubmitted() && $form->validate()) {
 		$filename = "pic$ext"; /* XXX */
 		$values['picture'] = $filename;
 	}
-	if ($new) {
-		unset($values['id']);
+	if ($new)
 		$id = user_add($values);
-	} else {
-		if (empty($values['password']) ||
-		    empty($values['passwordconfirm']) /* XXX should be error */)
+	else {
+		$values['id'] = $USER->id;
+		if (empty($values['password']))
 			unset($values['password']);
 		$id = user_update($values);
 	}
