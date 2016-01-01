@@ -121,13 +121,16 @@ user_setup()
 
 	session_name(IELOG_SESSION_NAME);
 	/* see http://php.net/manual/ja/session.configuration.php. */
-	ini_set('session.cookie_lifetime',	IELOG_SESSION_TIMEOUT);
-	ini_set('session.gc_maxlifetime',	IELOG_SESSION_TIMEOUT);
+	$timeout = IELOG_SESSION_TIMEOUT;
+	ini_set('session.cookie_lifetime',	$timeout);
+	ini_set('session.gc_maxlifetime',	$timeout);
 	ini_set('session.gc_probability',	1);
 	ini_set('session.gc_divisor',		1);
 	session_start();
 	if (isset($_SESSION['user']))
 		$USER = $_SESSION['user'];
+	/* update cookie on each access. */
+	setcookie(session_name(), session_id(), time() + $timeout, '/');
 }
 
 function
