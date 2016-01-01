@@ -1,7 +1,7 @@
 <?php
-define('REALESTATE_PAYMENT_TYPE_RENTAL',		1);
-define('REALESTATE_PAYMENT_TYPE_SALE',			2);
-define('REALESTATE_PAYMENT_TYPE_RENTAL_AND_SALE',	3);
+define('REALESTATE_CONTRACT_TYPE_RENTAL',		1);
+define('REALESTATE_CONTRACT_TYPE_SALE',			2);
+define('REALESTATE_CONTRACT_TYPE_RENTAL_AND_SALE',	3);
 
 function
 realestate_data_dirbase($id)
@@ -25,13 +25,13 @@ realestate_data_url($id, $filename)
 }
 
 function
-realestate_payment_name($type)
+realestate_contract_name($type)
 {
 
 	$names = array(
-	    REALESTATE_PAYMENT_TYPE_RENTAL =>		'賃貸',
-	    REALESTATE_PAYMENT_TYPE_SALE =>		'売買',
-	    REALESTATE_PAYMENT_TYPE_RENTAL_AND_SALE =>	'賃貸・売買'
+	    REALESTATE_CONTRACT_TYPE_RENTAL =>		'賃貸',
+	    REALESTATE_CONTRACT_TYPE_SALE =>		'売買',
+	    REALESTATE_CONTRACT_TYPE_RENTAL_AND_SALE =>	'賃貸・売買'
 	    );
 	return $names[$type];
 }

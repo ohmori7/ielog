@@ -32,7 +32,7 @@ db_init($c)
 		'owner INT NOT NULL',
 		'abstract TEXT NOT NULL',
 		'description MEDIUMTEXT NOT NULL',
-		'payment TINYINT UNSIGNED NOT NULL',
+		'contract TINYINT UNSIGNED NOT NULL',
 		'builtdate DATE NOT NULL',
 		'picture CHAR(255)',
 	        'prefecture CHAR(255)',

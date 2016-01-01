@@ -11,12 +11,12 @@ $form->addElement('textarea', 'abstract', '概要',
     array('cols' => 80, 'rows' => 5));
 $form->addElement('textarea', 'description', '詳細な説明',
     array('cols' => 80, 'rows' => 10));
-$payments = array(
-    REALESTATE_PAYMENT_TYPE_RENTAL =>		'賃貸',
-    REALESTATE_PAYMENT_TYPE_SALE =>		'売買',
-    REALESTATE_PAYMENT_TYPE_RENTAL_AND_SALE =>	'賃貸・売買'
+$contracts = array(
+    REALESTATE_CONTRACT_TYPE_RENTAL =>		'賃貸',
+    REALESTATE_CONTRACT_TYPE_SALE =>		'売買',
+    REALESTATE_CONTRACT_TYPE_RENTAL_AND_SALE =>	'賃貸・売買'
     );
-$form->addElement('select', 'payment', '賃貸種別', $payments);
+$form->addElement('select', 'contract', '契約形態', $contracts);
 $form->addElement('date', 'builtdate', '建築日', array(
     'size' => 50, 'maxlength' => 50,
     'minYear' => 1950, 'maxYear' => date('Y'),
@@ -35,7 +35,7 @@ $form->addRule('abstract', '概要を入力して下さい．',
     'required', null, 'client');
 $form->addRule('description', '詳細な説明を入力して下さい．',
     'required', null, 'client');
-$form->addRule('payment', '賃貸種別を入力して下さい．',
+$form->addRule('contract', '契約形態を入力して下さい．',
     'required', null, 'client');
 $form->addRule('builtdate', '建築日を入力して下さい．',
     'required', null, 'client');
