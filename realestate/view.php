@@ -13,6 +13,8 @@ if ($r === false) {
 	footer_print();
 	die();
 }
+$address = $r['prefecture'] . $r['city'] . $r['address'];
+$payment = realestate_payment_name($r['payment']);
 $appear = realestate_image_top_url($r);
 $owner = realestate_image_owner_url($r);
 if ($r['liked']) {
@@ -51,6 +53,10 @@ echo <<<MIDDLE
               {$r['description']}
             </div>
             <div style="clear:both;">
+              <h3>住所</h3>
+              $address
+              <h3>契約形態</h3>
+              $payment
               <h3>みんなの評価</h3>
               <div id="realestate$id-score" class="score">
                 <img alt="score" src="../images/star3.png" />

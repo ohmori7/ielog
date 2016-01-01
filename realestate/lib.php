@@ -25,6 +25,18 @@ realestate_data_url($id, $filename)
 }
 
 function
+realestate_payment_name($type)
+{
+
+	$names = array(
+	    REALESTATE_PAYMENT_TYPE_RENTAL =>		'賃貸',
+	    REALESTATE_PAYMENT_TYPE_SALE =>		'売買',
+	    REALESTATE_PAYMENT_TYPE_RENTAL_AND_SALE =>	'賃貸・売買'
+	    );
+	return $names[$type];
+}
+
+function
 realestate_add($values)
 {
 	global $USER;
