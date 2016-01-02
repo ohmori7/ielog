@@ -106,6 +106,7 @@ $(function() {
 			data.cmd = param.state = 'off', param.image = offimg;
 		post(url, data, toggle_img_callback, param);
 	}
+
 	$('.like').click(function() {
 		var imgurlbase = '/images'; /* XXX */
 		var likingimg = imgurlbase + '/liking.png';
@@ -113,4 +114,4 @@ $(function() {
 
 		toggle_img($(this), likingimg, likeimg, 'like.php');
 	});
-} );
+});
