@@ -60,6 +60,8 @@ realestate_get($id = null)
 
 	if ($id !== null)
 		$where = "WHERE r.id = $id";
+	else
+		$where = '';
 	$sql = "
 	    SELECT r.*, COUNT(rlself.id) AS liked, COUNT(rl.id) AS likes
 	    FROM realestate AS r

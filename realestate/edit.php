@@ -65,7 +65,7 @@ if ($form->isSubmitted() && $form->validate()) {
 	$error = db_error();
 }
 header_print('家ログ 空家の追加', array());
-if ($error)
+if (isset($error))
 	echo("ERROR: $error<br />");
 $form->display();
 footer_print();
