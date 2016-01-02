@@ -965,7 +965,6 @@ function elDialogForm(o) {
 		var hidden   = $('<input type="hidden" />').attr('name', opts.name);
 		var label    = $('<label />').attr({unselectable : 'on'}).addClass('rounded-left-3');
 		var list     = null;
-		var ieWidth  = null;
 
 		if (self.get(0).nodeName == 'SELECT') {
 			opts.src = {};
@@ -1027,15 +1026,6 @@ function elDialogForm(o) {
 			.click(function(e) {
 				!list && init();
 				list.slideToggle();
-				// stupid ie inherit width from parent
-				if ($.browser.msie && !ieWidth) { 
-					list.children().each(function() {
-						ieWidth = Math.max(ieWidth, $(this).width());
-					});
-					if (ieWidth > list.width()) {
-						list.width(ieWidth+40);
-					}
-				}
 			});
 			
 		this.val(opts.value);
@@ -1125,7 +1115,6 @@ elRTE = function(target, opts) {
 	this.version   = '1.3';
 	this.build     = '2011-06-23';
 	this.options   = $.extend(true, {}, this.options, opts);
-	this.browser   = $.browser;
 	this.target    = $(target);
 	
 	this.lang      = (''+this.options.lang);
@@ -1212,11 +1201,7 @@ elRTE = function(target, opts) {
 					} else {
 						self.updateSource();
 						self.source.focus();
-						if ($.browser.msie) {
-							// @todo
-						} else {
-							self.source[0].setSelectionRange(0, 0);
-						}
+						self.source[0].setSelectionRange(0, 0);
 						self.ui.disable();
 						self.statusbar.empty();
 						
@@ -1242,13 +1227,9 @@ elRTE = function(target, opts) {
 	this.doc.close();
 	
 	/* make iframe editable */
-	if ($.browser.msie) {
-		this.doc.body.contentEditable = true;
-	} else {
-		try { this.doc.designMode = "on"; } 
-		catch(e) { }
-		this.doc.execCommand('styleWithCSS', false, this.options.styleWithCSS);
-	}
+	try { this.doc.designMode = "on"; } 
+	catch(e) { }
+	this.doc.execCommand('styleWithCSS', false, this.options.styleWithCSS);
 	
 	if (this.options.height>0) {
 		this.workzone.height(this.options.height);
@@ -1280,16 +1261,10 @@ elRTE = function(target, opts) {
 		if (e.keyCode == 9) {
 			e.preventDefault();
 				
-			if ($.browser.msie) {
-				var r = document.selection.createRange();
-				r.text = "\t"+r.text;
-				this.focus();
-			} else {
-				var before = this.value.substr(0, this.selectionStart),
-					after = this.value.substr(this.selectionEnd);
-				this.value = before+"\t"+after;
-				this.setSelectionRange(before.length+1, before.length+1);
-			}
+			var before = this.value.substr(0, this.selectionStart),
+				after = this.value.substr(this.selectionEnd);
+			this.value = before+"\t"+after;
+			this.setSelectionRange(before.length+1, before.length+1);
 		}
 	});
 	
@@ -1328,9 +1303,6 @@ elRTE = function(target, opts) {
 			// self.log(n)
 			if (self.dom.selfOrParent(n, /^PRE$/)) {
 				self.selection.insertNode(self.doc.createTextNode("\r\n"));
-				return false;
-			} else if ($.browser.safari && e.shiftKey) {
-				self.selection.insertNode(self.doc.createElement('br'))
 				return false;
 			}
 		}
@@ -1385,32 +1357,6 @@ elRTE = function(target, opts) {
 			}, 15);
 		}
 	});
-	
-	if ($.browser.msie) {
-		this.$doc.bind('keyup', function(e) {
-			if (e.keyCode == 86 && (e.metaKey||e.ctrlKey)) {
-				self.history.add(true);
-				self.typing = true;
-				self.lastKey = null;
-				self.selection.saveIERange();
-				self.val(self.filter.proccess('paste', self.filter.wysiwyg2wysiwyg($(self.doc.body).html())));
-				self.selection.restoreIERange();
-				$(self.doc.body).mouseup();
-				this.ui.update();
-			}
-		});
-	}
-	
-	if ($.browser.safari) {
-		this.$doc.bind('click', function(e) {
-			$(self.doc.body).find('.elrte-webkit-hl').removeClass('elrte-webkit-hl');
-			if (e.target.nodeName == 'IMG') {
-				$(e.target).addClass('elrte-webkit-hl');
-			}
-		}).bind('keyup', function(e) {
-			$(self.doc.body).find('.elrte-webkit-hl').removeClass('elrte-webkit-hl');
-		})
-	}
 	
 	this.window.focus();
 	
@@ -1474,13 +1420,7 @@ elRTE.prototype.val = function(v) {
 		if (this.source.is(':visible')) {
 			this.source.val(this.filter.source2source(v));
 		} else {
-			if ($.browser.msie) {
-				this.doc.body.innerHTML = '<br />'+this.filter.wysiwyg(v);
-				this.doc.body.removeChild(this.doc.body.firstChild);
-			} else {
-				this.doc.body.innerHTML = this.filter.wysiwyg(v);
-			}
-			
+			this.doc.body.innerHTML = this.filter.wysiwyg(v);
 		}
 	} else {
 		if (this.source.is(':visible')) {
@@ -2072,7 +2012,7 @@ elRTE.prototype.dom = function(rte) {
 		if ($n.attr('style') === '') {
 			$n.removeAttr('style');
 		}
-		if (this.rte.browser.safari && $n.hasClass('Apple-span')) {
+		if ($n.hasClass('Apple-span')) {
 			$n.removeClass('Apple-span');
 		}
 		if (n.nodeName == 'SPAN' && !$n.attr('style') && !$n.attr('class') && !$n.attr('id')) {
@@ -2958,14 +2898,7 @@ elRTE.prototype.dom = function(rte) {
 					nodes = [],
 					w = [];
 				
-				if ($.browser.msie) {
-					for (var i = 0; i<n[0].childNodes.length; i++) {
-						nodes.push(n[0].childNodes[i])
-					}
-				} else {
-					nodes = Array.prototype.slice.call(n[0].childNodes);
-				}
-				
+				nodes = Array.prototype.slice.call(n[0].childNodes);
 
 				function wrap() {
 					if (w.length && dom.filter(w, 'notEmpty').length) {
@@ -3404,11 +3337,8 @@ elRTE.prototype.selection = function(rte) {
 		var s = selection(),
 			r = this.getRangeAt();
 		r.collapse(st?true:false);
-		if (!$.browser.msie) {
-			s.removeAllRanges();
-			s.addRange(r);
-			
-		}
+		s.removeAllRanges();
+		s.addRange(r);
 		return this;
 	}
 	
@@ -3420,14 +3350,6 @@ elRTE.prototype.selection = function(rte) {
 	 * @return  range|w3cRange
 	 **/
 	this.getRangeAt = function(updateW3cRange) {
-		if (this.rte.browser.msie) {
-			if (!this.w3cRange) {
-				this.w3cRange = new this.rte.w3cRange(this.rte);
-			}
-			updateW3cRange && this.w3cRange.update();
-			return this.w3cRange;
-		}
-		
 		var s = selection();
 		var r = s.rangeCount > 0 ? s.getRangeAt(0) : this.rte.doc.createRange();
 		r.getStart = function() {
@@ -3447,30 +3369,11 @@ elRTE.prototype.selection = function(rte) {
 		return r;
 	}
 	
-	this.saveIERange = function() {
-		if ($.browser.msie) {
-			bm = this.getRangeAt().getBookmark();
-		}
-	}
-	
-	this.restoreIERange = function() {
-		$.browser.msie && bm && this.getRangeAt().moveToBookmark(bm);
-	}
-	
 	this.cloneContents = function() {
 		var n = this.rte.dom.create('div'), r, c, i;
-		if ($.browser.msie) {
-			try { 
-				r = this.rte.window.document.selection.createRange(); 
-			} catch(e) { 
-				r = this.rte.doc.body.createTextRange(); 
-			}
-			$(n).html(r.htmlText);
-		} else {
-			c = this.getRangeAt().cloneContents();
-			for (i=0; i<c.childNodes.length; i++) {
-				n.appendChild(c.childNodes[i].cloneNode(true));
-			}
+		c = this.getRangeAt().cloneContents();
+		for (i=0; i<c.childNodes.length; i++) {
+			n.appendChild(c.childNodes[i].cloneNode(true));
 		}
 		return n;
 	}
@@ -3485,25 +3388,12 @@ elRTE.prototype.selection = function(rte) {
 	this.select = function(s, e) {
 		e = e||s;
 		
-		if (this.rte.browser.msie) {
-			var r  = this.rte.doc.body.createTextRange(),
-				r1 = r.duplicate(),
-				r2 = r.duplicate();
-			
-			r1.moveToElementText(s);
-			r2.moveToElementText(e);
-			r.setEndPoint('StartToStart', r1);
-			r.setEndPoint('EndToEnd',     r2);
-			r.select();
-		} else {
-			
-			var sel = selection(),
-				r = this.getRangeAt();
-			r.setStartBefore(s);
-			r.setEndAfter(e);
-			sel.removeAllRanges();
-			sel.addRange(r);
-		}
+		var sel = selection(),
+			r = this.getRangeAt();
+		r.setStartBefore(s);
+		r.setEndAfter(e);
+		sel.removeAllRanges();
+		sel.addRange(r);
 		return this.cleanCache();
 	}
 	
@@ -3516,28 +3406,20 @@ elRTE.prototype.selection = function(rte) {
 	this.selectContents = function(n) {
 		var r = this.getRangeAt();
 		if (n && n.nodeType == 1) {
-			if (this.rte.browser.msie) {
-				r.range();
-				r.r.moveToElementText(n.parentNode);
-				r.r.select();
-			} else {
-				try {
-					r.selectNodeContents(n);
-				} catch (e) {
-					return this.rte.log('unable select node contents '+n);
-				}
-				var s = selection();
-				s.removeAllRanges();
-				s.addRange(r);
+			try {
+				r.selectNodeContents(n);
+			} catch (e) {
+				return this.rte.log('unable select node contents '+n);
 			}
+			var s = selection();
+			s.removeAllRanges();
+			s.addRange(r);
 		}
 		return this;
 	}
 	
 	this.deleteContents = function() {
-		if (!$.browser.msie) {
-			this.getRangeAt().deleteContents();
-		}
+		this.getRangeAt().deleteContents();
 		return this;
 	}
 	
@@ -3552,19 +3434,13 @@ elRTE.prototype.selection = function(rte) {
 			this.collapse();
 		}
 
-		if (this.rte.browser.msie) {
-			var html = n.nodeType == 3 ? n.nodeValue : $(this.rte.dom.create('span')).append($(n)).html();
-			 var r = this.getRangeAt();
-			r.insertNode(html);
-		} else {
-			var r = this.getRangeAt();
-			r.insertNode(n);
-			r.setStartAfter(n);
-			r.setEndAfter(n);
-			var s = selection();
-			s.removeAllRanges();
-			s.addRange(r);
-		}
+		var r = this.getRangeAt();
+		r.insertNode(n);
+		r.setStartAfter(n);
+		r.setEndAfter(n);
+		var s = selection();
+		s.removeAllRanges();
+		s.addRange(r);
 		return this.cleanCache();
 	}
 
@@ -3579,13 +3455,9 @@ elRTE.prototype.selection = function(rte) {
 			this.collapse();
 		}
 		
-		if (this.rte.browser.msie) {
-			this.getRangeAt().range().pasteHTML(html);
-		} else {
-			var nodes = $(this.rte.dom.create('span')).html(html||'').get(0).childNodes;
-			while (nodes.length) {
-			    this.insertNode(nodes[0]);
-			}
+		var nodes = $(this.rte.dom.create('span')).html(html||'').get(0).childNodes;
+		while (nodes.length) {
+		    this.insertNode(nodes[0]);
 		}
 		return this.cleanCache();
 	}
@@ -3606,50 +3478,21 @@ elRTE.prototype.selection = function(rte) {
 		var r, r1, r2, _s, _e,
 			s = this.rte.dom.createBookmark(),
 			e = this.rte.dom.createBookmark();
-			
-		
-		
-		if ($.browser.msie) {
-			try { 
-				r = this.rte.window.document.selection.createRange(); 
-			} catch(e) { 
-				r = this.rte.doc.body.createTextRange(); 
-			}
-			
-			if (r.item) {
-				var n = r.item(0);
-				r = this.rte.doc.body.createTextRange();
-				r.moveToElementText(n);
-			}
-			
-			r1 = r.duplicate();
-			r2 = r.duplicate();
-			_s = this.rte.dom.create('span');
-			_e = this.rte.dom.create('span');
 
-			_s.appendChild(s);
-			_e.appendChild(e);
-
-			r1.collapse(true);
-			r1.pasteHTML(_s.innerHTML);
-			r2.collapse(false);
-			r2.pasteHTML(_e.innerHTML);
-		} else {
-				var sel = selection();
-				var r = sel.rangeCount > 0 ? sel.getRangeAt(0) : this.rte.doc.createRange();
+		var sel = selection();
+		var r = sel.rangeCount > 0 ? sel.getRangeAt(0) : this.rte.doc.createRange();
 				
-			// r  = this.getRangeAt();
-			r1 = r.cloneRange();
-			r2 = r.cloneRange();
+		// r  = this.getRangeAt();
+		r1 = r.cloneRange();
+		r2 = r.cloneRange();
 			
-			// this.insertNode(this.rte.dom.create('hr'))
-			// return
-			r2.collapse(false);
-			r2.insertNode(e);
-			r1.collapse(true);
-			r1.insertNode(s);
-			this.select(s, e);
-		}
+		// this.insertNode(this.rte.dom.create('hr'))
+		// return
+		r2.collapse(false);
+		r2.insertNode(e);
+		r1.collapse(true);
+		r1.insertNode(s);
+		this.select(s, e);
 		
 		return [s.id, e.id];
 	}
@@ -3666,13 +3509,6 @@ elRTE.prototype.selection = function(rte) {
 				if (this.rte.dom.next(s) == e) {
 					this.collapse(true);
 				}
-				if (!$.browser.msie) {
-					sel = selection();
-					r = sel.rangeCount > 0 ? sel.getRangeAt(0) : this.rte.doc.createRange();
-					sel.removeAllRanges();
-					sel.addRange(r);
-				}
-				
 				s.parentNode.removeChild(s);
 				e.parentNode.removeChild(e);
 			}
@@ -5098,7 +4934,6 @@ elRTE.prototype.ui.prototype.buttons.anchor = function(rte, name) {
 		this.anchor = this.rte.dom.selfOrParentAnchor(this.rte.selection.getEnd()) || rte.dom.create('a');
 		!this.rte.selection.collapsed() && this.rte.selection.collapse(false);
 		this.input.val($(this.anchor).addClass('elrte-anchor').attr('name'));
-		this.rte.selection.saveIERange();
 		var d = new elDialogForm(opts);
 		d.append([this.rte.i18n('Bookmark name'), this.input], null, true).open();
 		setTimeout(function() { self.input.focus()}, 20);
@@ -5188,30 +5023,7 @@ elRTE.prototype.ui.prototype.buttons.copy = function(rte, name) {
 	this.constructor.prototype.constructor.call(this, rte, name);
 	
 	this.command = function() {
-		
-		if (this.rte.browser.mozilla) {
-			try {
-				this.rte.doc.execCommand(this.name, false, null);
-			} catch (e) {
-				var s = ' Ctl + C';
-				if (this.name == 'cut') {
-					s = ' Ctl + X';
-				} else if (this.name == 'paste') {
-					s = ' Ctl + V';
-				}
-				var opts = {
-					dialog : {
-						title   : this.rte.i18n('Warning'),
-						buttons : { Ok : function() { $(this).dialog('close'); } }
-					}
-				}
-
-				var d = new elDialogForm(opts);
-				d.append(this.rte.i18n('This operation is disabled in your browser on security reason. Use shortcut instead.')+': '+s).open();
-			}
-		} else {
-			this.constructor.prototype.command.call(this);
-		}
+		this.constructor.prototype.command.call(this);
 	}
 }
 
@@ -5229,7 +5041,6 @@ elRTE.prototype.ui.prototype.buttons.paste = elRTE.prototype.ui.prototype.button
 		
 		this.command = function() {
 			var n = this.node(), opts;
-			this.rte.selection.saveIERange();
 			if (n) {
 				var opts = {
 					
@@ -5255,7 +5066,6 @@ elRTE.prototype.ui.prototype.buttons.paste = elRTE.prototype.ui.prototype.button
 		
 		this.set = function() {
 			var n = this.node();
-			this.rte.selection.restoreIERange();
 			if (n) {
 				$(n).attr('style', this.cssStyle.val());
 				$(n).attr('class', this.cssClass.val());
@@ -5512,7 +5322,6 @@ elRTE.prototype.ui.prototype.buttons.elfinder = function(rte, name) {
 		this.command = function() {
 
 			var n = this.rte.selection.getEnd(), opts, url='', w='', h='', f, a, d, mid, o, wm;
-			this.rte.selection.saveIERange();
 			this.src.margin.elPaddingInput({ type : 'margin' });
 			this.placeholder = null;
 			this.swf = null;
@@ -5803,7 +5612,6 @@ elRTE.prototype.ui.prototype.buttons.elfinder = function(rte, name) {
 				
 				if (ins) {
 					this.rte.window.focus();
-					this.rte.selection.restoreIERange();
 					this.rte.selection.insertNode(this.placeholder.get(0));
 				}
 			}
@@ -6000,9 +5808,7 @@ elRTE.prototype.ui.prototype.buttons.hilitecolor = elRTE.prototype.ui.prototype.
 elRTE.prototype.ui.prototype.buttons.formatblock = function(rte, name) {
 	this.constructor.prototype.constructor.call(this, rte, name);
 
-	var cmd = this.rte.browser.msie 
-		? function(v) { self.val = v; self.constructor.prototype.command.call(self); }
-		: function(v) { self.ieCommand(v); } 
+	var cmd = function(v) { self.ieCommand(v); } 
 	var self = this;
 	var opts = {
 		labelTpl : '%label',
@@ -6138,25 +5944,8 @@ elRTE.prototype.ui.prototype.buttons.fullscreen = function(rte, name) {
 			f = e.hasClass(c),
 			rte = this.rte,
 			s = this.rte.selection,
-			m = $.browser.mozilla,
 			b, h;
 
-		function save() {
-			if (m) {
-				b = s.getBookmark();
-			}
-		}
-		
-		function restore() {
-			if (m) {
-				self.wz.children().toggle();
-				self.rte.source.focus();
-				self.wz.children().toggle();
-				s.moveToBookmark(b);
-			}
-		}
-
-		save();
 		p.css('position', f ? 'relative' : 'static');	
 		
 		if (f) {
@@ -6175,8 +5964,6 @@ elRTE.prototype.ui.prototype.buttons.fullscreen = function(rte, name) {
 		}
 		rte.updateHeight();	
 		rte.resizable(f);
-		restore();
-		
 	}
 	
 	this.update = function() {
@@ -6900,7 +6687,6 @@ elRTE.prototype.ui.prototype.buttons.link = function(rte, name) {
 			sel, i, v, opts, l, r, link, href, s;
 		
 		!this.src && init();
-		// this.rte.selection.saveIERange();
 
 		this.bm = this.rte.selection.getBookmark();
 
@@ -6909,7 +6695,7 @@ elRTE.prototype.ui.prototype.buttons.link = function(rte, name) {
 		this.link = this.rte.dom.selfOrParentLink(n);
 		
 		if (!this.link) {
-			sel = $.browser.msie ? this.rte.selection.selected() : this.rte.selection.selected({wrap : false});
+			sel = this.rte.selection.selected({wrap : false});
 			if (sel.length) {
 				for (i=0; i < sel.length; i++) {
 					if (isLink(sel[i])) {
@@ -6946,7 +6732,6 @@ elRTE.prototype.ui.prototype.buttons.link = function(rte, name) {
 			rtl : this.rte.rtl,
 			submit : function(e, d) { e.stopPropagation(); e.preventDefault(); self.set(); d.close(); },
 			tabs : { show : function(e, ui) { if (ui.index==3) { self.updateOnclick(); } } },
-			close : function() {self.rte.browser.msie && self.rte.selection.restoreIERange(); },
 			dialog : {
 				width : 'auto',
 				width : 430,
@@ -7177,7 +6962,6 @@ elRTE.prototype.ui.prototype.buttons.link = function(rte, name) {
 		var href, fakeURL;
 		this.updateOnclick();
 		this.rte.selection.moveToBookmark(this.bm);
-		// this.rte.selection.restoreIERange();
 		this.rte.history.add();
 		href = this.rte.utils.absoluteURL(this.src.main.href.val());
 		if (!href) {
@@ -7361,7 +7145,6 @@ elRTE.prototype.ui.prototype.buttons.pasteformattext = function(rte, name) {
 	var self    = this;
 	
 	this.command = function() {
-		this.rte.selection.saveIERange();
 		var self = this,
 			opts = {
 			submit : function(e, d) {
@@ -7386,12 +7169,7 @@ elRTE.prototype.ui.prototype.buttons.pasteformattext = function(rte, name) {
 		this.doc.write(html);
 		this.doc.close();
 
-		if (!this.rte.browser.msie) {
-			try { this.doc.designMode = "on"; } 
-			catch(e) { }
-		} else {
-			this.doc.body.contentEditable = true;
-		}
+		this.doc.body.contentEditable = true;
 		setTimeout(function() { self.iframe[0].contentWindow.focus(); }, 50);
 	}
 	
@@ -7400,7 +7178,6 @@ elRTE.prototype.ui.prototype.buttons.pasteformattext = function(rte, name) {
 		var html = $.trim($(this.doc.body).html());
 		if (html) {
 			this.rte.history.add();
-			this.rte.selection.restoreIERange();
 			this.rte.selection.insertHtml(this.rte.filter.wysiwyg2wysiwyg(this.rte.filter.proccess('paste', html)));
 			this.rte.ui.update(true);
 		}
@@ -7428,7 +7205,6 @@ elRTE.prototype.ui.prototype.buttons.pastetext = function(rte, name) {
 	var self   = this;
 	
 	this.command = function() {
-		this.rte.browser.msie && this.rte.selection.saveIERange();
 		var opts = {
 			submit : function(e, d) {
 				e.stopPropagation();
@@ -7449,7 +7225,6 @@ elRTE.prototype.ui.prototype.buttons.pastetext = function(rte, name) {
 		var txt = $.trim(this.input.val());
 		if (txt) {
 			this.rte.history.add();
-			this.rte.browser.msie && this.rte.selection.restoreIERange();
 			this.rte.selection.insertText(txt.replace(/\r?\n/g, '<br />'), true);
 			this.rte.ui.update(true);
 		}
@@ -7516,8 +7291,6 @@ elRTE.prototype.ui.prototype.buttons.smiley = function(rte, name) {
 	this.command = function() {
 		var self = this, url = this.url, d, opts, img;
 
-		this.rte.browser.msie && this.rte.selection.saveIERange();
-
 		opts = {
 			dialog : {
 				height  : 120,
@@ -7539,7 +7312,6 @@ elRTE.prototype.ui.prototype.buttons.smiley = function(rte, name) {
 	}
 
 	this.set = function(s, d) {
-		this.rte.browser.msie && this.rte.selection.restoreIERange();
 		if (this.smileys[s]) {
 			this.img = $(this.rte.doc.createElement('img'));
 			this.img.attr({
@@ -8783,7 +8555,7 @@ elRTE.prototype.ui.prototype.buttons.tbrowrm = function(rte, name) {
 
 			if (!l) {
 
-				var sel = $.browser.msie ? this.rte.selection.selected() : this.rte.selection.selected({wrap : false});
+				var sel = this.rte.selection.selected({wrap : false});
 				if (sel.length) {
 					for (var i=0; i < sel.length; i++) {
 						if (isLink(sel[i])) {
