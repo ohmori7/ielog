@@ -16,6 +16,16 @@ $(function() {
 	});
 
 	function
+	post_success(json, status, request, cb, param)
+	{
+
+		if (json.error !== 'success')
+			post_error(request, 'error', json.error);
+		else if (cb !== null)
+			cb(json.value, param);
+	}
+
+	function
 	post_error(request, status, err)
 	{
 		var containerClass = 'ui-state-error';
@@ -46,23 +56,18 @@ $(function() {
 	}
 
 	function
-	post(url, id, cmd, cb, param)
+	post(url, submitdata, cb, param)
 	{
 		$.ajax({
 			url:		url,
 			type:		'POST',
 			cache:		false,
-			data:		{ id: id, cmd: cmd },
+			data:		submitdata,
 			dataType:	'json',
 			timeout:	10000,
-			success:	function(json, status, request)
-					{
-						if (json.error === 'success') {
-							cb(json.value, param);
-							return;
-						}
-						post_error(request,
-						    'error', json.error);
+			success:	function(json, status, request) {
+						post_success(json, status,
+						    request, cb, param);
 					},
 			error:		post_error
 		});
@@ -88,17 +93,18 @@ $(function() {
 	function
 	toggle_img(e, onimg, offimg, url)
 	{
-		var instanceid = e.data('id');
-		var param;
+		var data, param;
 
 		e.effect('bounce', { times: 1, distance: -10 }, 'slow')
+		data = new Object();
+		data.id = e.data('id');
 		param = new Object();
 		param.element = e;
 		if (e.data('state') === 'off')
-			param.state = 'on', param.image = onimg;
+			data.cmd = param.state = 'on', param.image = onimg;
 		else
-			param.state = 'off', param.image = offimg;
-		post(url, instanceid, param.state, toggle_img_callback, param);
+			data.cmd = param.state = 'off', param.image = offimg;
+		post(url, data, toggle_img_callback, param);
 	}
 	$('.like').click(function() {
 		var imgurlbase = '/images'; /* XXX */
