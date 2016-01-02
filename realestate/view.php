@@ -22,23 +22,25 @@ $like = realestate_like_html($r, true);
 echo <<<TOP
         <!-- 詳細情報 -->
         <h2>詳細情報</h2>
-        <div class="detail_photo">
-          <h3>概観</h3>
-          <img alt="$appear" src="$appear" width="250" />
-          <h3>オーナー</h3>
-          <img alt="$owner" src="$owner" width="250" />
-        </div>
-        <div class="detail_msg">
-          <h3>評価</h3>
+        <div class="clearfix">
+          <div class="detail_photo">
+            <h3>概観</h3>
+            <img alt="$appear" src="$appear" width="250" />
+            <h3>オーナー</h3>
+            <img alt="$owner" src="$owner" width="250" />
+          </div>
+          <div class="detail_msg">
+            <h3>評価</h3>
 TOP;
 realestate_radar_graph_puts($r);
 echo <<<MIDDLE
-          <h3>概要</h3>
-          {$r['abstract']}
-          <h3>説明</h3>
-          {$r['description']}
+            <h3>概要</h3>
+            {$r['abstract']}
+            <h3>説明</h3>
+            {$r['description']}
+          </div>
         </div>
-        <div style="clear: both;">
+        <div class="clearfix">
           <h3>住所</h3>
           $address
           <h3>契約形態</h3>
@@ -46,7 +48,7 @@ echo <<<MIDDLE
           <h3>築年数</h3>
           $age
           <h3>みんなの評価</h3>
-          <div>
+          <div class="clearfix">
             <div id="realestate$id-score" class="score">
               <img alt="score" src="../images/star3.png" />
             </div>
@@ -54,9 +56,6 @@ echo <<<MIDDLE
 $like
             </div>
           </div>
-        </div>
-        <!-- 写真 -->
-        <div style="clear: both;">
           <h2>写真</h2>
           <img alt="$owner" src="$owner"  width="250" style="margin: 5;" />
           <img alt="$appear" src="$appear" width="250" style="margin: 5;" />
@@ -66,10 +65,9 @@ $like
           <script async src="https://theta360.com/widgets.js" charset="utf-8"></script><br/>
           <blockquote data-width="500" data-height="375" class="ricoh-theta-spherical-image" >#code4tottori 追い込みシータ撮影1 #theta360 - <a href="https://theta360.com/s/lD8zKgT91lqWW2gwzvVt5qN4W" target="_blank">Spherical Image - RICOH THETA</a></blockquote>
           <script async src="https://theta360.com/widgets.js" charset="utf-8"></script>
-        </div>
-        <!-- 口コミ -->
-        <div class="balloon-wrapper">
           <h2>口コミ</h2>
+        </div>
+        <div class="balloon-wrapper">
 MIDDLE;
 $ncomments = 6; /* XXX */
 for ($i = 0; $i < $ncomments; $i++) {

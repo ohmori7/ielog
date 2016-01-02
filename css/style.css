@@ -180,6 +180,13 @@ label {
 	float:			left;
 }
 /* -------------------------------------------- */
+.clearfix:after {
+	display:		block;
+	clear:			both;
+	height:			0px;
+	visibility:		hidden;
+	content:		".";
+}
 #header {
 	top:			0;
 	width:			100%;
