@@ -214,10 +214,10 @@ user_data_url($id, $filename)
 function
 user_picture_url($id)
 {
-
 	$user = user_get($id);
+	$filename = $user['picture'];
 	if (file_exists(user_data_dir($id) . $filename))
-		return user_data_url($id, $user['picture']);
+		return user_data_url($id, $filename);
 	return image_url('noimage.png');
 }
 ?>
