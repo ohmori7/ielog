@@ -17,13 +17,7 @@ $address = $r['prefecture'] . $r['city'] . $r['address'];
 $contract = realestate_contract_name($r['contract']);
 $appear = realestate_image_top_url($r);
 $owner = realestate_image_owner_url($r);
-if ($r['liked']) {
-	$like = 'on';
-	$likeimg = image_url('liking.png');
-} else {
-	$like = 'off';
-	$likeimg = image_url('like.png');
-}
+$like = realestate_like_html($r, true);
 echo <<<TOP
     <div id="tabmenu">
       <div id="tab">
@@ -61,11 +55,7 @@ echo <<<MIDDLE
               <div id="realestate$id-score" class="score">
                 <img alt="score" src="../images/star3.png" />
               </div>
-              <div id="realestate$id-like" class="like" data-id="$id" data-state="$like">
-                <img id="realestate$id-like-img" src="$likeimg" width="24" height="24" />
-                <span>いいね！</span>
-                <span id="realestate$id-like-count">{$r['likes']}</span>
-              </div>
+$like
             </div>
           </li>
           <!-- 写真 -->

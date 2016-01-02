@@ -105,6 +105,33 @@ realestate_unlike($realestate)
 }
 
 function
+realestate_like_html($r, $likeable = false)
+{
+	$id = $r['id'];
+	$eid = "realestate$id-like";
+
+	if ($r['liked']) {
+		$like = 'on';
+		$likeimg = image_url('liking.png');
+	} else {
+		$like = 'off';
+		$likeimg = image_url('like.png');
+	}
+	if ($likeable)
+		$class = 'class="like"';
+	else
+		$class = '';
+
+	return <<<HTML
+	      <div id="{$eid}" $class data-id="$id" data-state="$like">
+                <img id="${eid}-img" src="$likeimg" width="24" height="24" />
+                <span>いいね！</span>
+                <span id="${eid}-count">{$r['likes']}</span>
+              </div>
+HTML;
+}
+
+function
 realestate_image_top_url($r)
 {
 

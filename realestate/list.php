@@ -26,7 +26,7 @@ $rate = 0; /* XXX */
 $rateimg = "../images/star$rate.png"; /* XXX */
 $rows = 0;
 
-$rs = db_records_get('realestate');
+$rs = realestate_get();
 foreach ($rs as $id => $r) {
 	$rowmod = $rows++ % 2;
 	$estatepic = realestate_image_top_url($r);
@@ -35,6 +35,7 @@ foreach ($rs as $id => $r) {
 		$link = 'href="view.php?id=' . $id . '"';
 	else
 		$link = 'href="#" class="require-login"';
+	$like = realestate_like_html($r);
 	$contract = realestate_contract_name($r['contract']);
 	echo <<<RECORD
           <tr class="list-row$rowmod">
@@ -42,7 +43,10 @@ foreach ($rs as $id => $r) {
             <td rowspan="2"><a $link>詳細</a></td>
             <td rowspan="2"><img class="list-pic" alt="owner" src="{$ownerimg}" /></td>
             <td rowspan="2"><img class="list-pic" alt="estate" src="{$estatepic}" /></td>
-            <td class="list-rate"><img alt="zero" src="{$rateimg}" /></td>
+            <td class="list-rate">
+              <img alt="zero" src="{$rateimg}" />
+$like
+            </td>
             <td rowspan="2">{$contract}</td>
             <td rowspan="2">{$r['prefecture']}{$r['city']}{$r['address']}</td>
           </tr>
