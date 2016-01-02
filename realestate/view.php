@@ -56,16 +56,16 @@ echo <<<MIDDLE
 $like
             </div>
           </div>
-          <h2>写真</h2>
+          <h3>写真</h3>
           <img alt="$owner" src="$owner"  width="250" style="margin: 5;" />
           <img alt="$appear" src="$appear" width="250" style="margin: 5;" />
           <img alt="$appear" src="$appear" width="250" style="margin: 5;" />
-          <h2>室内・周辺</h2>
+          <h3>室内・周辺</h3>
           <blockquote data-width="500" data-height="375" class="ricoh-theta-spherical-image" >#code4tottori 追い込みシータ撮影2 #theta360 - <a href="https://theta360.com/s/q41fN1dypHKIyAdQUdJz4AeHs" target="_blank">Spherical Image - RICOH THETA</a></blockquote>
           <script async src="https://theta360.com/widgets.js" charset="utf-8"></script><br/>
           <blockquote data-width="500" data-height="375" class="ricoh-theta-spherical-image" >#code4tottori 追い込みシータ撮影1 #theta360 - <a href="https://theta360.com/s/lD8zKgT91lqWW2gwzvVt5qN4W" target="_blank">Spherical Image - RICOH THETA</a></blockquote>
           <script async src="https://theta360.com/widgets.js" charset="utf-8"></script>
-          <h2>口コミ</h2>
+          <h3>口コミ</h3>
         </div>
         <div class="balloon-wrapper">
 MIDDLE;
