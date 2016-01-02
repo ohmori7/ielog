@@ -152,6 +152,20 @@ realestate_image_owner_url($r)
 }
 
 function
+realestate_age($r)
+{
+	$now = new DateTime('now', new DateTimeZone('Japan'));
+	$built = new DateTime($r['builtdate'], new DateTimeZone('Japan'));
+
+	$age = $now->diff($built)->format('%y');
+	if ((int)$age === 0)
+		$age = '新築';
+	else
+		$age .= '年';
+	return $age;
+}
+
+function
 realestate_radar_graph_puts($r)
 {
 	$url = IELOG_URI . '/scripts/graph-radar';

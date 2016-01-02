@@ -17,6 +17,7 @@ $address = $r['prefecture'] . $r['city'] . $r['address'];
 $contract = realestate_contract_name($r['contract']);
 $appear = realestate_image_top_url($r);
 $owner = realestate_image_owner_url($r);
+$age = realestate_age($r);
 $like = realestate_like_html($r, true);
 echo <<<TOP
     <div id="tabmenu">
@@ -51,6 +52,8 @@ echo <<<MIDDLE
               $address
               <h3>契約形態</h3>
               $contract
+              <h3>築年数</h3>
+              $age
               <h3>みんなの評価</h3>
               <div id="realestate$id-score" class="score">
                 <img alt="score" src="../images/star3.png" />

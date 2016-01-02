@@ -17,6 +17,7 @@ echo <<<HEADER
             <th>外観</th>
             <th>評価と概要</th>
             <th>契約形態</th>
+            <th>築年数</th>
             <th>住所</th>
           </tr>
         </thead>
@@ -37,6 +38,7 @@ foreach ($rs as $id => $r) {
 		$link = 'href="#" class="require-login"';
 	$like = realestate_like_html($r);
 	$contract = realestate_contract_name($r['contract']);
+	$age = realestate_age($r);
 	echo <<<RECORD
           <tr class="list-row$rowmod">
             <td rowspan="2">$id</td>
@@ -48,6 +50,7 @@ foreach ($rs as $id => $r) {
 $like
             </td>
             <td rowspan="2">{$contract}</td>
+            <td rowspan="2">{$age}</td>
             <td rowspan="2">{$r['prefecture']}{$r['city']}{$r['address']}</td>
           </tr>
 
