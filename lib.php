@@ -110,7 +110,7 @@ REDIRECTMETA;
     <title>$title</title>
   </head>
   <body>
-    <div id="header">
+    <div id="header" class="clearfix">
       <div id="logo">
         <a href="$uri"><h1><img class="inline" alt="logo" src="$uri/images/logo.png" width="50" height="50">$title</h1></a>
       </div>

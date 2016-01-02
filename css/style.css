@@ -58,12 +58,6 @@ div.balloon-wrapper {
 	width:			520px;
 	margin:			15px auto;
 }
-div.balloon-wrapper::after {
-	clear:			both;
-	content:		"";
-	display:		block;
-	line-height:		0;
-}
 p.balloon-left,
 p.balloon-right {
 	position:		relative;
@@ -193,13 +187,6 @@ label {
 	margin:			0;
 	padding:		0;
 	background-color:	white;
-}
-#header:after {
-	display:		block;
-	clear:			both;
-	height:			0px;
-	visibility:		hidden;
-	content:		".";
 }
 #user {
 	float:			right;

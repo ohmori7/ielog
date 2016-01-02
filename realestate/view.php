@@ -67,7 +67,7 @@ $like
           <script async src="https://theta360.com/widgets.js" charset="utf-8"></script>
           <h3>口コミ</h3>
         </div>
-        <div class="balloon-wrapper">
+        <div class="balloon-wrapper clearfix">
 MIDDLE;
 $ncomments = 6; /* XXX */
 for ($i = 0; $i < $ncomments; $i++) {
