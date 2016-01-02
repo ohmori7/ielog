@@ -186,6 +186,23 @@ pathname_clean($s)
 }
 
 function
+param_get_html($name, $default = '')
+{
+	require_once('HTMLPurifier.auto.php');
+
+	$data = param_get($name, $default);
+	$config = HTMLPurifier_Config::createDefault();
+	$config->set('Core.Encoding', 'UTF-8');
+	/*
+	 * XXX: Purifier does not support HTML5...
+	 *
+	 * $config->set('HTML.Doctype', 'XHTML 1.0 Transitional');
+	 */
+	$purifier = new HTMLPurifier($config);
+	return $purifier->purify($data);
+}
+
+function
 file_path($path)
 {
 

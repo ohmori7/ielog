@@ -17,7 +17,6 @@ Installation
     % sudo yum install php-mysql
     % sudo yum install php-pecl-apc
     % sudo yum install php-pear
-    % sudo pear install HTML_QuickForm
 
 #### Amazon Linux AMI
     % sudo yum remove 'php*'
@@ -29,7 +28,11 @@ Installation
     % sudo yum install php56-opcache	# neccesary for better performance
     % sudo yum install php56-pecl-apcu	# neccesary for better performance
     % sudo yum install php-pear
+
+#### Install additional required softwares
     % sudo pear install HTML_QuickForm
+    % sudo pear channel-discover htmlpurifier.org
+    % sudo pear install hp/HTMLPurifier
 
 ### Configure softwares
     % sudo /sbin/systemctl httpd start
