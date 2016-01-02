@@ -20,63 +20,56 @@ $owner = realestate_image_owner_url($r);
 $age = realestate_age($r);
 $like = realestate_like_html($r, true);
 echo <<<TOP
-    <div id="tabmenu">
-      <div id="tab">
-        <a href="#tab1">詳細情報</a>
-        <a href="#tab2">写真</a>
-        <a href="#tab3">口コミ</a>
-      </div>
-      <div id="tab_contents">
-        <ul>
-          <!-- 詳細情報 -->
-          <li id="tab1" name="tab1">
-            <h2>詳細情報</h2>
-            <div class="detail_photo">
-              <h3>概観</h3>
-              <img alt="$appear" src="$appear" width="250" />
-              <h3>オーナー</h3>
-              <img alt="$owner" src="$owner" width="250" />
-            </div>
-            <div class="detail_msg">
-              <h3>評価</h3>
+        <!-- 詳細情報 -->
+        <h2>詳細情報</h2>
+        <div class="detail_photo">
+          <h3>概観</h3>
+          <img alt="$appear" src="$appear" width="250" />
+          <h3>オーナー</h3>
+          <img alt="$owner" src="$owner" width="250" />
+        </div>
+        <div class="detail_msg">
+          <h3>評価</h3>
 TOP;
 realestate_radar_graph_puts($r);
 echo <<<MIDDLE
-              <h3>概要</h3>
-              {$r['abstract']}
-              <h3>説明</h3>
-              {$r['description']}
+          <h3>概要</h3>
+          {$r['abstract']}
+          <h3>説明</h3>
+          {$r['description']}
+        </div>
+        <div style="clear: both;">
+          <h3>住所</h3>
+          $address
+          <h3>契約形態</h3>
+          $contract
+          <h3>築年数</h3>
+          $age
+          <h3>みんなの評価</h3>
+          <div>
+            <div id="realestate$id-score" class="score">
+              <img alt="score" src="../images/star3.png" />
             </div>
-            <div style="clear:both;">
-              <h3>住所</h3>
-              $address
-              <h3>契約形態</h3>
-              $contract
-              <h3>築年数</h3>
-              $age
-              <h3>みんなの評価</h3>
-              <div id="realestate$id-score" class="score">
-                <img alt="score" src="../images/star3.png" />
-              </div>
+            <div>
 $like
             </div>
-          </li>
-          <!-- 写真 -->
-          <li id="tab2" name="tab2">
-            <h2>写真</h2>
-            <img alt="$owner" src="$owner"  width="250" style="margin: 5;" />
-            <img alt="$appear" src="$appear" width="250" style="margin: 5;" />
-            <img alt="$appear" src="$appear" width="250" style="margin: 5;" />
-            <h2>室内・周辺</h2>
-            <blockquote data-width="500" data-height="375" class="ricoh-theta-spherical-image" >#code4tottori 追い込みシータ撮影2 #theta360 - <a href="https://theta360.com/s/q41fN1dypHKIyAdQUdJz4AeHs" target="_blank">Spherical Image - RICOH THETA</a></blockquote>
-            <script async src="https://theta360.com/widgets.js" charset="utf-8"></script><br/>
-            <blockquote data-width="500" data-height="375" class="ricoh-theta-spherical-image" >#code4tottori 追い込みシータ撮影1 #theta360 - <a href="https://theta360.com/s/lD8zKgT91lqWW2gwzvVt5qN4W" target="_blank">Spherical Image - RICOH THETA</a></blockquote>
-            <script async src="https://theta360.com/widgets.js" charset="utf-8"></script>
-          </li>
-          <!-- 口コミ -->
-          <li id="tab3" name="tab3">
-            <h2>口コミ</h2>
-            <div class="balloon-wrapper">
+          </div>
+        </div>
+        <!-- 写真 -->
+        <div style="clear: both;">
+          <h2>写真</h2>
+          <img alt="$owner" src="$owner"  width="250" style="margin: 5;" />
+          <img alt="$appear" src="$appear" width="250" style="margin: 5;" />
+          <img alt="$appear" src="$appear" width="250" style="margin: 5;" />
+          <h2>室内・周辺</h2>
+          <blockquote data-width="500" data-height="375" class="ricoh-theta-spherical-image" >#code4tottori 追い込みシータ撮影2 #theta360 - <a href="https://theta360.com/s/q41fN1dypHKIyAdQUdJz4AeHs" target="_blank">Spherical Image - RICOH THETA</a></blockquote>
+          <script async src="https://theta360.com/widgets.js" charset="utf-8"></script><br/>
+          <blockquote data-width="500" data-height="375" class="ricoh-theta-spherical-image" >#code4tottori 追い込みシータ撮影1 #theta360 - <a href="https://theta360.com/s/lD8zKgT91lqWW2gwzvVt5qN4W" target="_blank">Spherical Image - RICOH THETA</a></blockquote>
+          <script async src="https://theta360.com/widgets.js" charset="utf-8"></script>
+        </div>
+        <!-- 口コミ -->
+        <div class="balloon-wrapper">
+          <h2>口コミ</h2>
 MIDDLE;
 $ncomments = 6; /* XXX */
 for ($i = 0; $i < $ncomments; $i++) {
@@ -92,9 +85,7 @@ for ($i = 0; $i < $ncomments; $i++) {
 	echo("<p class=\"clear-p\">&nbsp;</p>\n");
 }
 echo <<<BOTTOM
-            </div>
-          </li>
-        </ul>
+        </div>
       </div>
     </div>
     <a href="../contact.php?id=$id">○○さんに問い合わせ</a>
