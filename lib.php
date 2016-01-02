@@ -24,6 +24,9 @@ $_ielog_footer_is_printed_out = false;
 $_ielog_csses = '';
 $_ielog_scripts = '';
 
+css_file_add('css/style.css');
+css_file_add('scripts/jquery-ui/jquery-ui.css');
+
 user_setup();
 
 function
@@ -102,9 +105,7 @@ REDIRECTMETA;
 <html lang="ja">
   <head>
     <link rel="index" href="./index.php" />
-    <link rel="author" href="mailto:null@mobile-ip.org" />
-    <link rel="stylesheet" type="text/css" href="$uri/css/style.css" />
-    <link rel="stylesheet" type="text/css" href="$uri/scripts/jquery-ui/jquery-ui.css">$_ielog_csses
+    <link rel="author" href="mailto:null@mobile-ip.org" />$_ielog_csses
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />$rmeta
     <title>$title</title>
   </head>
@@ -157,6 +158,7 @@ css_file_add($path)
 
 	header_print_check('CSS addition after a header is printed out');
 	$_ielog_csses .= <<<LINK
+
     <link rel="stylesheet" type="text/css" media="screen" charset="utf-8" href="$uri/$path" />
 LINK;
 }
