@@ -19,6 +19,11 @@ define('IELOG_REDIRECT_TIMEOUT',	5);
 
 define('IELOG_ALLOWED_AGE',		20);
 
+$_ielog_header_is_printed_out = false;
+$_ielog_footer_is_printed_out = false;
+$_ielog_csses = '';
+$_ielog_scripts = '';
+
 user_setup();
 
 function
@@ -44,9 +49,31 @@ nav_link($links)
 }
 
 function
+header_print_check($errormsg)
+{
+	global $_ielog_header_is_printed_out;
+
+	if ($_ielog_header_is_printed_out)
+		throw new Exception($errormsg);
+}
+
+function
+footer_print_check($errormsg)
+{
+	global $_ielog_footer_is_printed_out;
+
+	if ($_ielog_footer_is_printed_out)
+		throw new Exception($errormsg);
+}
+
+function
 header_print($title, $links, $redirecturi = NULL, $redirecttimeout = 0)
 {
+	global $_ielog_csses;
 	static $uri = IELOG_URI;
+
+	header_print_check('header has been already printed out');
+	$_ielog_header_is_printed_out = true;
 
 	if ($redirecturi)
 		$rmeta = <<<REDIRECTMETA
@@ -77,7 +104,7 @@ REDIRECTMETA;
     <link rel="index" href="./index.php" />
     <link rel="author" href="mailto:null@mobile-ip.org" />
     <link rel="stylesheet" type="text/css" href="$uri/css/style.css" />
-    <link rel="stylesheet" type="text/css" href="$uri/scripts/jquery-ui/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="$uri/scripts/jquery-ui/jquery-ui.css">$_ielog_csses
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />$rmeta
     <title>$title</title>
   </head>
@@ -99,8 +126,11 @@ HEADER;
 function
 footer_print()
 {
+	global $_ielog_scripts;
 	$uri = IELOG_URI . '/scripts';
 
+	footer_print_check('footer has been already printed out');
+	$_ielog_footer_is_printed_out = true;
 	echo <<<FOOTER
     </div>
     <div id="alert-dialog" class="ui-widget hidden" title="アラート">
@@ -113,10 +143,48 @@ footer_print()
     </div>
     <script src="$uri/jquery/jquery.min.js"></script>
     <script src="$uri/jquery-ui/jquery-ui.min.js"></script>
-    <script src="$uri/ielog.js"></script>
+    <script src="$uri/ielog.js"></script>$_ielog_scripts
   </body>
 </html>
 FOOTER;
+}
+
+function
+css_file_add($path)
+{
+	global $_ielog_csses;
+	static $uri = IELOG_URI;
+
+	header_print_check('CSS addition after a header is printed out');
+	$_ielog_csses .= <<<LINK
+    <link rel="stylesheet" type="text/css" media="screen" charset="utf-8" href="$uri/$path" />
+LINK;
+}
+
+function
+script_add($lines)
+{
+	global $_ielog_scripts;
+
+	footer_print_check('scripts addition after a header is printed out');
+	$_ielog_scripts .= $lines;
+}
+
+function
+script_code_add($code)
+{
+
+	script_add("
+    <script type=\"text/javascript\" charset=\"utf-8\">$code
+    </script>");
+}
+
+function
+script_file_add($path)
+{
+	$url = IELOG_URI . '/' . $path;
+	script_add("
+    <script type=\"text/javascript\" charset=\"utf-8\" src=\"$url\"></script>");
 }
 
 function
