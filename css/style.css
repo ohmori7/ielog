@@ -151,17 +151,6 @@ p.balloon-right::after {
 	vertical-align:		middle;
 }
 /* -------------------------------------------- */
-ul.search_cond li {
-	list-style:		none;
-	width:			100px;
-	float:			left;
-}
-label {
-	margin-right:		10px;
-	width:			100px;
-	float:			left;
-}
-/* -------------------------------------------- */
 .clearfix:after {
 	display:		block;
 	clear:			both;
