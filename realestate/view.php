@@ -50,19 +50,17 @@ echo <<<TOP
 TOP;
 realestate_radar_graph_puts($r);
 echo <<<MIDDLE
-              <h3>概要</h3>
-              {$r['abstract']}
-              <h3>説明</h3>
-              {$r['description']}
+              <h3>住所</h3>
+              $address
+              <h3>契約形態</h3>
+              $contract
+              <h3>築年数</h3>
+              $age
             </div>
           </div>
           <div class="clearfix">
-            <h3>住所</h3>
-            $address
-            <h3>契約形態</h3>
-            $contract
-            <h3>築年数</h3>
-            $age
+            <h3>概要</h3>
+            {$r['abstract']}
             <h3>みんなの評価</h3>
             <div class="clearfix">
               <div id="realestate$id-score" class="score">
@@ -72,6 +70,8 @@ echo <<<MIDDLE
 $like
               </div>
             </div>
+            <h3>説明</h3>
+            {$r['description']}
             <h3>写真</h3>
             <img alt="$appear" src="$appear" width="250" style="margin: 5;" />
             <h3>室内・周辺</h3>
@@ -100,7 +100,7 @@ editor_add('comment');
 echo <<<BOTTOM
 
           </div>
-          <div>
+          <div style="width: 60%; margin: 0 auto;">
             <form action="../comment/edit.php" method="post">
               <textarea id="comment"></textarea>
               <button type="button" class="comment" data-id="$id" data-element-id="comment">
