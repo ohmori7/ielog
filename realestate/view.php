@@ -97,7 +97,6 @@ echo <<<BOTTOM
         </div>
       </div>
     </div>
-    <a href="../contact.php?id=$id">○○さんに問い合わせ</a>
 BOTTOM;
 footer_print();
 ?>
