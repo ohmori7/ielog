@@ -50,26 +50,33 @@ echo <<<TOP
 TOP;
 realestate_radar_graph_puts($r);
 echo <<<MIDDLE
-              <h3>住所</h3>
-              $address
-              <h3>契約形態</h3>
-              $contract
-              <h3>築年数</h3>
-              $age
+              <div class="clearfix">
+                <div id="realestate$id-score" class="score">
+                  <img alt="score" src="../images/star3.png" />
+                </div>
+                <div>
+$like
+                </div>
+              </div>
+              <div class="clearfix">
+                <div style="float: left; width: 50%;">
+                  <h3>住所</h3>
+                  $address
+                </div>
+                <div style="float: left; margin-left: 5%; width: 20%;">
+                  <h3>契約形態</h3>
+                  $contract
+                </div>
+                <div style="float: left; margin-left: 5%; width: 20%;">
+                  <h3>築年数</h3>
+                  $age
+                </div>
+              </div>
             </div>
           </div>
           <div class="clearfix">
             <h3>概要</h3>
             {$r['abstract']}
-            <h3>みんなの評価</h3>
-            <div class="clearfix">
-              <div id="realestate$id-score" class="score">
-                <img alt="score" src="../images/star3.png" />
-              </div>
-              <div>
-$like
-              </div>
-            </div>
             <h3>説明</h3>
             {$r['description']}
             <h3>写真</h3>
@@ -79,7 +86,7 @@ $like
             <script async src="https://theta360.com/widgets.js" charset="utf-8"></script><br/>
             <blockquote data-width="500" data-height="375" class="ricoh-theta-spherical-image" >#code4tottori 追い込みシータ撮影1 #theta360 - <a href="https://theta360.com/s/lD8zKgT91lqWW2gwzvVt5qN4W" target="_blank">Spherical Image - RICOH THETA</a></blockquote>
             <script async src="https://theta360.com/widgets.js" charset="utf-8"></script>
-            <h3>口コミ</h3>
+            <h3>コメント</h3>
           </div>
           <div class="balloon-wrapper clearfix">
 MIDDLE;
