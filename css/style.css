@@ -157,7 +157,9 @@ p.balloon-right::after {
 }
 .score img,
 .like img,
-.like span {
+.like span,
+.comment-count img,
+.comment-count span {
 	vertical-align:		middle;
 }
 /* -------------------------------------------- */

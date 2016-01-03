@@ -147,9 +147,9 @@ realestate_comment_count_html($r)
 	$img = image_url('comment.png');
 	$count = $r['comments'];
 	return <<<HTML
-                <div>
+                <div class="comment-count">
                   <img src="$img" width="24" height="24"/>
-                  コメント
+                  <span>コメント</span>
                   <span id="realestate{$r['id']}-comment-count">{$count}</span>
                 </div>
 HTML;
@@ -159,13 +159,13 @@ function
 realestate_feedback_html($r)
 {
 
-	$rateimg = image_url('star3.png'); /* XXX */
+	$img = image_url('star3.png'); /* XXX */
 	$like = realestate_like_html($r, true);
 	$comment = realestate_comment_count_html($r);
 	return <<<HTML
               <div class="clearfix">
                 <div id="realestate{$r['id']}-score" class="score">
-                  <img alt="score" src="$rateimg" />
+                  <img alt="score" src="$img" />
                 </div>
                 <div>
 $like
