@@ -3,7 +3,7 @@ require_once('../lib.php');
 require_once('../json.php');
 require_once('lib.php');
 
-user_login();
+user_require_login();
 $id = param_get_int('id');
 if (empty($id))
 	json_respond(false, 'invalidargument');

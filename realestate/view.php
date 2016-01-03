@@ -4,7 +4,7 @@ require_once('../editor.php');
 require_once('lib.php');
 require_once('../comment/lib.php');
 
-user_login();
+user_require_login();
 
 header_print(array());
 

@@ -2,7 +2,7 @@
 require_once('../lib.php');
 require_once('../json.php');
 
-user_login();
+user_require_login();
 $id = param_get_int('id');
 $cmd = param_get('cmd');
 if (empty($id) || $cmd !== 'add' /* XXX */)

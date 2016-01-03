@@ -94,7 +94,7 @@ user_is_loggedin()
 }
 
 function
-user_login()
+user_require_login()
 {
 
 	if (user_is_loggedin())

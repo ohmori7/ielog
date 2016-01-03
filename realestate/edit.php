@@ -3,7 +3,7 @@ require_once('../lib.php');
 require_once('../form.php');
 require_once('lib.php');
 
-user_login();
+user_require_login();
 
 $form = new Form('realestateEditForm');
 $form->addElement('header', null, '物件登録');
