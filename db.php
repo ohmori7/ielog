@@ -22,9 +22,13 @@ db_init($c)
 	        'firstname CHAR(255) NOT NULL',
 	        'birthday DATE NOT NULL',
 	        'picture CHAR(255)',
+		'zip CHAR(16)',
 	        'prefecture CHAR(255)',
 	        'city CHAR(255)',
 	        'address CHAR(255)',
+		'lastmodified TIMESTAMP DEFAULT CURRENT_TIMESTAMP ' .
+		    'ON UPDATE CURRENT_TIMESTAMP',
+		'created TIMESTAMP',
 	        'PRIMARY KEY(id)'
 	        ),
 	    'realestate' => array(
@@ -34,10 +38,14 @@ db_init($c)
 		'description MEDIUMTEXT NOT NULL',
 		'contract TINYINT UNSIGNED NOT NULL',
 		'builtdate DATE NOT NULL',
+		'zip CHAR(16)',
 		'picture CHAR(255)',
 	        'prefecture CHAR(255)',
 	        'city CHAR(255)',
 	        'address CHAR(255)',
+		'lastmodified TIMESTAMP DEFAULT CURRENT_TIMESTAMP ' .
+		    'ON UPDATE CURRENT_TIMESTAMP',
+		'created TIMESTAMP',
 	        'PRIMARY KEY(id)',
 	        'FOREIGN KEY (owner) REFERENCES user(id)'
 	        ),

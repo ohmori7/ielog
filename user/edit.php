@@ -26,6 +26,8 @@ $form->addElement('date', 'birthday', '誕生日',
     'format' => 'Ymd', 'addEmptyOption' => true,
     'emptyOptionText' => array('Y' => 'YYYY', 'm' => 'mm', 'd' => 'dd')));
 $pic =& $form->addElement('file', 'picture', '顔写真');
+$form->addElement('text', 'zip', '郵便番号',
+    array('size' => 16, 'maxlength' => 16));
 $form->addElement('text', 'prefecture', '都道府県',
     array('size' => 50, 'maxlength' => 255));
 $form->addElement('text', 'city', '市町村',
@@ -58,6 +60,7 @@ $form->addRule('lastname', '姓を入力して下さい．', 'required', null, '
 $form->addRule('firstname', '名を入力して下さい．', 'required', null, 'client');
 $form->addRule('birthday', '誕生日を入力して下さい．',
     'required', null, 'client');
+$form->addRule('zip', '数字を入力して下さい．', 'numeric', null, 'client');
 
 if ($form->isSubmitted() && $form->validate()) {
 	$values = $form->exportValues();

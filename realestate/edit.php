@@ -18,6 +18,8 @@ $form->addElement('date', 'builtdate', '建築日', array(
     'format' => 'Ymd', 'addEmptyOption' => true,
     'emptyOptionText' => array('Y' => 'YYYY', 'm' => 'mm', 'd' => 'dd')));
 $file =& $form->addElement('file', 'file', '外観の画像ファイル');
+$form->addElement('text', 'zip', '郵便番号',
+    array('size' => 16, 'maxlength' => 16));
 $form->addElement('text', 'prefecture', '都道府県',
     array('size' => 50, 'maxlength' => 255));
 $form->addElement('text', 'city', '市町村',
@@ -36,6 +38,7 @@ $form->addRule('builtdate', '建築日を入力して下さい．',
     'required', null, 'client');
 $form->addRule('file', '外観の画像ファイルを入力して下さい．',
     'required', null, 'client');
+$form->addRule('zip', '数字を入力して下さい．', 'numeric', null, 'client');
 
 if ($form->isSubmitted() && $form->validate()) {
 	if (! $file->isUploadedFile()) {
