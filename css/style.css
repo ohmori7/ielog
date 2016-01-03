@@ -37,7 +37,17 @@ table.list tr.list-row0 td {
 table.list tr.list-row1 td {
 	background-color:	rgb(243, 161, 87);
 }
-
+/* view */
+#view-address {
+	float:			left;
+	width:			50%;
+}
+#view-contract,
+#view-builtdate {
+	float:			left;
+	width:			20%;
+	margin-left:		5%;
+}
 /*-----吹き出し-----*/
 /* balloon common */
 div.balloon-wrapper {

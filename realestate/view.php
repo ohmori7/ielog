@@ -53,15 +53,15 @@ echo <<<MIDDLE
 
 $feedback
               <div class="clearfix">
-                <div style="float: left; width: 50%;">
+                <div id="view-address">
                   <h3>住所</h3>
                   $address
                 </div>
-                <div style="float: left; margin-left: 5%; width: 20%;">
+                <div id="view-contract">
                   <h3>契約形態</h3>
                   $contract
                 </div>
-                <div style="float: left; margin-left: 5%; width: 20%;">
+                <div id="view-builtdate">
                   <h3>築年数</h3>
                   $age
                 </div>
