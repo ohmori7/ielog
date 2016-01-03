@@ -328,6 +328,19 @@ dfn {
 	padding:		0 .7em;
 }
 
+#error-message,
+#alert-dialog-message {
+	display:		block;
+	margin-left:		2em;
+}
+
+#error-container p,
+#alert-dialog-container p {
+	margin:			1em;
+}
+
+#error-container .ui-icon,
 #alert-dialog-container .ui-icon {
 	float:			left;
+	margin:			0.2em;
 }
