@@ -128,14 +128,16 @@ p.balloon-right::after {
 /* -------------------------------------------- */
 /* 詳細情報 */
 .detail_photo {
-	width:			300px;
+	width:			25%;
 	float:			left;
-	margin:			5px;
 }
 .detail_msg {
-	width:			530px;
+	margin-left:		1%;
+	width:			74%;
 	float:			left;
-	margin:			5px;
+}
+.detail_msg canvas {
+	position:		absolute;
 }
 /* -------------------------------------------- */
 .score,
@@ -211,9 +213,14 @@ label {
 #main {
 	position:		relative;
 	padding:		1em;
-	margin:			0 10%;
 }
-
+#menu {
+	float:			left;
+	width:			10%;
+}
+#content {
+	margin-left:		10%;
+}
 /* */
 .hidden {
 	display:		none;

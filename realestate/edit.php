@@ -65,6 +65,12 @@ if ($form->isSubmitted() && $form->validate()) {
 		return;
 	}
 	$error = db_error();
+} else if (($id = param_get('id')) !== '') {
+	$r = realestate_get($id);
+	// use the same error message for all errors for security.
+	if ($r === NULL || $r['owner'] !== $USER->id)
+		error('編集する権限がありません．');
+	$form->setDefaults($r);
 }
 header_print(array());
 if (isset($error))
