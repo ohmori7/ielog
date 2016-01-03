@@ -188,9 +188,13 @@ label {
 	padding:		0;
 	background-color:	white;
 }
+#logo {
+	margin:			0 10%;
+}
 #user {
 	float:			right;
 	color:			white;
+	margin:			0 10%;
 }
 #user a {
 	color:			white;
@@ -203,7 +207,7 @@ label {
 #nav ul {
 	list-style-type:	none;
 	padding:		0;
-	margin:			0;
+	margin:			0 10%;
 }
 #nav ul li {
 	float:			left;
@@ -221,6 +225,7 @@ label {
 #main {
 	position:		relative;
 	padding:		1em;
+	margin:			0 10%;
 }
 
 /* */
