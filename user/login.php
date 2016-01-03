@@ -3,6 +3,9 @@ require_once('../lib.php');
 require_once('../form.php');
 require_once('lib.php');
 
+if (user_is_loggedin())
+	user_redirect_after_loggedin();
+
 $form = new Form('userLoginForm');
 $form->addElement('header', null, 'ログイン');
 $form->addElement('text', 'username', 'ユーザ名',
@@ -22,12 +25,8 @@ if ($form->isSubmitted() && $form->validate()) {
 	$values = $form->exportValues();
 	$username = $values['username'];
 	$password = $values['password'];
-	if (user_authenticate($username, $password) === true) {
-		header_print(array(), '../index.php');
-		echo('ログインしました．遷移しない場合はURL(<a href="../index.php">index.php</a>)をクリックして下さい．');
-		footer_print();
-		return;
-	}
+	if (user_authenticate($username, $password) === true)
+		user_redirect_after_loggedin();
 	$msg->setText(error_message('ユーザ名かパスワードが違います．'));
 }
 

@@ -162,6 +162,19 @@ user_authenticate($mail, $password)
 }
 
 function
+user_redirect_after_loggedin($uri = IELOG_URI)
+{
+
+	header_print(array(), $uri);
+	echo <<<MSG
+ログインしました．
+遷移しない場合はURL(<a href="$uri">$uri</a>)をクリックして下さい．
+MSG;
+	footer_print();
+	exit(1);
+}
+
+function
 user_name()
 {
 	global $USER;
