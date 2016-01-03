@@ -159,12 +159,13 @@ function
 realestate_feedback_html($r)
 {
 
+	$rateimg = image_url('star3.png'); /* XXX */
 	$like = realestate_like_html($r, true);
 	$comment = realestate_comment_count_html($r);
 	return <<<HTML
               <div class="clearfix">
                 <div id="realestate{$r['id']}-score" class="score">
-                  <img alt="score" src="../images/star3.png" />
+                  <img alt="score" src="$rateimg" />
                 </div>
                 <div>
 $like
