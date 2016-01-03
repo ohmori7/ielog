@@ -52,7 +52,6 @@ foreach ($rs as $id => $r) {
                 <td rowspan="2"><img class="list-pic" alt="owner" src="{$ownerimg}" /></td>
                 <td rowspan="2"><img class="list-pic" alt="estate" src="{$estatepic}" /></td>
                 <td class="list-rate">
-                  <img alt="zero" src="{$rateimg}" />
 $feedback
                 </td>
                 <td rowspan="2">{$contract}</td>
