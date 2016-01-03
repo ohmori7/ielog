@@ -58,15 +58,19 @@ realestate_get($id = null)
 {
 	global $USER;
 
+	if (user_is_loggedin()) {
+		$likedselect = "COUNT(rlself.id) AS liked, ";
+		$likedjoin = "LEFT JOIN realestate_like AS rlself
+		    ON r.id = rlself.realestate AND rlself.user = {$USER->id}";
+	}
 	if ($id !== null)
 		$where = "WHERE r.id = $id";
 	else
 		$where = '';
 	$sql = "
-	    SELECT r.*, COUNT(rlself.id) AS liked, COUNT(rl.id) AS likes
+	    SELECT r.*, $likedselect COUNT(rl.id) AS likes
 	    FROM realestate AS r
-	        LEFT JOIN realestate_like AS rlself
-		    ON r.id = rlself.realestate AND rlself.user = {$USER->id}
+	        $likedjoin
 	        LEFT JOIN realestate_like AS rl ON r.id = rl.realestate
 	    $where
 	    GROUP BY r.id";
