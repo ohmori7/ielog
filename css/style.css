@@ -82,29 +82,29 @@ p.balloon-right::after {
 /* balloon left */
 p.balloon-left {
 	float:			right;
-	border-color:		#8d8;
+	border-color:		rgb(203, 121, 47);
 }
 p.balloon-left::before {
 	left:			-31px;
-	border-right:		15px solid #8d8;
+	border-right:		15px solid rgb(203, 121, 47);
 }
 p.balloon-left::after {
 	left:			-26px;
-	border-right:		15px solid #fff;
+	border-right:		15px solid #ffffff;
 }
 
 /* balloon right */
 p.balloon-right {
 	float:			left;
-	border-color:		#aad;
+	border-color:		rgb(255, 200, 127);
 }
 p.balloon-right::before {
 	right:			-31px;
-	border-left:		15px solid #aad;
+	border-left:		15px solid rgb(255, 200, 127);
 }
 p.balloon-right::after {
 	right:			-26px;
-	border-left:		15px solid #fff;
+	border-left:		15px solid #ffffff;
 }
 /* balloon left icon */
 .balloon-left-img{
