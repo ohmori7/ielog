@@ -70,7 +70,7 @@ footer_print_check($errormsg)
 }
 
 function
-header_print($links, $redirecturi = NULL, $redirecttimeout = 0)
+header_print($links = array(), $redirecturi = NULL, $redirecttimeout = 0)
 {
 	global $_ielog_csses;
 	static $uri = IELOG_URI;
@@ -201,6 +201,23 @@ error_print($msg)
 {
 
 	echo(error_message($msg));
+}
+
+function
+error($msg)
+{
+
+	header_print();
+	echo <<<ERROR
+      <div id="error-container" class="ui-corner-all ui-state-error">
+        <p>
+          <span class="ui-icon ui-icon-alert"></span>
+          <span id="error-message">$msg</span>
+        </p>
+      </div>
+ERROR;
+	footer_print();
+	exit(1);
 }
 
 function
