@@ -31,10 +31,8 @@ echo <<<HEADER
             </thead>
             <tbody>
 HEADER;
-$rate = 0; /* XXX */
-$rateimg = "../images/star$rate.png"; /* XXX */
-$rows = 0;
 
+$rows = 0;
 $rs = realestate_get();
 foreach ($rs as $id => $r) {
 	$rowmod = $rows++ % 2;
@@ -44,7 +42,7 @@ foreach ($rs as $id => $r) {
 		$link = 'href="view.php?id=' . $id . '"';
 	else
 		$link = 'href="#" class="require-login"';
-	$like = realestate_like_html($r);
+	$feedback = realestate_feedback_html($r);
 	$contract = realestate_contract_name($r['contract']);
 	$age = realestate_age($r);
 	echo <<<RECORD
@@ -55,7 +53,7 @@ foreach ($rs as $id => $r) {
                 <td rowspan="2"><img class="list-pic" alt="estate" src="{$estatepic}" /></td>
                 <td class="list-rate">
                   <img alt="zero" src="{$rateimg}" />
-$like
+$feedback
                 </td>
                 <td rowspan="2">{$contract}</td>
                 <td rowspan="2">{$age}</td>

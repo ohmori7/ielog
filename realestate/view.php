@@ -20,8 +20,8 @@ $contract = realestate_contract_name($r['contract']);
 $appear = realestate_image_top_url($r);
 $owner = realestate_image_owner_url($r);
 $age = realestate_age($r);
-$like = realestate_like_html($r, true);
 $comments = comment_get($r['id']);
+$feedback = realestate_feedback_html($r);
 if ($r['owner'] !== $USER->id)
 	$editlink = '';
 else {
@@ -50,14 +50,8 @@ echo <<<TOP
 TOP;
 realestate_radar_graph_puts($r);
 echo <<<MIDDLE
-              <div class="clearfix">
-                <div id="realestate$id-score" class="score">
-                  <img alt="score" src="../images/star3.png" />
-                </div>
-                <div>
-$like
-                </div>
-              </div>
+
+$feedback
               <div class="clearfix">
                 <div style="float: left; width: 50%;">
                   <h3>住所</h3>

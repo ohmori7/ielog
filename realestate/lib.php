@@ -68,10 +68,13 @@ realestate_get($id = null)
 	else
 		$where = '';
 	$sql = "
-	    SELECT r.*, $likedselect COUNT(rl.id) AS likes
+	    SELECT r.*, $likedselect
+	        COUNT(rl.id) AS likes,
+	        COUNT(c.id) AS comments
 	    FROM realestate AS r
 	        $likedjoin
 	        LEFT JOIN realestate_like AS rl ON r.id = rl.realestate
+	        LEFT JOIN comment AS c ON r.id = c.realestate
 	    $where
 	    GROUP BY r.id";
 	$rs = db_records_get_sql($sql);
@@ -129,10 +132,44 @@ realestate_like_html($r, $likeable = false)
 		$class = '';
 
 	return <<<HTML
-	      <div id="{$eid}" $class data-id="$id" data-state="$like">
-                <img id="${eid}-img" src="$likeimg" width="24" height="24" />
-                <span>いいね！</span>
-                <span id="${eid}-count">{$r['likes']}</span>
+	        <div id="{$eid}" $class data-id="$id" data-state="$like">
+                  <img id="${eid}-img" src="$likeimg" width="24" height="24" />
+                  <span>いいね！</span>
+                  <span id="${eid}-count">{$r['likes']}</span>
+                </div>
+HTML;
+}
+
+function
+realestate_comment_count_html($r)
+{
+
+	$img = image_url('comment.png');
+	$count = $r['comments'];
+	return <<<HTML
+                <div>
+                  <img src="$img" width="24" height="24"/>
+                  コメント
+                  <span id="realestate{$r['id']}-comment-count">{$count}</span>
+                </div>
+HTML;
+}
+
+function
+realestate_feedback_html($r)
+{
+
+	$like = realestate_like_html($r, true);
+	$comment = realestate_comment_count_html($r);
+	return <<<HTML
+              <div class="clearfix">
+                <div id="realestate{$r['id']}-score" class="score">
+                  <img alt="score" src="../images/star3.png" />
+                </div>
+                <div>
+$like
+$comment
+                </div>
               </div>
 HTML;
 }
