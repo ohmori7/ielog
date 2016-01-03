@@ -23,7 +23,7 @@ if ($form->isSubmitted() && $form->validate()) {
 	$username = $values['username'];
 	$password = $values['password'];
 	if (user_authenticate($username, $password) === true) {
-		header_print('家ログ ログイン', array(), '../index.php');
+		header_print(array(), '../index.php');
 		echo('ログインしました．遷移しない場合はURL(<a href="../index.php">index.php</a>)をクリックして下さい．');
 		footer_print();
 		return;
@@ -31,7 +31,7 @@ if ($form->isSubmitted() && $form->validate()) {
 	$msg->setText(error_message('ユーザ名かパスワードが違います．'));
 }
 
-header_print('家ログ ログイン', array());
+header_print(array());
 $form->display();
 $uri = IELOG_URI;
 echo <<<USERREGISTRATION

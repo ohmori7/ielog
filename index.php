@@ -1,6 +1,6 @@
 <?php
 require_once('lib.php');
-header_print('家ログ', array());
+header_print(array());
 ?>
 <div style="text-align: center">
 家ログとは？ ：人と人をつなぐ空き家紹介サービス<br />

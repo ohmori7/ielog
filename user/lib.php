@@ -101,7 +101,7 @@ user_login()
 		return;
 	if (defined('IELOG_JSON'))
 		json_respond(false, 'loginexpire');
-	header_print('家ログ', array(), IELOG_URI . '/user/login.php',
+	header_print(array(), IELOG_URI . '/user/login.php',
 	    IELOG_REDIRECT_TIMEOUT);
 	echo('ログインが必要です．');
 	footer_print();

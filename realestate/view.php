@@ -6,7 +6,7 @@ require_once('../comment/lib.php');
 
 user_login();
 
-header_print('家ログ 詳細', array());
+header_print(array());
 
 $id = param_get_int('id');
 $r = realestate_get($id);

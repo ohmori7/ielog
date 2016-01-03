@@ -90,7 +90,7 @@ if ($form->isSubmitted() && $form->validate()) {
 			$pic->moveUploadedFile($dir, $filename);
 		}
 		if ($new) {
-			header_print('家ログ', array(), 'login.php',
+			header_print(array(), 'login.php',
 			    IELOG_REDIRECT_TIMEOUT);
 			echo('登録されました．');
 			echo('ログイン画面からログインして下さい．');
@@ -110,7 +110,7 @@ if ($form->isSubmitted() && $form->validate()) {
 	$form->setDefaults($values);
 }
 
-header_print('家ログ', array());
+header_print(array());
 if ($error)
 	echo("ERROR: $error<br />");
 $form->display();

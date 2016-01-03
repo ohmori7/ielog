@@ -2,7 +2,7 @@
 require_once('../lib.php');
 require_once('../db.php');
 require_once('lib.php');
-header_print('家ログ', array());
+header_print(array());
 
 $fliplink = flip_link('realestate');
 echo <<<HEADER

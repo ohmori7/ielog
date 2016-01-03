@@ -70,10 +70,11 @@ footer_print_check($errormsg)
 }
 
 function
-header_print($title, $links, $redirecturi = NULL, $redirecttimeout = 0)
+header_print($links, $redirecturi = NULL, $redirecttimeout = 0)
 {
 	global $_ielog_csses;
 	static $uri = IELOG_URI;
+	static $title = '家ログ';
 
 	header_print_check('header has been already printed out');
 	$_ielog_header_is_printed_out = true;

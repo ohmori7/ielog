@@ -56,15 +56,14 @@ if ($form->isSubmitted() && $form->validate()) {
 		mkdir($dir, 0700, true);
 		$file->moveUploadedFile($dir, $filename);
 
-		header_print('家ログ 空家の追加', array(), '../',
-		    IELOG_REDIRECT_TIMEOUT);
+		header_print(array(), '../', IELOG_REDIRECT_TIMEOUT);
 		echo('登録されました．');
 		footer_print();
 		return;
 	}
 	$error = db_error();
 }
-header_print('家ログ 空家の追加', array());
+header_print(array());
 if (isset($error))
 	echo("ERROR: $error<br />");
 $form->display();
