@@ -1,6 +1,8 @@
 <?php
 require_once('../lib.php');
+require_once('../editor.php');
 require_once('lib.php');
+require_once('../comment/lib.php');
 
 user_login();
 
@@ -19,6 +21,7 @@ $appear = realestate_image_top_url($r);
 $owner = realestate_image_owner_url($r);
 $age = realestate_age($r);
 $like = realestate_like_html($r, true);
+$comments = comment_get($r['id']);
 echo <<<TOP
         <!-- 詳細情報 -->
         <h2>詳細情報</h2>
@@ -57,8 +60,6 @@ $like
             </div>
           </div>
           <h3>写真</h3>
-          <img alt="$owner" src="$owner"  width="250" style="margin: 5;" />
-          <img alt="$appear" src="$appear" width="250" style="margin: 5;" />
           <img alt="$appear" src="$appear" width="250" style="margin: 5;" />
           <h3>室内・周辺</h3>
           <blockquote data-width="500" data-height="375" class="ricoh-theta-spherical-image" >#code4tottori 追い込みシータ撮影2 #theta360 - <a href="https://theta360.com/s/q41fN1dypHKIyAdQUdJz4AeHs" target="_blank">Spherical Image - RICOH THETA</a></blockquote>
@@ -69,20 +70,30 @@ $like
         </div>
         <div class="balloon-wrapper clearfix">
 MIDDLE;
-$ncomments = 6; /* XXX */
-for ($i = 0; $i < $ncomments; $i++) {
-	$msg = "また、資源をエネルギーに変換するためには、要らないものを空気中に排出しなくてはなりません。二酸化炭素などの排出物は、大気汚染を引き起こし、やがては地球全体の気温を徐々にあげてしまいます。これが地球温暖化と呼ばれるもので、異常気象や農作物への影響、海水面の上昇、紫外線の問題など、さまざまな問題の原因となっています。人間だけでなく、すべての生き物の住みやすい環境を守るためにも、エネルギーの節約は必要なのです。 <br />";
-	$msg .= "<img alt=\"score\" src=\"../images/star${id}.png\" />"; // XXX
-	if($i % 2 == 0) {
-		echo("<img src=\"../images/icon1.png\" class=\"balloon-left-img\" />\n");
-		echo("<p class=\"balloon-left\">$msg</p>\n");
-	} else {
-		echo("<p class=\"balloon-right\">$msg</p>\n");
-		echo("<img src=\"../images/icon1.png\" class=\"balloon-right-img\" />\n");
-	}
-	echo("<p class=\"clear-p\">&nbsp;</p>\n");
+$i = 0;
+foreach ($comments as $c) {
+	$user = array('id' => $c['user'], 'picture' => $c['picture']);
+	$userpic = user_picture_url($user);
+	$side = ($i % 2 === 0) ? 'left' : 'right';
+	echo <<<COMMENT
+
+          <img src="$userpic" class="balloon-$side-img" />
+          <p class="balloon-$side">{$c['comment']}</p>
+	  <p class="clear-p">&nbsp;</p>
+COMMENT;
+	$i++;
 }
+editor_add('comment');
 echo <<<BOTTOM
+
+        </div>
+        <div>
+          <form action="../comment/edit.php" method="post">
+            <textarea id="comment"></textarea>
+            <button type="button" class="comment" data-id="$id" data-element-id="comment">
+              投稿
+            </button>
+          </form>
         </div>
       </div>
     </div>

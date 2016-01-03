@@ -51,11 +51,15 @@ db_init($c)
 	        ),
 	    'comment' => array(
 	        'id INT NOT NULL AUTO_INCREMENT',
-		'realestate INT',
-		'assessment INT',
-		'message MEDIUMTEXT',
+		'realestate INT NOT NULL',
+		'user INT NOT NULL',
+		'comment MEDIUMTEXT NOT NULL',
+		'lastmodified TIMESTAMP DEFAULT CURRENT_TIMESTAMP ' .
+		    'ON UPDATE CURRENT_TIMESTAMP',
+		'created TIMESTAMP',
 	        'PRIMARY KEY(id)',
-	        'FOREIGN KEY (realestate) REFERENCES realestate(id)'
+	        'FOREIGN KEY (realestate) REFERENCES realestate(id)',
+	        'FOREIGN KEY (user) REFERENCES user(id)'
 	        ),
 	    );
 

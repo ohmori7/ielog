@@ -36,8 +36,11 @@ $(function() {
 		$('#alert-dialog-icon').removeClass('ui-icon-info');
 		$('#alert-dialog-container').removeClass('ui-state-error');
 		$('#alert-dialog-icon').removeClass('ui-icon-alert');
-		if (err === 'loginexpire' || err === 'requirelogin') {
-			if (err == 'requirelogin')
+		if (err === 'loginexpire' || err === 'requirelogin' ||
+		    err === 'emptydata') {
+			if (err == 'emptydata')
+				msg = 'データが入力されていません．';
+			else if (err == 'requirelogin')
 				msg = 'ログインが必要です．';
 			else {
 				msg = 'ログインが期限切れになりました．';
@@ -113,5 +116,23 @@ $(function() {
 		var likeimg = imgurlbase + '/like.png';
 
 		toggle_img($(this), likingimg, likeimg, 'like.php');
+	});
+
+	function
+	comment_callback(data, param)
+	{
+
+		param.elrte('val', '');
+	}
+
+	$('.comment').click(function() {
+		var url = '/comment/edit.php'; /* XXX */
+		var eid = $(this).data('element-id');
+		var e = $('#' + eid);
+		data = new Object();
+		data.id = $(this).data('id');
+		data.cmd = 'add'; /* XXX */
+		data.comment = e.elrte('val');
+		post(url, data, comment_callback, e);
 	});
 });
