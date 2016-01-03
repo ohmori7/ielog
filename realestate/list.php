@@ -11,6 +11,8 @@ echo <<<HEADER
           <ul>
             <li>市町村で検索とか</li>
             <li>築年数で検索とか</li>
+            <li>自身が所有者のものとか</li>
+            <li>likeしたものとか</li>
           </ul>
         </div>
         <div id="content">
