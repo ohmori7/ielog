@@ -321,7 +321,10 @@ flip_link($table)
 		$page = 1;
 	else if (($page - 1) * $perpage > $count)
 		--$page;
-	$first = 1 + ($page - 1) * $perpage;
+	if ($count === 0)
+		$fist = 0;
+	else
+		$first = 1 + ($page - 1) * $perpage;
 	$last  = $first + $perpage;
 	if ($last > $count)
 		$last = $count;
@@ -334,8 +337,9 @@ IMG;
 	};
 	$leftarrow = $img('left');		/* XXX: link */
 	$rightarrow = $img('right');		/* XXX: link */
-	$link = "{$count}件中{$first}〜{$last}件表示";
-	$link .= "{$leftarrow}..{$rightarrow}";	/* XXX: mediate links... */
+	$link = <<<LISTLINK
+<div class="listlink"> {$count}件中 {$first}〜{$last}件表示 {$leftarrow}..{$rightarrow}</div>
+LISTLINK;
 	return $link;
 }
 ?>

@@ -208,11 +208,15 @@ p.balloon-right::after {
 	width:			10%;
 }
 #content {
-	margin-left:		10%;
+	margin-left:		11%;
 }
 /* */
 .hidden {
 	display:		none;
+}
+/* */
+.listlink {
+	text-align:		center;
 }
 /* */
 h1 {
