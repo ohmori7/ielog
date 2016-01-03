@@ -258,6 +258,7 @@ u.dashed {
 body {
 	margin:			0;
 	padding:		0;
+	color:			#444444;
 	background-color:	#FFFFFF;
 }
 /* XXX: should be for QuickHTML only... */
