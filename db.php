@@ -225,10 +225,11 @@ db_records_get($table)
 }
 
 function
-db_records_count($table)
+db_records_count($table, $cond = array())
 {
 
-	$count = db_fetch(db_sql("SELECT COUNT(*) AS count FROM $table"));
+	$sql = "SELECT COUNT(*) AS count FROM $table " . db_record_where($cond);
+	$count = db_fetch(db_sql($sql));
 	if (! is_array($count))
 		return $count;
 	return (int)$count['count'];

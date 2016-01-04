@@ -69,12 +69,10 @@ realestate_get($id = null)
 		$where = '';
 	$sql = "
 	    SELECT r.*, $likedselect
-	        COUNT(rl.id) AS likes,
-	        COUNT(c.id) AS comments
+	        COUNT(rl.id) AS likes
 	    FROM realestate AS r
 	        $likedjoin
 	        LEFT JOIN realestate_like AS rl ON r.id = rl.realestate
-	        LEFT JOIN comment AS c ON r.id = c.realestate
 	    $where
 	    GROUP BY r.id";
 	$rs = db_records_get_sql($sql);
@@ -145,7 +143,7 @@ realestate_comment_count_html($r)
 {
 
 	$img = image_url('comment.png');
-	$count = $r['comments'];
+	$count = db_records_count('comment', array('realestate' => $r['id']));
 	return <<<HTML
                 <div class="comment-count">
                   <img src="$img" width="24" height="24"/>
