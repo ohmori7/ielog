@@ -154,11 +154,11 @@ HTML;
 }
 
 function
-realestate_feedback_html($r)
+realestate_feedback_html($r, $likable = false)
 {
 
 	$img = image_url('star3.png'); /* XXX */
-	$like = realestate_like_html($r, true);
+	$like = realestate_like_html($r, $likable);
 	$comment = realestate_comment_count_html($r);
 	return <<<HTML
               <div class="clearfix">
