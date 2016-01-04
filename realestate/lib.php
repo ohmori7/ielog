@@ -216,7 +216,6 @@ realestate_radar_graph_puts($r)
 
 	// XXX: should reflect actual values...
 	echo <<<GRAPH
-<script type="text/javascript" src="$url/rendering-mode.js"></script>
 <!--[if IE]><script type="text/javascript" src="$url/excanvas.js"></script><![endif]-->
 <script type="text/javascript" src="$url/radar.js"></script>
 <script type="text/javascript">
