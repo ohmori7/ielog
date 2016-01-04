@@ -31,6 +31,11 @@ else {
 </a>
 EDITLINK;
 }
+$addressurlencode = urlencode($address);
+$googlemap = <<<GOOGLEMAP
+<iframe width="400" height="350" frameborder="0" style="border:0"
+src="https://www.google.com/maps/embed/v1/place?q=$address&key=$googlemapembedapikey&zoom=12" allowfullscreen></iframe>
+GOOGLEMAP;
 echo <<<TOP
         <div id="menu">
           <!-- no menu for this page -->
@@ -46,12 +51,20 @@ echo <<<TOP
               <img alt="$owner" src="$owner" width="250" />
             </div>
             <div class="detail_msg">
-              <h3>評価</h3>
+              <div class="clearfix">
+                <div id="view-feedback">
+                  <h3>評価</h3>
 TOP;
 realestate_radar_graph_puts($r);
 echo <<<MIDDLE
 
 $feedback
+                </div>
+                <div id="view-map">
+                  <h3>地図</h3>
+                  $googlemap
+                </div>
+              </div>
               <div class="clearfix">
                 <div id="view-address">
                   <h3>住所</h3>

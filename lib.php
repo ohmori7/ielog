@@ -9,6 +9,7 @@
  * $dbuser	= 'username';
  * $dbpasswd	= 'password';
  * $dbname	= 'ielog';
+ * $googlemapembedapi = 'hogehoge';
  * ?>
  */
 require_once('config.php');

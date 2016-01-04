@@ -38,6 +38,14 @@ table.list tr.list-row1 td {
 	background-color:	rgb(243, 161, 87);
 }
 /* view */
+#view-feedback {
+	float:			left;
+	width:			480px;
+}
+#view-map {
+	float:			left;
+	margin-left:		5%;
+}
 #view-address {
 	float:			left;
 	width:			50%;
