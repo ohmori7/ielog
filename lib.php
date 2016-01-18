@@ -94,7 +94,8 @@ REDIRECTMETA;
 		$reguri = null;
 	$navlink = nav_link(array(
 	    'Top' =>  $uri,
-	    '一覧' => $uri . '/realestate/list.php',
+	    '空家一覧' => $uri . '/realestate/list.php',
+	    '空家マップ' => $uri . '/realestate/map.php',
 	    '空家登録' => $reguri
 	    ));
 	$subnavlink = nav_link($links);
