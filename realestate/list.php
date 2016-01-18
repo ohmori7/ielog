@@ -6,17 +6,19 @@ header_print(array());
 
 $fliplink = flip_link('realestate');
 echo <<<HEADER
-        <div id="menu">
-          <h2>検索</h2>
+        <div id="menu" class="container ui-coner-all">
+          <p class="container-header">検索条件 (作成中)</p>
           <ul>
-            <li>市町村で検索とか</li>
-            <li>築年数で検索とか</li>
-            <li>自身が所有者のものとか</li>
-            <li>likeしたものとか</li>
+            <li>市町村</li>
+            <li>部屋数</li>
+            <li>築年数</li>
+            <li>敷地面積</li>
+            <li>likeしたもの</li>
+            <li>自身が所有者のもの</li>
           </ul>
+          <button type="button">検索</button>
         </div>
         <div id="content">
-          <h2>物件一覧</h2>
           $fliplink
           <table class="list">
             <thead>
