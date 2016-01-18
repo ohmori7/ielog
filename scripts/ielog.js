@@ -110,7 +110,7 @@ $(function() {
 		post(url, data, toggle_img_callback, param);
 	}
 
-	$('.like').click(function() {
+	$('.likable').click(function() {
 		var imgurlbase = '/images'; /* XXX */
 		var likingimg = imgurlbase + '/liking.png';
 		var likeimg = imgurlbase + '/like.png';

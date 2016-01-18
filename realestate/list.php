@@ -20,26 +20,11 @@ echo <<<HEADER
         </div>
         <div id="content">
           $fliplink
-          <table class="list">
-            <thead>
-              <tr>
-                <th>No.</th>
-                <th>詳細</th>
-                <th>オーナー</th>
-                <th>外観</th>
-                <th>評価と概要</th>
-                <th>契約形態</th>
-                <th>築年数</th>
-                <th>住所</th>
-              </tr>
-            </thead>
-            <tbody>
 HEADER;
 
 $rows = 0;
 $rs = realestate_get();
 foreach ($rs as $id => $r) {
-	$rowmod = $rows++ % 2;
 	$estatepic = realestate_image_top_url($r);
 	$ownerimg = realestate_image_owner_url($r);
 	if (user_is_loggedin())
@@ -50,28 +35,25 @@ foreach ($rs as $id => $r) {
 	$contract = realestate_contract_name($r['contract']);
 	$age = realestate_age($r);
 	echo <<<RECORD
-              <tr class="list-row$rowmod">
-                <td rowspan="2">$id</td>
-                <td rowspan="2"><a $link>詳細</a></td>
-                <td rowspan="2"><img class="list-pic" alt="owner" src="{$ownerimg}" /></td>
-                <td rowspan="2"><img class="list-pic" alt="estate" src="{$estatepic}" /></td>
-                <td class="list-rate">
+          <div class="container">
+            <p class="container-header">物件 $id</p>
+            <p style="float: left;">
+              <img class="list-pic" alt="estate" src="{$estatepic}" />
+              <img class="list-pic" alt="owner" src="{$ownerimg}" />
+            </p>
+            <p>
+              住所: {$r['prefecture']}{$r['city']}{$r['address']}<br />
+              契約形態: {$contract}，築年数: {$age}<br />
+              概要:{$r['abstract']}<br />
+            </p>
 $feedback
-                </td>
-                <td rowspan="2">{$contract}</td>
-                <td rowspan="2">{$age}</td>
-                <td rowspan="2">{$r['prefecture']}{$r['city']}{$r['address']}</td>
-              </tr>
-
-              <tr class="list-row$rowmod">
-                <td class="list-abstract">{$r['abstract']}</td>
-              </tr>
-
+            <p>
+              <a $link>詳細</a>
+            </p>
+          </div>
 RECORD;
 }
 echo <<<FOOTER
-            </tbody>
-          </table>
           $fliplink
         </div>
 FOOTER;

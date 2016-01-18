@@ -125,9 +125,9 @@ realestate_like_html($r, $likeable = false)
 		$likeimg = image_url('like.png');
 	}
 	if ($likeable)
-		$class = 'class="like"';
+		$class = 'class="like likable"';
 	else
-		$class = '';
+		$class = 'class="like"';
 
 	return <<<HTML
 	        <div id="{$eid}" $class data-id="$id" data-state="$like">

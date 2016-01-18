@@ -1,41 +1,7 @@
 @charset "utf-8";
 
-table.list {
-	color:			white;
-	margin-left:		auto;
-	margin-right:		auto;
-	border-collapse:	collapse;
-	border:			solid 1px rgb(233, 141, 57);
-}
-table.list th {
-	background-color:	rgb(233, 141, 57);
-}
-table.list th,
-table.list td {
-	padding:		0;
-	margin:			0;
-	border:			solid 1px rgb(203, 121, 47);
-	text-align:		center;
-}
-table.list td.list-rate {
-	text-align:		center;
-	border:			none;
-	height:			33px;
-}
-table.list td.list-abstract {
-	border-top:		none;
-	vertical-align:		top;
-	text-align:		left;
-	text-indent:		1em;
-}
 img.list-pic {
 	width:			200px;
-}
-table.list tr.list-row0 td {
-	background-color:	rgb(255, 200, 127);
-}
-table.list tr.list-row1 td {
-	background-color:	rgb(243, 161, 87);
 }
 /* view */
 #view-feedback {
