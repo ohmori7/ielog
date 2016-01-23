@@ -302,6 +302,26 @@ file_path($path)
 }
 
 function
+file_delete($path)
+{
+
+	$path = file_path($path);
+	if (! is_dir($path))
+		return unlink($path);
+	$path .= '/';
+	$files = glob($path . '*', GLOB_MARK);
+	foreach ($files as $file) {
+		if (is_dir($file))
+			$rc = delete_files($file);
+		else
+			$rc = unlink($file);
+		if ($rc !== true)
+			return $rc;
+	}
+	return rmdir($path);
+}
+
+function
 file_url($path)
 {
 
