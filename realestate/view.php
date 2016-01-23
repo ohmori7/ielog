@@ -22,7 +22,7 @@ $owner = realestate_image_owner_url($r);
 $age = realestate_age($r);
 $comments = comment_get($r['id']);
 $feedback = realestate_feedback_html($r, true);
-if ($r['owner'] !== $USER->id)
+if (! realestate_is_editable($r))
 	$editlink = '';
 else {
 	$editlink = <<<EDITLINK

@@ -91,6 +91,16 @@ realestate_get($id = null)
 }
 
 function
+realestate_is_editable($r)
+{
+	global $USER;
+
+	if ($r && isset($r['owner']) && $r['owner'] === $USER->id)
+		return true;
+	return false;
+}
+
+function
 realestate_like_values($realestate)
 {
 	global $USER;

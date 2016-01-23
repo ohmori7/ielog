@@ -56,7 +56,7 @@ if ($form->isSubmitted() && $form->validate()) {
 	$values['picture'] = $filename;
 	if (empty($values['id']))
 		$id = realestate_add($values);
-	else
+	else if (realestate_is_editable(realestate_get($id)))
 		$id = realestate_update($values);
 	if ($id !== false) {
 		$dir = realestate_data_dir($id);
@@ -72,7 +72,7 @@ if ($form->isSubmitted() && $form->validate()) {
 } else if (($id = param_get_int('id')) !== 0) {
 	$r = realestate_get($id);
 	// use the same error message for all errors for security.
-	if ($r === NULL || $r['owner'] !== $USER->id)
+	if (! realestate_is_editable($r))
 		error('編集する権限がありません．');
 	$r['id'] = $id;
 	$form->setDefaults($r);
