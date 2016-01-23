@@ -6,6 +6,7 @@ require_once('lib.php');
 user_require_login();
 
 $form = new Form('realestateEditForm');
+$form->addElement('hidden', 'id');
 $form->addElement('header', null, '物件登録');
 $form->addElement('textarea', 'abstract', '概要',
     array('cols' => 80, 'rows' => 5));
@@ -40,7 +41,6 @@ $form->addRule('file', '外観の画像ファイルを入力して下さい．',
     'required', null, 'client');
 $form->addRule('zip', '数字を入力して下さい．', 'numeric', null, 'client');
 
-$id = param_get_int('id');
 if ($form->isSubmitted() && $form->validate()) {
 	if (! $file->isUploadedFile()) {
 		echo('ERROR: inconsitent state!!');
@@ -54,12 +54,10 @@ if ($form->isSubmitted() && $form->validate()) {
 		$ext = '';
 	$filename = "pic$ext";
 	$values['picture'] = $filename;
-	if ($id === 0)
+	if ($values['id'] === 0)
 		$id = realestate_add($values);
-	else {
-		$values['id'] = "$id";
+	else
 		$id = realestate_update($values);
-	}
 	if ($id !== false) {
 		$dir = realestate_data_dir($id);
 		mkdir($dir, 0700, true);
@@ -71,11 +69,12 @@ if ($form->isSubmitted() && $form->validate()) {
 		return;
 	}
 	$error = db_error();
-} else if ($id !== 0) {
+} else if (($id = param_get_int('id')) !== 0) {
 	$r = realestate_get($id);
 	// use the same error message for all errors for security.
 	if ($r === NULL || $r['owner'] !== $USER->id)
 		error('編集する権限がありません．');
+	$r['id'] = $id;
 	$form->setDefaults($r);
 }
 header_print(array());
