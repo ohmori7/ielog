@@ -25,6 +25,8 @@ $_ielog_footer_is_printed_out = false;
 $_ielog_csses = '';
 $_ielog_scripts = '';
 
+date_default_timezone_set('UTC');
+
 css_file_add('css/style.css');
 css_file_add('scripts/jquery-ui/jquery-ui.css');
 
