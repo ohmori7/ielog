@@ -43,7 +43,7 @@ $form->addRule('zip', '数字を入力して下さい．', 'numeric', null, 'cli
 
 if ($form->isSubmitted() && $form->validate()) {
 	if (! $file->isUploadedFile()) {
-		echo('ERROR: inconsitent state!!');
+		error('inconsitent state!!');
 		die();
 	}
 	$values = $form->exportValues();
@@ -79,7 +79,7 @@ if ($form->isSubmitted() && $form->validate()) {
 }
 header_print(array());
 if (isset($error))
-	echo("ERROR: $error<br />");
+	error("$error");
 $form->display();
 footer_print();
 ?>
