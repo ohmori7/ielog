@@ -74,7 +74,6 @@ if ($form->isSubmitted() && $form->validate()) {
 } else if ($id !== 0) {
 	$r = realestate_get($id);
 	// use the same error message for all errors for security.
-	var_dump($id);
 	if ($r === NULL || $r['owner'] !== $USER->id)
 		error('編集する権限がありません．');
 	$form->setDefaults($r);
