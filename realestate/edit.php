@@ -42,10 +42,8 @@ $form->addRule('file', '外観の画像ファイルを入力して下さい．',
 $form->addRule('zip', '数字を入力して下さい．', 'numeric', null, 'client');
 
 if ($form->isSubmitted() && $form->validate()) {
-	if (! $file->isUploadedFile()) {
+	if (! $file->isUploadedFile())
 		error('inconsitent state!!');
-		die();
-	}
 	$values = $form->exportValues();
 	$filename = $file->_value['name']; /* XXX */
 	if (preg_match('/^.*(\.[^[\.]+)$/', $filename, $matches))
@@ -69,6 +67,8 @@ if ($form->isSubmitted() && $form->validate()) {
 		return;
 	}
 	$error = db_error();
+	if (isset($error))
+		error("$error");
 } else if (($id = param_get_int('id')) !== 0) {
 	$r = realestate_get($id);
 	// use the same error message for all errors for security.
@@ -78,8 +78,6 @@ if ($form->isSubmitted() && $form->validate()) {
 	$form->setDefaults($r);
 }
 header_print(array());
-if (isset($error))
-	error("$error");
 $form->display();
 footer_print();
 ?>
