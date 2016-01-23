@@ -236,7 +236,7 @@ param_get($name, $default = '')
 }
 
 function
-param_get_int($name, $default = '')
+param_get_int($name, $default = 0)
 {
 
 	return (int)param_get($name, $default);
