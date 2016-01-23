@@ -40,6 +40,7 @@ $form->addRule('file', '外観の画像ファイルを入力して下さい．',
     'required', null, 'client');
 $form->addRule('zip', '数字を入力して下さい．', 'numeric', null, 'client');
 
+$id = param_get_int('id');
 if ($form->isSubmitted() && $form->validate()) {
 	if (! $file->isUploadedFile()) {
 		echo('ERROR: inconsitent state!!');
@@ -53,7 +54,12 @@ if ($form->isSubmitted() && $form->validate()) {
 		$ext = '';
 	$filename = "pic$ext";
 	$values['picture'] = $filename;
-	$id = realestate_add($values);
+	if ($id === 0)
+		$id = realestate_add($values);
+	else {
+		$values['id'] = "$id";
+		$id = realestate_update($values);
+	}
 	if ($id !== false) {
 		$dir = realestate_data_dir($id);
 		mkdir($dir, 0700, true);
@@ -65,9 +71,10 @@ if ($form->isSubmitted() && $form->validate()) {
 		return;
 	}
 	$error = db_error();
-} else if (($id = param_get('id')) !== '') {
+} else if ($id !== 0) {
 	$r = realestate_get($id);
 	// use the same error message for all errors for security.
+	var_dump($id);
 	if ($r === NULL || $r['owner'] !== $USER->id)
 		error('編集する権限がありません．');
 	$form->setDefaults($r);

@@ -54,6 +54,15 @@ realestate_add($values)
 }
 
 function
+realestate_update($values)
+{
+
+	unset($values['MAX_FILE_SIZE']);
+	unset($values['owner']);
+	return db_record_update('realestate', $values);
+}
+
+function
 realestate_get($id = null)
 {
 	global $USER;
