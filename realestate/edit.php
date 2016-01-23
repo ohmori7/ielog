@@ -54,7 +54,7 @@ if ($form->isSubmitted() && $form->validate()) {
 		$ext = '';
 	$filename = "pic$ext";
 	$values['picture'] = $filename;
-	if ($values['id'] === 0)
+	if (empty($values['id']))
 		$id = realestate_add($values);
 	else
 		$id = realestate_update($values);
