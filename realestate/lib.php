@@ -63,6 +63,13 @@ realestate_update($values)
 }
 
 function
+realestate_delete($id)
+{
+
+	return db_record_delete('realestate', array('id' => $id));
+}
+
+function
 realestate_get($id = null)
 {
 	global $USER;
@@ -128,6 +135,14 @@ realestate_unlike($realestate)
 	$values = realestate_like_values($realestate);
 
 	return db_record_delete('realestate_like', $values);
+}
+
+function
+realestate_unlike_all($realestate)
+{
+
+	return db_record_delete('realestate_like',
+	    array('realestate' => $realestate));
 }
 
 function

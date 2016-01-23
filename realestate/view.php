@@ -29,6 +29,9 @@ else {
 <a href="edit.php?id={$r['id']}">
   <img alt="edit" src="../images/edit.png" width="24" height="24" />
 </a>
+<a href="delete.php?id={$r['id']}">
+  <img alt="delete" src="../images/cross.png" width="24" height="24" />
+</a>
 EDITLINK;
 }
 $addressurlencode = urlencode($address);

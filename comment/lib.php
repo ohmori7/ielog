@@ -10,4 +10,11 @@ comment_get($realestate)
 	        c.user = u.id";
 	return db_records_get_sql($sql);
 }
+
+function
+comment_delete_all($realestate)
+{
+
+	return db_record_delete('comment', array('realestate' => $realestate));
+}
 ?>
