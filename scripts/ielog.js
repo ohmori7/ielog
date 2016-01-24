@@ -17,8 +17,8 @@
                 var iconClass;
 
 		if (error) {
-			containerClass = 'ui-icon-alert';
-			iconClass = 'ui-state-error';
+			containerClass = 'ui-state-error';
+			iconClass = 'ui-icon-alert';
 		} else {
 			containerClass = 'ui-state-highlight';
 			iconClass = 'ui-icon-info';
