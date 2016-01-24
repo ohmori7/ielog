@@ -8,8 +8,9 @@ $id = param_get_int('id');
 $r = realestate_get($id);
 if (! realestate_is_editable($r))
 	error('編集する権限がありません．');
-if (! file_delete(realestate_data_dirbase($id)) ||
-    ! realestate_unlike_all($id) ||
+if (! file_delete(realestate_data_dirbase($id)))
+	error('ファイルを削除できません．');
+if (! realestate_unlike_all($id) ||
     ! comment_delete_all($id) ||
     ! realestate_delete($id))
 	error(db_error());
