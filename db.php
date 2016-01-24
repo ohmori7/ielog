@@ -172,7 +172,9 @@ db_record_update($table, $obj)
 	$sql = "UPDATE $table
 	    SET " .  implode(', ', $keyvalues) . '
 	    WHERE id = ' . $id;
-	return db_sql($sql);
+	if (db_sql($sql) !== true)
+		return false;
+	return $id;
 }
 
 function
