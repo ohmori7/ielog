@@ -41,10 +41,10 @@
 	post_success(json, status, request, cb, param)
 	{
 
-		if (json.error !== 'success')
-			post_error(request, 'error', json.error);
+		if (json.status !== 'OK')
+			post_error(request, 'error', json.status);
 		else if (cb !== null)
-			cb(json.value, param);
+			cb(json.results, param);
 	}
 
 	function
