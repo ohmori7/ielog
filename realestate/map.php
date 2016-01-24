@@ -4,7 +4,6 @@ require_once('../db.php');
 require_once('lib.php');
 header_print(array());
 
-$fliplink = flip_link('realestate');
 echo <<<HEADER
         <div id="menu" class="container ui-coner-all">
           <p class="container-header">検索条件 (作成中)</p>
