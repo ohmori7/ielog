@@ -49,7 +49,8 @@ if ($form->isSubmitted() && $form->validate()) {
 	if ($id !== false) {
 		$dir = realestate_data_dir($id);
 		@mkdir($dir, 0700, true);
-		header_print(array(), '../', IELOG_REDIRECT_TIMEOUT);
+		header_print(array(), "view.php?id=$id",
+		    IELOG_REDIRECT_TIMEOUT);
 		echo('登録されました．');
 		footer_print();
 		return;
