@@ -5,7 +5,7 @@ function
 json_respond($value, $status = 'OK')
 {
 
-	echo(json_encode(array('status' => $error, 'results' => $value)));
+	echo(json_encode(array('status' => $status, 'results' => $value)));
 	die();
 }
 ?>
