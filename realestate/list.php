@@ -4,7 +4,8 @@ require_once('../db.php');
 require_once('lib.php');
 header_print(array());
 
-$fliplink = flip_link('realestate');
+$page = param_get_int('page', 1);
+$fliplink = flip_link('realestate', $page);
 echo <<<HEADER
         <div id="menu" class="container ui-coner-all">
           <p class="container-header">検索条件 (作成中)</p>
@@ -23,7 +24,7 @@ echo <<<HEADER
 HEADER;
 
 $rows = 0;
-$rs = realestate_get();
+$rs = realestate_gets($page);
 foreach ($rs as $id => $r) {
 	$estatepic = realestate_image_top_url($r);
 	$ownerimg = realestate_image_owner_url($r);

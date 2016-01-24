@@ -70,7 +70,7 @@ realestate_delete($id)
 }
 
 function
-realestate_get($id = null)
+realestate_get_common($id = null, $off = null, $limit = null)
 {
 	global $USER;
 
@@ -83,6 +83,10 @@ realestate_get($id = null)
 		$where = "WHERE r.id = $id";
 	else
 		$where = '';
+	if ($off !== null && $limit !== null)
+		$limit = "LIMIT $off, $limit";
+	else
+		$limit = '';
 	$sql = "
 	    SELECT r.*, $likedselect
 	        COUNT(rl.id) AS likes
@@ -90,11 +94,28 @@ realestate_get($id = null)
 	        $likedjoin
 	        LEFT JOIN realestate_like AS rl ON r.id = rl.realestate
 	    $where
-	    GROUP BY r.id";
+	    GROUP BY r.id
+	    ORDER BY r.id
+	    $limit";
 	$rs = db_records_get_sql($sql);
 	if ($rs !== false && $id !== null)
 		$rs = array_pop($rs);
 	return $rs;
+}
+
+function
+realestate_get($id)
+{
+
+	return realestate_get_common($id);
+}
+
+function
+realestate_gets($page)
+{
+
+	$off = ($page - 1) * IELOG_LISTCOUNT_PER_PAGE;
+	return realestate_get_common(null, $off, IELOG_LISTCOUNT_PER_PAGE);
 }
 
 function

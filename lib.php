@@ -17,8 +17,8 @@ require_once('db.php');
 require_once('user/lib.php');
 
 define('IELOG_REDIRECT_TIMEOUT',	5);
-
 define('IELOG_ALLOWED_AGE',		20);
+define('IELOG_LISTCOUNT_PER_PAGE',	10);
 
 $_ielog_header_is_printed_out = false;
 $_ielog_footer_is_printed_out = false;
@@ -336,10 +336,9 @@ image_url($path)
 }
 
 function
-flip_link($table)
+flip_link($table, $page)
 {
-	$perpage = 10;
-	$page = param_get_int('page', 1);
+	static $perpage = IELOG_LISTCOUNT_PER_PAGE;
 
 	$count = db_records_count($table);
 	if ($page < 1 || $page > $count)
@@ -350,9 +349,11 @@ flip_link($table)
 		$fist = 0;
 	else
 		$first = 1 + ($page - 1) * $perpage;
-	$last  = $first + $perpage;
+	$last = $first + $perpage - 1;
 	if ($last > $count)
 		$last = $count;
+	$prev = $page - 1;
+	$next = $page + 1;
 
 	$img = function($name) {
 		$imguri = image_url("$name-arrow.png");
@@ -360,8 +361,16 @@ flip_link($table)
 <img class="inline" src="$imguri" alt="$name" width="32" height="32" />
 IMG;
 	};
-	$leftarrow = $img('left');		/* XXX: link */
-	$rightarrow = $img('right');		/* XXX: link */
+	$leftarrow = $img('left');
+	if ($prev > 0)
+		$leftarrow = <<<LEFTARROW
+<a alt="prev" href="?page=$prev">$leftarrow</a>
+LEFTARROW;
+	$rightarrow = $img('right');
+	if ($last < $count)
+		$rightarrow = <<<RIGHTARROW
+<a alt="next" href="?page=$next">$rightarrow</a>
+RIGHTARROW;
 	$link = <<<LISTLINK
 <div class="listlink"> {$count}件中 {$first}〜{$last}件表示 {$leftarrow}..{$rightarrow}</div>
 LISTLINK;
