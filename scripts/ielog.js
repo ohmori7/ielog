@@ -1,4 +1,3 @@
-$(function() {
 	var alertdialog;
 
 	alertdialog = $('#alert-dialog').dialog({
@@ -10,6 +9,29 @@ $(function() {
 				}
 			}
 	});
+
+	function
+	alert_dialog_open(msg, error)
+	{
+		var containerClass;
+                var iconClass;
+
+		if (error) {
+			containerClass = 'ui-icon-alert';
+			iconClass = 'ui-state-error';
+		} else {
+			containerClass = 'ui-state-highlight';
+			iconClass = 'ui-icon-info';
+		}
+		$('#alert-dialog-container').removeClass('ui-state-highlight');
+		$('#alert-dialog-icon').removeClass('ui-icon-info');
+		$('#alert-dialog-container').removeClass('ui-state-error');
+		$('#alert-dialog-icon').removeClass('ui-icon-alert');
+		$('#alert-dialog-container').addClass(containerClass);
+		$('#alert-dialog-icon').addClass(iconClass);
+		$('#alert-dialog-message').text(msg);
+		alertdialog.dialog('open');
+	}
 
 	$('.require-login').on('click', function () {
 		post_error(null, 'error', 'requirelogin');
@@ -28,14 +50,9 @@ $(function() {
 	function
 	post_error(request, status, err)
 	{
-		var containerClass = 'ui-state-error';
-		var iconClass = 'ui-icon-alert';
+		var iserror = true;
 		var msg;
 
-		$('#alert-dialog-container').removeClass('ui-state-highlight');
-		$('#alert-dialog-icon').removeClass('ui-icon-info');
-		$('#alert-dialog-container').removeClass('ui-state-error');
-		$('#alert-dialog-icon').removeClass('ui-icon-alert');
 		if (err === 'loginexpire' || err === 'requirelogin' ||
 		    err === 'emptydata') {
 			if (err == 'emptydata')
@@ -46,16 +63,12 @@ $(function() {
 				msg = 'ログインが期限切れになりました．';
 				msg += '再度ログインして下さい．';
 			}
-			containerClass = 'ui-state-highlight';
-			iconClass = 'ui-icon-info';
+			iserror = false;
 		} else if ((! err || err.length === 0) && status === 'error')
 			msg = '通信できませんでした．後で再試行して下さい．';
 		else
 			msg = 'サーバ管理者に連絡して下さい（' + err + '）';
-		$('#alert-dialog-container').addClass(containerClass);
-		$('#alert-dialog-icon').addClass(iconClass);
-		$('#alert-dialog-message').text(msg);
-		alertdialog.dialog('open');
+		alert_dialog_open(msg, iserror);
 	}
 
 	function
@@ -76,6 +89,25 @@ $(function() {
 		});
 	}
 
+	function
+	top_picture_callback(data, param)
+	{
+		var msg;
+
+		msg = param.name + 'を概観の画像として設定しました．';
+		alert_dialog_open(msg, false);
+	}
+
+	function
+	top_picture_set(id, file)
+	{
+		data = new Object();
+		data.id = id;
+		data.file = file.name;
+		post('/realestate/pic.php', data, top_picture_callback, file);
+	}
+
+$(function() {
 	function
 	toggle_img_callback(data, param)
 	{

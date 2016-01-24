@@ -113,6 +113,9 @@ foreach($scripts as $script)
 			$('#elfinder').elfinder({
 				url:		'connector.php?id=$id',
 				soundPath:	'$path/sounds',
+				getFileCallback: function(file) {
+					top_picture_set($id, file);
+				},
 			});
 		});";
 script_code_add($code);
