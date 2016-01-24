@@ -18,7 +18,6 @@ $form->addElement('date', 'builtdate', '建築日', array(
     'minYear' => 1950, 'maxYear' => date('Y'),
     'format' => 'Ymd', 'addEmptyOption' => true,
     'emptyOptionText' => array('Y' => 'YYYY', 'm' => 'mm', 'd' => 'dd')));
-$file =& $form->addElement('file', 'file', '外観の画像ファイル');
 $form->addElement('text', 'zip', '郵便番号',
     array('size' => 16, 'maxlength' => 16));
 $form->addElement('text', 'prefecture', '都道府県',
@@ -37,21 +36,10 @@ $form->addRule('contract', '契約形態を入力して下さい．',
     'required', null, 'client');
 $form->addRule('builtdate', '建築日を入力して下さい．',
     'required', null, 'client');
-$form->addRule('file', '外観の画像ファイルを入力して下さい．',
-    'required', null, 'client');
 $form->addRule('zip', '数字を入力して下さい．', 'numeric', null, 'client');
 
 if ($form->isSubmitted() && $form->validate()) {
-	if (! $file->isUploadedFile())
-		error('inconsitent state!!');
 	$values = $form->exportValues();
-	$filename = $file->_value['name']; /* XXX */
-	if (preg_match('/^.*(\.[^[\.]+)$/', $filename, $matches))
-		$ext = $matches[1];
-	else
-		$ext = '';
-	$filename = "pic$ext";
-	$values['picture'] = $filename;
 	if (empty($values['id']))
 		$id = realestate_add($values);
 	else if (realestate_is_editable(realestate_get($values['id'])))
@@ -61,8 +49,6 @@ if ($form->isSubmitted() && $form->validate()) {
 	if ($id !== false) {
 		$dir = realestate_data_dir($id);
 		@mkdir($dir, 0700, true);
-		$file->moveUploadedFile($dir, $filename);
-
 		header_print(array(), '../', IELOG_REDIRECT_TIMEOUT);
 		echo('登録されました．');
 		footer_print();

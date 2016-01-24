@@ -211,9 +211,10 @@ function
 realestate_image_top_url($r)
 {
 
-	if (array_key_exists('id', $r) && array_key_exists('picture', $r)) {
+	if (array_key_exists('id', $r) &&
+	    array_key_exists('picture', $r) &&
+	    ! empty($pic = $r['picture'])) {
 		$id = $r['id'];
-		$pic = $r['picture'];
 		if (file_exists(realestate_data_dir($id) . $pic))
 			return realestate_data_url($id, $pic);
 	}
