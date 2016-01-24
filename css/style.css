@@ -22,6 +22,10 @@ img.list-pic {
 	width:			20%;
 	margin-left:		5%;
 }
+.view-pic-list {
+	width:			200px;
+	margin-left:		5px;
+}
 /*-----吹き出し-----*/
 /* balloon common */
 div.balloon-wrapper {

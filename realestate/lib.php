@@ -228,6 +228,31 @@ realestate_image_owner_url($r)
 }
 
 function
+realestate_image_list_html($r)
+{
+	$images = array();
+
+	$id = $r['id'];
+	$dir = realestate_data_dir($id);
+	$dh = opendir($dir);
+	if ($dh) {
+		while (($file = readdir($dh)) !== false)
+			if (is_file("$dir$file"))
+				$images[] = realestate_data_url($id, $file);
+        	closedir($dh);
+	}
+	if (empty($images))
+		$images[] = image_url('noimage.png');
+	$html = '';
+	foreach ($images as $image)
+		$html .= <<<HTML
+<img alt="$image" src="$image" class="view-pic-list" />
+HTML;
+
+	return $html;
+}
+
+function
 realestate_age($r)
 {
 	$now = new DateTime('now', new DateTimeZone('Japan'));

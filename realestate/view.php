@@ -22,8 +22,9 @@ $owner = realestate_image_owner_url($r);
 $age = realestate_age($r);
 $comments = comment_get($r['id']);
 $feedback = realestate_feedback_html($r, true);
+$images = realestate_image_list_html($r);
 if (! realestate_is_editable($r))
-	$editlink = '';
+	$editlink = $uploadlink = '';
 else {
 	$editlink = <<<EDITLINK
 <a href="edit.php?id={$r['id']}">
@@ -33,6 +34,11 @@ else {
   <img alt="delete" src="../images/cross.png" width="24" height="24" />
 </a>
 EDITLINK;
+	$uploadlink = <<<UPLOADLINK
+<a href="../finder.php?id=$id" target="_blank">
+  <img alt="upload" src="../images/upload.png" width="24" height="24" />
+</a>
+UPLOADLINK;
 }
 $addressurlencode = urlencode($address);
 $googlemap = <<<GOOGLEMAP
@@ -89,8 +95,8 @@ $feedback
             {$r['abstract']}
             <h3>説明</h3>
             {$r['description']}
-            <h3>写真</h3>
-            <img alt="$appear" src="$appear" width="250" style="margin: 5;" />
+            <h3>写真$uploadlink</h3>
+            $images
             <h3>室内・周辺</h3>
             <blockquote data-width="500" data-height="375" class="ricoh-theta-spherical-image" >#code4tottori 追い込みシータ撮影2 #theta360 - <a href="https://theta360.com/s/q41fN1dypHKIyAdQUdJz4AeHs" target="_blank">Spherical Image - RICOH THETA</a></blockquote>
             <script async src="https://theta360.com/widgets.js" charset="utf-8"></script><br/>
