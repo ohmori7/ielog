@@ -172,7 +172,7 @@ realestate_like_html($r, $likeable = false)
 	$id = $r['id'];
 	$eid = "realestate$id-like";
 
-	if ($r['liked']) {
+	if (array_key_exists('liked', $r) && $r['liked']) {
 		$like = 'on';
 		$likeimg = image_url('liking.png');
 	} else {
