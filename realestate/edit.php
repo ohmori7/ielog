@@ -54,8 +54,10 @@ if ($form->isSubmitted() && $form->validate()) {
 	$values['picture'] = $filename;
 	if (empty($values['id']))
 		$id = realestate_add($values);
-	else if (realestate_is_editable(realestate_get($id)))
+	else if (realestate_is_editable(realestate_get($values['id'])))
 		$id = realestate_update($values);
+	else
+		error('編集する権限がありません．');
 	if ($id !== false) {
 		$dir = realestate_data_dir($id);
 		mkdir($dir, 0700, true);
