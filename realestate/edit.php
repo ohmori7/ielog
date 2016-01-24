@@ -60,7 +60,7 @@ if ($form->isSubmitted() && $form->validate()) {
 		error('編集する権限がありません．');
 	if ($id !== false) {
 		$dir = realestate_data_dir($id);
-		mkdir($dir, 0700, true);
+		@mkdir($dir, 0700, true);
 		$file->moveUploadedFile($dir, $filename);
 
 		header_print(array(), '../', IELOG_REDIRECT_TIMEOUT);
